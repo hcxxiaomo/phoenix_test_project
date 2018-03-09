@@ -56,6 +56,12 @@ public class LoginModule {
 	    	
 	    }
 	  
+	  @At("/register")
+	  @Ok("jsp:jsp.manager.register")
+	  public void registerIndex(){
+		  
+	  }
+	  
 	  @At
 	    @Ok("jsp:jsp.manager.login")
 	    public void logout(HttpSession session) {

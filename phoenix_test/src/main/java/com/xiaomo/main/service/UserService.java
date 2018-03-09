@@ -28,10 +28,13 @@ import com.xiaoleilu.hutool.crypto.digest.DigestUtil;
 import com.xiaoleilu.hutool.crypto.symmetric.SymmetricAlgorithm;
 import com.xiaoleilu.hutool.crypto.symmetric.SymmetricCrypto;
 import com.xiaoleilu.hutool.date.DateUtil;
+import com.xiaoleilu.hutool.lang.Validator;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
+import com.xiaomo.main.bean.MailValidate;
 import com.xiaomo.main.bean.User;
 import com.xiaomo.main.pojo.EasyUiJsonObj;
+import com.xiaomo.main.utils.CacheData;
 import com.xiaomo.main.utils.Constants;
 
 @IocBean
@@ -49,7 +52,7 @@ public class UserService {
 	 
 	 private StringGenerator sg =  R.sg(6);
 	 
-	 protected SymmetricCrypto des = new SymmetricCrypto(SymmetricAlgorithm.DESede, SecureUtil.generateKey(SymmetricAlgorithm.DESede.getValue()).getEncoded());
+//	 protected SymmetricCrypto des = new SymmetricCrypto(SymmetricAlgorithm.DESede, SecureUtil.generateKey(SymmetricAlgorithm.DESede.getValue()).getEncoded());
 	
 	 public EasyUiJsonObj<User> getInfoByPage(Integer pageNumber,Integer pageSize
 			 ,String name,String type
@@ -186,22 +189,44 @@ public class UserService {
 		 }
 	}
 	
-	public NutMap sendEmail(String email, HttpServletRequest request){
+	/**email传进来之前就需要trim一下*/
+	public NutMap sendEmail(String email){
 		 NutMap re = new NutMap();
 		//不需要链接，改成验证码那种的
-		 
 	       if (Strings.isBlank(email)) {
 	            return re.setv("ok", false).setv("msg", "你还没有填邮箱啊!");
 	        }
+	       if (Validator.isEmail(email)) {
+	    	   return re.setv("ok", false).setv("msg", "请输入格式正确的邮箱!");
+	       }
+	       
+	       String validate = null;
+	       MailValidate mv = null;
+	       if (CacheData.cacheEmail.containsKey(email)) {//如果缓存中有先使用缓存中的，后面验证通过就可以删除缓存中的
+	    	   validate = CacheData.cacheEmail.get(email);
+	       }else{//如果缓存中没有，就从数据库是取值
+	    	   mv = dao.fetch(MailValidate.class, email);
+	    	   validate = ( mv == null ? sg.next() : mv.getValidate());
+	    	   CacheData.cacheEmail.put(email, validate);
+	       }
 //	        String token = String.format("%s,%s",email, System.currentTimeMillis());
 //	        token = des.encryptHex(token);
 //	        String url = request.getRequestURL() + "?token=" + token;
-	        String html = "<div>验证码为<br/>：<span style='color:red'>%s</span><p/>please copy the code <p/></div>";
-	        html = String.format(html, sg.next());
+	        String html = "<div>Validate Code：<br/><p><span style='color:red'>%s</span><p/>please copy the code<p/></div>";
+	        
+	        html = String.format(html,validate);
 	        try {
-	            boolean ok = mailService.send(email, "XXX 验证邮件 by phoenix_test", html);
+	            boolean ok = mailService.send(email, "Validate Code from PhoenixTest", html);
 	            if (!ok) {
-	                return re.setv("ok", false).setv("msg", "发送失败");
+	                return re.setv("ok", false).setv("msg", "发送失败，请检查邮箱是否正确。");
+	            }else{
+	            	if (mv == null) {//如果发送成功，而且没有对应的验证码记录
+	            		mv = new MailValidate();
+	            		mv.setEmail(email);
+	            		mv.setValidate(validate);
+	            		//保存到数据库中，保证每次发的时候，都是原来的验证码
+	            		dao.insertOrUpdate(mv);
+					}
 	            }
 	        } catch (Throwable e) {
 	            log.debug("发送邮件失败", e);

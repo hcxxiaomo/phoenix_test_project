@@ -8,6 +8,8 @@ import org.nutz.ioc.Ioc;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
+import com.xiaomo.main.bean.DataDictionary;
+import com.xiaomo.main.bean.MailValidate;
 import com.xiaomo.main.bean.User;
 
 public class MainSetup  implements Setup{
@@ -32,6 +34,8 @@ public class MainSetup  implements Setup{
             user.setUserManager(1);
             dao.insert(user);
         }
+        dao.create(MailValidate.class, false);
+        dao.create(DataDictionary.class, false);
         
         // 获取NutQuartzCronJobFactory从而触发计划任务的初始化与启动
 //        ioc.get(NutQuartzCronJobFactory.class);

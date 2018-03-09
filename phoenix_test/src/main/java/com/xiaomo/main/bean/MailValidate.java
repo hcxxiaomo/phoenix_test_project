@@ -9,9 +9,9 @@ import org.nutz.dao.entity.annotation.Table;
 @Table("t_mail_validate")
 public class MailValidate {
 	
-	@Id
-	@Column("id")
-	private Integer mvId;
+//	@Id
+//	@Column("id")
+//	private Integer mvId;
 	
 	@Name
 	@Column("email")
@@ -22,13 +22,13 @@ public class MailValidate {
    	@Comment("验证码")
 	private String validate;
 
-	public Integer getMvId() {
-		return mvId;
-	}
-
-	public void setMvId(Integer mvId) {
-		this.mvId = mvId;
-	}
+//	public Integer getMvId() {
+//		return mvId;
+//	}
+//
+//	public void setMvId(Integer mvId) {
+//		this.mvId = mvId;
+//	}
 
 	public String getEmail() {
 		return email;
@@ -49,7 +49,7 @@ public class MailValidate {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("MailValidate [mvId=").append(mvId).append(", email=").append(email).append(", validate=")
+		builder.append("MailValidate [email=").append(email).append(", validate=")
 				.append(validate).append("]");
 		return builder.toString();
 	}
