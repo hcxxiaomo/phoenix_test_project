@@ -27,34 +27,53 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="/phoenix_test/AdminLTE-2.4.2/index2.html"><b>Admin</b>LTE</a>
+    <b>PHOENIX</b>TEST
   </div>
 
   <div class="register-box-body">
     <p class="login-box-msg">Register a new membership</p>
 
     <form action="/phoenix_test/AdminLTE-2.4.2/index.html" method="post">
-      <div class="form-group has-feedback">
+<!--       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Full name">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div> -->
+      
+            <div class="row">
+        <div class="col-xs-8">
+           <div class="form-group has-feedback">
+       <input  id="email"  type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-info btn-block btn-flat">Get Code</button>
+        </div>
+        <!-- /.col -->
+      </div>
+      
+    <!--   <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div> -->
+      <div class="form-group has-feedback">
+        <input id="validate_code" type="text" class="form-control" placeholder="Validate code">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input id="password" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
+    <!--   <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Retype password">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
@@ -69,14 +88,13 @@
         </div>
         <!-- /.col -->
       </div>
+
     </form>
 
     <div class="social-auth-links text-center">
       <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-        Google+</a>
+      <a href="#" class="btn btn-success  btn-flat">Register</a>
+      <a href="#" class="btn btn-danger btn-flat">Reset Password by Email</a>
     </div>
 
     <a href="login.html" class="text-center">I already have a membership</a>
@@ -86,9 +104,11 @@
 <!-- /.register-box -->
 
 <!-- jQuery 3 -->
-<script src="/phoenix_test/AdminLTE-2.4.2/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/phoenix_test/AdminLTE-2.4.2/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<!-- jQuery form -->
+<script src="/phoenix_test/AdminLTE-2.4.2/plugins/jQuery/jquery.form.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/phoenix_test/AdminLTE-2.4.2/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/phoenix_test/AdminLTE-2.4.2/bootstrap/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="/phoenix_test/AdminLTE-2.4.2/plugins/iCheck/icheck.min.js"></script>
 <script>
