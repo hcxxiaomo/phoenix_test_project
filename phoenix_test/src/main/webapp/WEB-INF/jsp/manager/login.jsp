@@ -37,67 +37,33 @@
   </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="/phoenix_test/AdminLTE-2.4.2/index.html" method="post">
-<!--       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Full name">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div> -->
-      
-            <div class="row">
-        <div class="col-xs-8">
-           <div class="form-group has-feedback">
-       <input  id="email"  type="email" class="form-control" placeholder="Email">
+    <form action="../../index2.html" method="post">
+      <div class="form-group has-feedback">
+        <input type="email"  id = "email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <a href="javascript:validateEmail()" id="get_code" class="btn btn-info btn-block btn-flat">Get Code</a>
-        </div>
-        <!-- /.col -->
-      </div>
-      
-    <!--   <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div> -->
-      <div id="show_validate" class="form-group has-feedback">
-        <input id="validate_code" type="text" class="form-control" placeholder="Validate code">
-        <span class="glyphicon glyphicon-paste form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input id="password" type="text" class="form-control" placeholder="Password">
+        <input type="password"  id = "password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-    <!--   <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Retype password">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div> -->
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
+          <!-- <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> I agree to the <a href="#">terms</a>
+              <input type="checkbox"> Remember Me
             </label>
-          </div>
+          </div> -->
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-<!--           <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button> -->
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
-
     </form>
-
-    <div class="social-auth-links text-center">
-<!--       <p>- OR -</p> -->
-      <a href="javascript:register()" class="btn btn-block  btn-success  btn-flat">Register</a>
-<!--       <a href="#" class="btn btn-block  btn-info btn-flat">Login</a> -->
-    </div>
-
+<a href="#">I forgot my password</a><br/>
     <a href="login.html" class="text-center">I already have a membership</a>
   </div>
   <!-- /.form-box -->

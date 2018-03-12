@@ -30,8 +30,6 @@ public class MainSetup  implements Setup{
             user.setType("super");
             user.setCreateTime(new Date());
             user.setUpdateTime(new Date());
-            user.setWhiteList(1);
-            user.setUserManager(1);
             dao.insert(user);
         }
         dao.create(MailValidate.class, false);

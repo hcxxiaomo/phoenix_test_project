@@ -112,47 +112,6 @@ public class UserService {
 		 return null;
 	 }
 	 
-	 
-	 public NutMap userSave(User user,String absolutePaths,User loginUser){
-		 //User loginUser =  (User) session.getAttribute(Constants.SESSION_ME.getValue());
-		 boolean result = false;
-		 String salt = RandomUtil.randomString(6);
-		 Date date = DateUtil.date();
-		 if (user.getUserId() == null) {//新增
-			 if (StrUtil.isBlank(user.getPassword())) {
-					return new NutMap().addv("errorMsg", "请输入用户密码！");
-				}
-			 //检查用户名是否重复
-			 if (dao.fetch(User.class, Cnd.where("name", "=", user.getName())) != null) {
-				 return new NutMap().addv("errorMsg", "用户名已存在，请修改用户名！");
-			}
-			 
-			user.setParentId(loginUser.getUserId());
-			user.setSalt(salt);
-			user.setPassword(DigestUtil.md5Hex(user.getPassword().concat(salt)));
-			user.setCreateTime(DateUtil.date());
-			user.setUpdateTime(date);
-			dao.insert(user);
-			 if (user.getUserId() != null) {
-				result = true;
-			}
-		 }else{
-			 if (StrUtil.isNotBlank(user.getPassword())) {//如果密码不为空就更新密码
-				 user.setPassword(DigestUtil.md5Hex(user.getPassword().concat(salt)));
-				 user.setSalt(salt);
-			}else{
-				user.setPassword(null);
-			}
-			 user.setUpdateTime(date);
-			 result = dao.updateIgnoreNull(user) > 0;
-		 }
-		 if (result ) {
-			 return new NutMap().addv("success", "true");
-		 }else{
-			 return new NutMap().addv("errorMsg", "保存数据出错，请联系管理员！");
-		 }
-	 }
-	 
 	 public NutMap userDelete(String delIds) {
 	    	Sql sql = Sqls.create("delete from t_user where id in("+delIds+") ");
 	    	sql = dao.execute(sql);
@@ -189,17 +148,14 @@ public class UserService {
 		 }
 	}
 	
-	/**email传进来之前就需要trim一下*/
+	/**email需要trim一下*/
 	public NutMap sendEmail(String email){
 		 NutMap re = new NutMap();
-		//不需要链接，改成验证码那种的
-	       if (Strings.isBlank(email)) {
-	            return re.setv("ok", false).setv("msg", "你还没有填邮箱啊!");
-	        }
-	       if (Validator.isEmail(email)) {
-	    	   return re.setv("ok", false).setv("msg", "请输入格式正确的邮箱!");
+	       //检查Email是否已经注册过，如果注册过就不允许再注册，直接去登录
+	       User u = dao.fetch(User.class,Cnd.where("name", "=", email));
+	       if (u != null) {
+	    	   return re.setv("ok", false).setv("msg", "该邮箱已经注册，请用该邮箱登录或者换其它邮箱注册!");
 	       }
-	       
 	       String validate = null;
 	       MailValidate mv = null;
 	       if (CacheData.cacheEmail.containsKey(email)) {//如果缓存中有先使用缓存中的，后面验证通过就可以删除缓存中的
@@ -233,5 +189,42 @@ public class UserService {
 	            return re.setv("ok", false).setv("msg", "发送失败");
 	        }
 	        return re.setv("ok", true);
+	}
+	/**注册的时候还是要校验一下*/
+	public NutMap register(String email,String validate_code,String password){
+		NutMap re = new NutMap();
+		String validate = null;
+		MailValidate mv = null;
+			validate = CacheData.cacheEmail.get(email);
+		
+		if(validate == null){//如果缓存中没有，就从数据库是取值
+			mv = dao.fetch(MailValidate.class, email);
+			validate = mv.getValidate();
+		}
+		
+		if (!StrUtil.equals(validate_code, validate)) {
+			return re.setv("ok", false).setv("msg", "验证码错误，请进入邮箱核对验证码，或者重新获取验证码。");
+		}
+		
+		User user = new User();
+		 String salt = RandomUtil.randomString(6);
+		 Date date = DateUtil.date();
+		 user.setPassword(DigestUtil.md5Hex(password.concat(salt)));
+		 user.setSalt(salt);
+		 user.setUpdateTime(date);
+		 user.setCreateTime(date);
+		 user.setType(Constants.SESSION_TYPE_USER.getValue());
+		 user.setIsClose(0);
+		 user.setName(email);
+		 dao.insert(user);
+		 
+		 if (user.getUserId() != null) {
+			 //把原来缓存和数据库里面的validate都删除了
+			 CacheData.cacheEmail.remove(email);
+			 dao.delete(MailValidate.class,email);
+			 return re.setv("ok", true);
+		}else{
+			return re.setv("ok", false).setv("msg", "保存用户失败，请稍后重试");
+		}
 	}
 }

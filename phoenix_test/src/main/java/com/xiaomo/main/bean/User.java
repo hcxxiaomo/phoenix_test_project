@@ -19,26 +19,30 @@ public class User {
 	private Integer userId;
 	@Name
     @Column
+    @Comment("保存的就是邮箱信息")
     private String name;
 	@Column("passwd")
     private String password;
 	@Column
     private String salt;
+//	@Column
+//	@Comment("创建该用户的父辈用户信息")
+//	private Integer parentId;
+//	@Column
+//	@Comment("白名单权限")
+//	private Integer whiteList;
+//	@Column
+//	@Comment("用户管理权限")
+//	private Integer userManager;
+//	@Column
+//	@Comment("报表管理权限")
+//	private Integer dataManager;
 	@Column
-	@Comment("创建该用户的父辈用户信息")
-	private Integer parentId;
-	@Column
-	@Comment("白名单权限")
-	private Integer whiteList;
-	@Column
-	@Comment("用户管理权限")
-	private Integer userManager;
-	@Column
-	@Comment("报表管理权限")
-	private Integer dataManager;
-	@Column
-	@Comment("类型：超级管理员super,管理员admin,操作人员review")
+	@Comment("类型：超级管理员super,管理员admin,普通人员user")
 	private String type;
+	@Column
+	@Comment("是否禁用：禁用1,启用0")
+	private Integer isClose;
 	@Column("ct")
     private Date createTime;
 	@Column("ut")
@@ -86,44 +90,21 @@ public class User {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	public Integer getParentId() {
-		return parentId;
+	public Integer getIsClose() {
+		return isClose;
 	}
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
-	}
-	
-	public Integer getWhiteList() {
-		return whiteList;
-	}
-	public void setWhiteList(Integer whiteList) {
-		this.whiteList = whiteList;
-	}
-	public Integer getUserManager() {
-		return userManager;
-	}
-	public void setUserManager(Integer userManager) {
-		this.userManager = userManager;
-	}
-	
-	public Integer getDataManager() {
-		return dataManager;
-	}
-	public void setDataManager(Integer dataManager) {
-		this.dataManager = dataManager;
+	public void setIsClose(Integer isClose) {
+		this.isClose = isClose;
 	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [userId=").append(userId).append(", name=").append(name).append(", password=")
-				.append(password).append(", salt=").append(salt).append(", parentId=").append(parentId)
-				.append(", type=").append(type).append(", createTime=").append(createTime)
-				.append(", whiteList=").append(whiteList).append(", userManager=").append(userManager).append(", dataManager=").append(dataManager)
-				.append(", updateTime=").append(updateTime).append("]");
+				.append(password).append(", salt=").append(salt).append(", type=").append(type).append(", isClose=")
+				.append(isClose).append(", createTime=").append(createTime).append(", updateTime=").append(updateTime)
+				.append("]");
 		return builder.toString();
 	}
-	
 	
     
 	

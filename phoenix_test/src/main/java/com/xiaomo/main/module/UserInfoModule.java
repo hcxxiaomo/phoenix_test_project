@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.lang.Strings;
 import org.nutz.lang.util.NutMap;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
@@ -16,6 +17,7 @@ import org.nutz.mvc.annotation.Fail;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
+import com.xiaoleilu.hutool.lang.Validator;
 import com.xiaoleilu.hutool.util.StrUtil;
 import com.xiaomo.main.bean.User;
 import com.xiaomo.main.pojo.EasyUiJsonObj;
@@ -56,19 +58,6 @@ public class UserInfoModule {
 	// @At
 	// @Ok("jsp:jsp.manager.userInfoManager")
 	public void goUserInfoManager() {
-	}
-
-	@At
-	@Ok("json:{quoteName:true, ignoreNull:true}")
-	public NutMap userInfoSave(@Param("..") User ui, String absolutePaths, HttpSession session) {
-		log.infof("user = %s , absolutePaths = %s", ui, absolutePaths);
-		// pi.setPoId(poId);
-		// return new NutMap().addv("success", "true");
-		if (StrUtil.isBlank(ui.getName()) || StrUtil.isBlank(ui.getType())) {
-			return new NutMap().addv("errorMsg", "请输入用户名和用户类型！");
-		}
-		User loginUser = (User) session.getAttribute(Constants.SESSION_ME.getValue());
-		return userService.userSave(ui, absolutePaths, loginUser);
 	}
 
 	@At
@@ -140,10 +129,39 @@ public class UserInfoModule {
 	public List<User> getAllInfo() {
 		return userService.getAllInfo();
 	}
-	
+	/**发邮件*/
 	@At
 	@Ok("json:compact")
 	public NutMap sendEmail(String email){
+		 NutMap re = new NutMap();
+			//不需要链接，改成验证码那种的
+       if (Strings.isBlank(email)) {
+            return re.setv("ok", false).setv("msg", "你还没有填邮箱啊!");
+        }
+       email = StrUtil.trim(email);
+       if (!Validator.isEmail(email)) {
+    	   return re.setv("ok", false).setv("msg", "请输入格式正确的邮箱!");
+       }
 		return userService.sendEmail(email);
+	}
+	/**注册*/
+	@At
+	@Ok("json:compact")
+	public NutMap register(String email,String validate_code,String password){
+		NutMap re = new NutMap();
+		if (Strings.isBlank(email)) {
+			return re.setv("ok", false).setv("msg", "你还没有填邮箱啊");
+		}
+		email = StrUtil.trim(email);
+		if (!Validator.isEmail(email)) {
+			return re.setv("ok", false).setv("msg", "请输入格式正确的邮箱");
+		}
+		if (Strings.isBlank(validate_code)) {
+			return re.setv("ok", false).setv("msg", "你还没有填验证码");
+		}
+		if (Strings.isBlank(password)) {
+			return re.setv("ok", false).setv("msg", "你还没有填密码");
+		}
+		return userService.register(email, validate_code, password);
 	}
 }
