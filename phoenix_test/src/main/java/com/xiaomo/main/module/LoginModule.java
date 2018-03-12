@@ -50,7 +50,7 @@ public class LoginModule {
         }
     }
 	 
-	  @At("/index")
+	  @At("/login")
 	    @Ok("jsp:jsp.manager.login")
 	    public void loginIndex(){
 	    	
