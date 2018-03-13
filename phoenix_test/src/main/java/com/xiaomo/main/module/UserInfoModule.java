@@ -148,6 +148,7 @@ public class UserInfoModule {
 	@At
 	@Ok("json:compact")
 	public NutMap register(String email,String validate_code,String password){
+		log.infof("email = %s , validate_code = $s, password = $s", email, validate_code, password);
 		NutMap re = new NutMap();
 		if (Strings.isBlank(email)) {
 			return re.setv("ok", false).setv("msg", "你还没有填邮箱啊");
@@ -162,6 +163,30 @@ public class UserInfoModule {
 		if (Strings.isBlank(password)) {
 			return re.setv("ok", false).setv("msg", "你还没有填密码");
 		}
+//		return re.setv("ok",true);//Test
 		return userService.register(email, validate_code, password);
 	}
+	
+	 @At
+	    public Object login(String username, String password, HttpSession session) {
+		 log.infof("name = %s , password = %s", username , password);
+			 session.removeAttribute(Constants.SESSION_ME.getValue());
+			 session.removeAttribute(Constants.SESSION_TYPE.getValue());
+//			 log.info(session.getId());
+			 if (StrUtil.isBlank(username) || StrUtil.isBlank(password) ) {
+	        	return false;
+			}
+			 User user = userService.login(username, password);
+	        if (user == null) {
+	            return false;
+	        } else {
+	            session.setAttribute(Constants.SESSION_ME.getValue(), user);
+	            if (Constants.SESSION_TYPE_SUPER.getValue().equals(user.getType())) {
+	            	 session.setAttribute(Constants.SESSION_TYPE.getValue(), Constants.SESSION_TYPE_SUPER.getValue());
+				}else if(Constants.SESSION_TYPE_ADMIN.getValue().equals(user.getType())){
+					session.setAttribute(Constants.SESSION_TYPE.getValue(), Constants.SESSION_TYPE_ADMIN.getValue());
+				}
+	            return true;
+	        }
+	    }
 }

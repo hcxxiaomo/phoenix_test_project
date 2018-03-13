@@ -28,27 +28,6 @@ public class LoginModule {
 	 @Inject
 	 protected UserService userService;
 	
-	 @At
-    public Object login(@Param("username")String name, @Param("password")String password, HttpSession session) {
-		 session.removeAttribute(Constants.SESSION_ME.getValue());
-		 session.removeAttribute(Constants.SESSION_TYPE.getValue());
-//		 log.info(session.getId());
-		 if (StrUtil.isBlank(name) || StrUtil.isBlank(password) ) {
-        	return false;
-		}
-		 User user = userService.login(name, password);
-        if (user == null) {
-            return false;
-        } else {
-            session.setAttribute(Constants.SESSION_ME.getValue(), user);
-            if (Constants.SESSION_TYPE_SUPER.getValue().equals(user.getType())) {
-            	 session.setAttribute(Constants.SESSION_TYPE.getValue(), Constants.SESSION_TYPE_SUPER.getValue());
-			}else if(Constants.SESSION_TYPE_ADMIN.getValue().equals(user.getType())){
-				session.setAttribute(Constants.SESSION_TYPE.getValue(), Constants.SESSION_TYPE_ADMIN.getValue());
-			}
-            return true;
-        }
-    }
 	 
 	  @At("/login")
 	    @Ok("jsp:jsp.manager.login")

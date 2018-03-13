@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.apache.commons.mail.HtmlEmail;
 import org.nutz.dao.Dao;
+import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
@@ -34,6 +35,8 @@ public class MainSetup  implements Setup{
         }
         dao.create(MailValidate.class, false);
         dao.create(DataDictionary.class, false);
+        
+        Daos.migration(dao, User.class, true, false);
         
         // 获取NutQuartzCronJobFactory从而触发计划任务的初始化与启动
 //        ioc.get(NutQuartzCronJobFactory.class);

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Registration Page</title>
+  <title>PHOENIX</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -45,10 +45,19 @@
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div> -->
       
+      
+    <!--   <div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div> -->
+      <div id="show_validate" class="form-group has-feedback">
+       <input  id="email"  type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-paste form-control-feedback"></span>
+      </div>
             <div class="row">
         <div class="col-xs-8">
            <div class="form-group has-feedback">
-       <input  id="email"  type="email" class="form-control" placeholder="Email">
+        <input id="validate_code" type="text" class="form-control" placeholder="Validate code">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
         </div>
@@ -58,17 +67,8 @@
         </div>
         <!-- /.col -->
       </div>
-      
-    <!--   <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div> -->
-      <div id="show_validate" class="form-group has-feedback">
-        <input id="validate_code" type="text" class="form-control" placeholder="Validate code">
-        <span class="glyphicon glyphicon-paste form-control-feedback"></span>
-      </div>
       <div class="form-group has-feedback">
-        <input id="password" type="text" class="form-control" placeholder="Password">
+        <input id="password" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
     <!--   <div class="form-group has-feedback">
@@ -77,11 +77,11 @@
       </div> -->
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
+         <!--  <div class="checkbox icheck">
             <label>
               <input type="checkbox"> I agree to the <a href="#">terms</a>
             </label>
-          </div>
+          </div> -->
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
@@ -213,8 +213,11 @@ var countdown=60;
 			,password:password
 			},function(result){
 			if(result.ok){
-				modals.correct({title:'注册成功',text:"马上进入登录界面"});
+				  modals.confirm("注册成功,确认后马上进入登录界面", function () {
+// 					  console.info("modals.confirm.data="+data);
 				window.location.href  = '/phoenix_test/login';
+		            });
+// 				modals.correct({title:'注册成功',text:"马上进入登录界面"});
 			}else{
 				modals.error({text:result.msg});
 			}

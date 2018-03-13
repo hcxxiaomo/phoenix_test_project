@@ -18,7 +18,7 @@ import com.xiaomo.main.utils.Constants;
 @At("/manager")
 @Ok("json")
 @Fail("http:500")
-@Filters(@By(type=CheckSession.class, args={"me", "/index"})) // 检查当前Session是否带me这个属性
+@Filters(@By(type=CheckSession.class, args={"me", "/login"})) // 检查当前Session是否带me这个属性
 public class ManagerModule {
 	
 	private static final Log log = Logs.get();

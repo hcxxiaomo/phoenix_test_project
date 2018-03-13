@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Registration Page</title>
+  <title>PHOENIX</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -58,13 +58,13 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+           <a href="javascript:login()"  class="btn btn-primary btn-block btn-flat">Sign In</a>
         </div>
         <!-- /.col -->
       </div>
     </form>
 <a href="#">I forgot my password</a><br/>
-    <a href="login.html" class="text-center">I already have a membership</a>
+    <a href="/phoenix_test/register" class="text-center">Register a new membership</a>
   </div>
   <!-- /.form-box -->
 </div>
@@ -83,15 +83,12 @@
 <!-- modal -->
 <script src="/phoenix_test/AdminLTE-2.4.2/plugins/jQuery/base-modal.js"></script>
 <script>
-  $(function () {
+/*   $(function () {
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
-    
-    
-    
   });
   
 function validateEmail(){
@@ -149,40 +146,34 @@ var countdown=60;
 			return false;
 		}
 		return true;
-	}
+	} */
 	
-	function register(){
+	function login(){
 		//邮件
-	var email = $("#email").val();
-	if ($.trim(email) == '') {
-		modals.warn({text:'邮箱地址不能为空'});
-		return ;
-	}
-		//邮件
-	var validate_code = $("#validate_code").val();
-	if ($.trim(validate_code) == '') {
-		modals.warn({text:'地址验证码不能为空'});
-		return ;
-	}
-		//密码长度校验
-	var password = $("#password").val();
-	 var mediumRegex = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g"); 
-	if (!mediumRegex.test(password)) {
-		modals.warn({text:'密码必须为8位及以上，并且包含字母、数字、特殊字符三项中至少两项'});
-		return;
-	}
-
+		var email = $("#email").val();
+		if ($.trim(email) == '') {
+			modals.warn({text:'邮箱地址不能为空'});
+			return ;
+		}
+			//密码长度校验
+		var password = $("#password").val();
+		if ($.trim(password) == '') {
+			modals.warn({text:'密码不能为空'});
+			return ;
+		}
 		
-		$.post("/phoenix_test/userInfo/register",{
-			email:$.trim(email)
-			,validate_code:$.trim(validate_code)
+		$.post("/phoenix_test/userInfo/login",{
+			username:$.trim(email)
 			,password:password
 			},function(result){
-			if(result.ok){
-				modals.correct({title:'注册成功',text:"马上进入登录界面"});
-				window.location.href  = '/phoenix_test/login';
+			if(result){
+				  modals.confirm("登录成功,确认后马上进入管理界面", function () {
+// 				window.location.href  = '/phoenix_test/login';
+				window.location.href  = '/phoenix_test/manager/';
+		            });
+// 				modals.correct({title:'登录成功',text:"马上进入管理界面"});
 			}else{
-				modals.error({text:result.msg});
+				modals.error({text:'用户名或密码错误，请确认信息'});
 			}
 		},"json");
 	}
