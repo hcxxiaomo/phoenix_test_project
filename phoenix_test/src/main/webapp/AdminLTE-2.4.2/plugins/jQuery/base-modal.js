@@ -34,6 +34,7 @@
         // <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
         var modal = document.createElement('DIV');
         modal.id = 'modal-tips-div';
+        config.class_info = config.class_info||'';
         modal.className = 'modal fade '+config.class_info;
         modal.tabindex = -1;
         modal.role = 'dialog';
