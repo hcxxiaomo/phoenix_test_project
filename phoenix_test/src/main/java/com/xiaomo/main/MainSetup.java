@@ -2,12 +2,14 @@ package com.xiaomo.main;
 
 import java.util.Date;
 
-import org.apache.commons.mail.HtmlEmail;
 import org.nutz.dao.Dao;
 import org.nutz.dao.util.Daos;
+import org.nutz.integration.quartz.NutQuartzCronJobFactory;
+import org.nutz.integration.quartz.NutQuartzJobFactory;
 import org.nutz.ioc.Ioc;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
+import org.quartz.Scheduler;
 
 import com.xiaomo.main.bean.DataDictionary;
 import com.xiaomo.main.bean.MailValidate;
@@ -40,6 +42,8 @@ public class MainSetup  implements Setup{
         
         // 获取NutQuartzCronJobFactory从而触发计划任务的初始化与启动
 //        ioc.get(NutQuartzCronJobFactory.class);
+        ioc.get(NutQuartzJobFactory.class);
+//        ioc.get(Scheduler.class);
         
         // 测试发送邮件
 //        try {
