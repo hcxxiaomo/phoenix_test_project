@@ -17,7 +17,7 @@ public class FirstJob  implements Job{
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		log.infof("Hello quzrtz  : %s", DateUtil.now());
+		log.errorf("Hello quzrtz  : %s", DateUtil.now());
 	}
 
 }

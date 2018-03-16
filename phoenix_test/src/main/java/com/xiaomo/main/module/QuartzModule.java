@@ -15,7 +15,9 @@ import org.quartz.DateBuilder.IntervalUnit;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
+import org.quartz.ScheduleBuilder;
 import org.quartz.SimpleScheduleBuilder;
+import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 
@@ -39,18 +41,21 @@ public class QuartzModule {
 		// 1、创建一个JobDetail实例，指定Quartz  
         JobDetail jobDetail = JobBuilder.newJob(FirstJob.class)  
         // 任务执行类  
-                .withIdentity("job1_1", "jGroup1")  
+                .withIdentity("job5_1", "jGroup5")  
                 // 任务名，任务组  
                 .build();
         //Date triggerStartTime = DateUtil.tomorrow();
-        Trigger trigger = TriggerBuilder.newTrigger()  
-                .withIdentity("trigger1_1", "tGroup1")
+       Trigger trigger =  TriggerBuilder.newTrigger()  
+                .withIdentity("trigger5_1", "tGroup5")
                 //.startAt(triggerStartTime)
-                .startAt(DateBuilder.futureDate(5, IntervalUnit.MINUTE))
-                //.withSchedule()
+                .withSchedule(SimpleScheduleBuilder.simpleSchedule()
+                		.withIntervalInSeconds(1)
+                		.withRepeatCount(0)
+                		)
+                .startAt(DateBuilder.futureDate(10, IntervalUnit.SECOND))
                 .forJob(jobDetail)
                 .build();  
-        JobKey jobKey = new JobKey("sendEmail","test1");
+        JobKey jobKey = new JobKey("sendEmail5","test5");
 		QuartzJob qj = new QuartzJob(jobKey, trigger, jobDetail);
 		quartzManager.add(qj);
 		return new NutMap().addv("result", "ok");
