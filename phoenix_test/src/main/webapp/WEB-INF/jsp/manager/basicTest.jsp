@@ -173,6 +173,11 @@ function getRadio(){
 	console.info(val);  
     return val;
 }
+
+function reset(){
+	$('input:checkbox').attr("checked", false);
+	$('input:radio').attr("checked", false);
+}
 </script>
 
 <!-- jQuery 2.1.4 -->
