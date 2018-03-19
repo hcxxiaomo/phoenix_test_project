@@ -41,9 +41,7 @@ public class MainSetup  implements Setup{
         Daos.migration(dao, User.class, true, false);
         
         // 获取NutQuartzCronJobFactory从而触发计划任务的初始化与启动
-        ioc.get(NutQuartzCronJobFactory.class);
-//        ioc.get(NutQuartzJobFactory.class);
-//        ioc.get(Scheduler.class);
+//        ioc.get(NutQuartzCronJobFactory.class);
         
         // 测试发送邮件
 //        try {

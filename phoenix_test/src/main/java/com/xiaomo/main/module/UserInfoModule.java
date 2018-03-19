@@ -136,11 +136,11 @@ public class UserInfoModule {
 		 NutMap re = new NutMap();
 			//不需要链接，改成验证码那种的
        if (Strings.isBlank(email)) {
-            return re.setv("ok", false).setv("msg", "你还没有填邮箱啊!");
+            return re.setv("ok", false).setv("msg", "您沒有填寫郵箱");
         }
        email = StrUtil.trim(email);
        if (!Validator.isEmail(email)) {
-    	   return re.setv("ok", false).setv("msg", "请输入格式正确的邮箱!");
+    	   return re.setv("ok", false).setv("msg", "請輸入格式正確的郵箱");
        }
 		return userService.sendEmail(email);
 	}
@@ -151,17 +151,17 @@ public class UserInfoModule {
 		log.infof("email = %s , validate_code = $s, password = $s", email, validate_code, password);
 		NutMap re = new NutMap();
 		if (Strings.isBlank(email)) {
-			return re.setv("ok", false).setv("msg", "你还没有填邮箱啊");
+			return re.setv("ok", false).setv("msg", "您沒有填寫郵箱");
 		}
 		email = StrUtil.trim(email);
 		if (!Validator.isEmail(email)) {
-			return re.setv("ok", false).setv("msg", "请输入格式正确的邮箱");
+			return re.setv("ok", false).setv("msg", "請輸入格式正確的郵箱");
 		}
 		if (Strings.isBlank(validate_code)) {
-			return re.setv("ok", false).setv("msg", "你还没有填验证码");
+			return re.setv("ok", false).setv("msg", "您沒有填寫驗證碼");
 		}
 		if (Strings.isBlank(password)) {
-			return re.setv("ok", false).setv("msg", "你还没有填密码");
+			return re.setv("ok", false).setv("msg", "您沒有填寫密碼");
 		}
 //		return re.setv("ok",true);//Test
 		return userService.register(email, validate_code, password);

@@ -37,7 +37,7 @@
   </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg">註冊用戶信息</p>
 
     <form action="/phoenix_test/AdminLTE-2.4.2/index.html" method="post">
 <!--       <div class="form-group has-feedback">
@@ -51,24 +51,24 @@
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div> -->
       <div id="show_validate" class="form-group has-feedback">
-       <input  id="email"  type="email" class="form-control" placeholder="Email">
+       <input  id="email"  type="email" class="form-control" placeholder="郵箱">
         <span class="glyphicon glyphicon-paste form-control-feedback"></span>
       </div>
             <div class="row">
         <div class="col-xs-8">
            <div class="form-group has-feedback">
-        <input id="validate_code" type="text" class="form-control" placeholder="Validate code">
+        <input id="validate_code" type="text" class="form-control" placeholder="驗證碼">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <a href="javascript:validateEmail()" id="get_code" class="btn btn-info btn-block btn-flat">Get Code</a>
+          <a href="javascript:validateEmail()" id="get_code" class="btn btn-info btn-block btn-flat">獲取驗證碼</a>
         </div>
         <!-- /.col -->
       </div>
       <div class="form-group has-feedback">
-        <input id="password" type="password" class="form-control" placeholder="Password">
+        <input id="password" type="password" class="form-control" placeholder="密碼">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
     <!--   <div class="form-group has-feedback">
@@ -94,11 +94,11 @@
 
     <div class="social-auth-links text-center">
 <!--       <p>- OR -</p> -->
-      <a href="javascript:register()" class="btn btn-block  btn-success  btn-flat">Register</a>
+      <a href="javascript:register()" class="btn btn-block  btn-success  btn-flat">註冊</a>
 <!--       <a href="#" class="btn btn-block  btn-info btn-flat">Login</a> -->
     </div>
 
-    <a href="login.html" class="text-center">I already have a membership</a>
+    <a href="login.html" class="text-center">已經擁有帳戶</a>
   </div>
   <!-- /.form-box -->
 </div>
@@ -136,16 +136,16 @@ function validateEmail(){
 	
 	var email = $("#email").val();
 	if ($.trim(email) == '') {
-		modals.warn({text:'请输入邮箱地址'});
+		modals.warn({text:'請輸入郵箱地址'});
         return ;
 	}
 	if (!emailCheck(email)) {
-		modals.warn({text:'请输入正确的邮箱地址，必须包括 ( @ 和 . )'});
+		modals.warn({text:'請輸入正確的郵箱地址，必然包含 ( @ 和 . )'});
         return ;
 	}
 	$.post("/phoenix_test/userInfo/sendEmail",{email:email},function(result){
 		if(result.ok){
-			modals.correct({title:'验证码发送成功',text:"请进入"+email+"邮箱中查看验证码！"});
+			modals.correct({title:'驗證碼發送成功',text:"請進入 "+email+"郵箱中查看驗證碼！"});
 			settime();
 		}else{
 			modals.error({text:result.msg});
@@ -160,12 +160,12 @@ var countdown=60;
 // 		console.info(countdown);
 		if (countdown == 0) {
 			obj.removeClass('disabled');
-			obj.html("Get Code");
+			obj.html("獲取驗證碼");
 			countdown = 60;
 			return;
 		} else {
 			obj.addClass("disabled");
-			obj.html("Wait (" + countdown + ")");
+			obj.html("稍等 (" + countdown + ")");
 			countdown--;
 		}
 		setTimeout(function() {
@@ -189,20 +189,20 @@ var countdown=60;
 		//邮件
 	var email = $("#email").val();
 	if ($.trim(email) == '') {
-		modals.warn({text:'邮箱地址不能为空'});
+		modals.warn({text:'郵箱地址不能為空'});
 		return ;
 	}
 		//邮件
 	var validate_code = $("#validate_code").val();
 	if ($.trim(validate_code) == '') {
-		modals.warn({text:'地址验证码不能为空'});
+		modals.warn({text:'驗證碼不能為空'});
 		return ;
 	}
 		//密码长度校验
 	var password = $("#password").val();
 	 var mediumRegex = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g"); 
 	if (!mediumRegex.test(password)) {
-		modals.warn({text:'密码必须为8位及以上，并且包含字母、数字、特殊字符三项中至少两项'});
+		modals.warn({text:'密碼必須是8位以上，而且包含字母、數字、特殊字符三項中至少兩項'});
 		return;
 	}
 
@@ -213,7 +213,7 @@ var countdown=60;
 			,password:password
 			},function(result){
 			if(result.ok){
-				  modals.confirm("注册成功,确认后马上进入登录界面", function () {
+				  modals.confirm("註冊成功，確認後馬上進入登錄介面", function () {
 // 					  console.info("modals.confirm.data="+data);
 				window.location.href  = '/phoenix_test/login';
 		            });
