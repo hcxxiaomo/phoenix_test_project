@@ -6,14 +6,13 @@ import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+import org.nutz.mvc.Scope;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Attr;
 import org.nutz.mvc.annotation.Fail;
-import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.annotation.Ok;
-import org.nutz.mvc.annotation.Param;
 
 import com.xiaoleilu.hutool.util.StrUtil;
-import com.xiaomo.main.bean.User;
 import com.xiaomo.main.service.UserService;
 import com.xiaomo.main.utils.Constants;
 
@@ -36,9 +35,29 @@ public class LoginModule {
 	    }
 	  
 	  @At("/register")
-	  @Ok("jsp:jsp.manager.register")
-	  public void registerIndex(){
+	  @Ok("re:jsp:jsp.manager.register")
+	  public String registerIndex( @Attr(scope=Scope.SESSION, value="session_can_register")String session_can_register){
+		  if (StrUtil.isBlank(session_can_register)) {
+			  return "jsp:jsp.manager.basicTest";
+		}
+		  return null;
+	  }
+	  
+	  @At("/basic")
+	  @Ok("jsp:jsp.manager.basicTest")
+	  public void basicTestIndex(){
 		  
+	  }
+	  @At("/basic/answer")
+	  public Object basicAnswer(String test1Ids, String radio, HttpSession session){
+		  log.infof("test1Ids = %s , radio = %s ",test1Ids, radio);
+		  if ("A,B".equals(test1Ids)
+				  && "option2".equals(radio)
+				  ) {
+			  session.setAttribute(Constants.SESSION_CAN_REGISTER.getValue(), Constants.SESSION_CAN_REGISTER.getValue());
+			return true;
+		  }
+		  return false;
 	  }
 	  
 	  @At

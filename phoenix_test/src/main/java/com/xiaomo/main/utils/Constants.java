@@ -2,6 +2,7 @@ package com.xiaomo.main.utils;
 
 public enum Constants {
 	
+	SESSION_CAN_REGISTER("session_can_register","用户登录"),
 	SESSION_ME("me","用户登录"),
 	SESSION_TYPE("admin_type","用户类型"),
 	SESSION_TYPE_SUPER("super","超级管理员"),
