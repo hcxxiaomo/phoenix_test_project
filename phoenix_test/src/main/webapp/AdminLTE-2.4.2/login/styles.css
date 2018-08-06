@@ -206,9 +206,9 @@ header .header-limiter nav a.selected {
 }
 
 .card img{
-	width: 100%;
+/* 	width: 100%; */
 	text-align: center;
-	margin-bottom: 40px;
+/* 	margin-bottom: 40px; */
 }
 
 
@@ -273,6 +273,12 @@ footer .footer-right a{
 	line-height: 35px;
 
 	margin-left: 3px;
+}
+.foot_select{
+ 	width: auto; 
+ 	height: auto; 
+	background-color:  #615013;
+	border-radius: 2px;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */
