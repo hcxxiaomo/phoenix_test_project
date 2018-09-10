@@ -3,9 +3,11 @@ package com.xiaomo.main.pojo;
 import java.util.Collection;
 import java.util.List;
 
-public class EasyUiJsonObj<T> {
+import com.xiaomo.main.bean.BaseBean;
 
-	private Collection<T> rows;
+public class EasyUiJsonObj<T extends BaseBean> {
+
+	private Collection<? extends BaseBean> rows;
 	private Integer total;
 	public Integer getTotal() {
 		return total;
@@ -13,11 +15,11 @@ public class EasyUiJsonObj<T> {
 	public void setTotal(Integer total) {
 		this.total = total;
 	}
-	public Collection<T> getRows() {
+	public Collection<? extends BaseBean> getRows() {
 		return rows;
 	}
-	public void setRows(Collection<T> rows) {
-		this.rows = rows;
+	public void setRows(List<? extends BaseBean> list) {
+		this.rows = list;
 	}
 	
 }

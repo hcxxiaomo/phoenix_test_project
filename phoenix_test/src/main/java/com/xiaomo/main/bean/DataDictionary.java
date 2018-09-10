@@ -9,12 +9,8 @@ import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 
 @Table("t_data_dictionary")
-public class DataDictionary {
+public class DataDictionary extends BaseBean{
 
-	@Id
-	@Column("id")
-	private Integer itId;
-	
 	@Column("dic_info")
    	@Comment("数据字典内容")
 	private String dicInfo;
@@ -24,17 +20,6 @@ public class DataDictionary {
    	@Comment("数据字典类型")
 	private String dicType;
 	
-	@Column("ct")
-	@Comment("创建时间")
-    private Date createTime;
-
-	public Integer getItId() {
-		return itId;
-	}
-
-	public void setItId(Integer itId) {
-		this.itId = itId;
-	}
 	public String getDicInfo() {
 		return dicInfo;
 	}
@@ -51,11 +36,4 @@ public class DataDictionary {
 		this.dicType = dicType;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
 }

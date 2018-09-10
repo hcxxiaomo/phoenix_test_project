@@ -118,7 +118,7 @@ public class UserInfoModule {
 	@Fail("http:500")
 	public User getUser() {// 不能用String返回，需要使用Object来当成返回值
 		User user = new User();
-		user.setUserId(1008);
+		user.setId(1008L);
 		user.setName("name--ttsxt");
 		;
 		return user;

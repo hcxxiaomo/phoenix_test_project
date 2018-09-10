@@ -7,11 +7,7 @@ import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 
 @Table("t_mail_validate")
-public class MailValidate {
-	
-//	@Id
-//	@Column("id")
-//	private Integer mvId;
+public class MailValidate extends BaseBean{
 	
 	@Name
 	@Column("email")
@@ -21,14 +17,6 @@ public class MailValidate {
     @Column("validate")
    	@Comment("验证码")
 	private String validate;
-
-//	public Integer getMvId() {
-//		return mvId;
-//	}
-//
-//	public void setMvId(Integer mvId) {
-//		this.mvId = mvId;
-//	}
 
 	public String getEmail() {
 		return email;

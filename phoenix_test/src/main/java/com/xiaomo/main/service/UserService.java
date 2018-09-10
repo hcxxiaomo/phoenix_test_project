@@ -37,8 +37,7 @@ import com.xiaomo.main.pojo.EasyUiJsonObj;
 import com.xiaomo.main.utils.CacheData;
 import com.xiaomo.main.utils.Constants;
 
-@IocBean
-public class UserService {
+public class UserService extends BaseService<User>{
 
 	 private static final Log log = Logs.get();
 	
@@ -71,11 +70,6 @@ public class UserService {
 		 Cnd c = null;
 		 Condition condition = null;
 		 c =  Cnd.where(Cnd.exps("1", "=",1));
-		//User user =  (User) session.getAttribute(Constants.SESSION_ME.getValue());
-		if (!Constants.SESSION_TYPE_SUPER.getValue().equals(user.getType())) {//不是超级管理员，就只查本人名下的所有管理员信息
-			c.and(Cnd.exps("parentId", "=",user.getUserId()));
-			c.or(Cnd.exps("userId", "=",user.getUserId()));
-		}
 		/* if (queryParam.size() >= 1) {
 			for (int i = 0; i < queryParam.size(); i++) {
 				if (i == 0) {
@@ -125,7 +119,7 @@ public class UserService {
 		//需要增加一个所有人的数据信息
 		List<User> list = new ArrayList<User>();
 		User  ui = new User();
-		ui.setUserId(0);
+		ui.setId(0L);
 		ui.setName("-请选择-");
 		list.add(ui);
 		list.addAll(Daos.ext(dao, ff).query(User.class, null));
@@ -136,7 +130,7 @@ public class UserService {
 		User user = new User();
 		 String salt = RandomUtil.randomString(6);
 		 Date date = DateUtil.date();
-		 user.setUserId(loginUser.getUserId());
+		 user.setId(loginUser.getId());
 		 user.setPassword(DigestUtil.md5Hex(new_password.concat(salt)));
 		 user.setSalt(salt);
 		 user.setUpdateTime(date);
@@ -218,7 +212,7 @@ public class UserService {
 		 user.setName(email);
 		 dao.insert(user);
 		 
-		 if (user.getUserId() != null) {
+		 if (user.getId() != null) {
 			 //把原来缓存和数据库里面的validate都删除了
 			 CacheData.cacheEmail.remove(email);
 			 dao.delete(MailValidate.class,email);

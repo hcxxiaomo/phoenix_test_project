@@ -7,8 +7,10 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
-@IocBean
-public class MailService {
+import com.xiaoleilu.hutool.extra.mail.Mail;
+import com.xiaomo.main.bean.MailValidate;
+
+public class MailService extends BaseService<MailValidate>{
 	   private static final Log log = Logs.get();
 
 	    @Inject("refer:$ioc")
