@@ -34,14 +34,6 @@ public class LoginModule {
 	    	
 	    }
 	  
-	  @At("/register")
-	  @Ok("re:jsp:jsp.manager.register")
-	  public String registerIndex( @Attr(scope=Scope.SESSION, value="session_can_register")String session_can_register){
-		  if (StrUtil.isBlank(session_can_register)) {
-			  return "jsp:jsp.manager.basicTest";
-		}
-		  return null;
-	  }
 	  
 	  @At("/basic")
 	  @Ok("jsp:jsp.manager.basicTest")

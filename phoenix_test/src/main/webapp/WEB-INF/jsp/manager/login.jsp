@@ -1,202 +1,132 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>PHOENIX</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<!-- Bootstrap 3.3.7 -->
-<link rel="stylesheet"
-	href="/phoenix_test/AdminLTE-2.4.2/bootstrap/css/bootstrap.css">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="/phoenix_test/AdminLTE-2.4.2/plugins/font-awesome/css/font-awesome.css">
-<!-- Ionicons -->
-<!--   <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/bower_components/Ionicons/css/ionicons.min.css"> -->
-<link rel="stylesheet"
-	href="https://cdn.bootcss.com/ionicons/4.0.0-18/collection/icon/icon.css">
-<!-- Theme style -->
-<link rel="stylesheet"
-	href="/phoenix_test/AdminLTE-2.4.2/dist/css/AdminLTE.min.css">
-<!-- iCheck -->
-<link rel="stylesheet"
-	href="/phoenix_test/AdminLTE-2.4.2/plugins/iCheck/square/blue.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HeHe Journals</title>
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
 
-<!-- Google Font -->
-<!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 </head>
-<body class="hold-transition register-page">
-	<div class="register-box">
-		<div class="register-logo">
-			<b>PHOENIX</b>TEST
+
+<body background="rainbow_background.jpg"
+style=" background-repeat:no-repeat ;
+background-size:100% ;
+background-attachment: fixed;">
+
+	<!-- <header>
+
+		<div class="header-limiter">
+
+			<h1><a href="http://tutorialzine.com/2016/03/quick-tip-the-best-way-to-make-sticky-footers/"><span>Quick Tip:</span> The Best Way To Make Sticky Footers</a></h1>
+
+			<nav>
+				<a href="http://tutorialzine.com/2016/03/quick-tip-the-best-way-to-make-sticky-footers/">Download</a>
+			</nav>
 		</div>
 
-		<div class="register-box-body">
-			<p class="login-box-msg">登錄</p>
+	</header> -->
 
-			<form action="../../index2.html" method="post">
-				<div class="form-group has-feedback">
-					<input type="email" id="email" class="form-control"
-						placeholder="Email"> <span
-						class="glyphicon glyphicon-envelope form-control-feedback"></span>
-				</div>
-				<div class="form-group has-feedback">
-					<input type="password" id="password" class="form-control"
-						placeholder="Password"> <span
-						class="glyphicon glyphicon-lock form-control-feedback"></span>
-				</div>
-				<div class="row">
-					<div class="col-xs-8">
-						<!-- <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div> -->
-					</div>
-					<!-- /.col -->
-					<div class="col-xs-4">
-						<a href="javascript:login()"
-							class="btn btn-primary btn-block btn-flat">登錄</a>
-					</div>
-					<!-- /.col -->
-				</div>
-			</form>
-			<a href="#">忘記密碼</a><br /> <a
-				href="/phoenix_test/register" class="text-center">註冊</a>
+	<section class="main-content">
+		<div class="card">
+			<h1 class="text-primary">登录</h1>
+<!-- 			<h3>This page demonstrates how you can create a footer with flexbox which always sticks to the bottom of the page, regardless of how much conotent there is.</h3> -->
+
+			<!-- <div  class="text-center">
+				<p>Lorem ipsunis dis parturient montes, nascetur ridiculus mus.</p>
+			</div> -->
+			<div class="container">
+			<div class="row">
+                        <div class="offset-md-3 col-md-6">
+                            <form class="form-horizontal" style="text-align: left;">
+                                <span class="heading text-primary" >電郵地址</span>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="電郵地址">
+                                </div>
+                                
+                                <span class="heading text-primary" >密碼</span>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="密碼">
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+			</div>
+			<a href='#' id="add-content">登入</a>
 		</div>
-		<!-- /.form-box -->
-	</div>
-	<!-- /.register-box -->
+	</section>
 
-	<!-- jQuery 3 -->
-	<script
-		src="/phoenix_test/AdminLTE-2.4.2/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-	<!-- jQuery form -->
-	<script
-		src="/phoenix_test/AdminLTE-2.4.2/plugins/jQuery/jquery.form.js"></script>
-	<!-- Bootstrap 3.3.7 -->
-	<script
-		src="/phoenix_test/AdminLTE-2.4.2/bootstrap/js/bootstrap.min.js"></script>
-	<!-- iCheck -->
-	<script src="/phoenix_test/AdminLTE-2.4.2/plugins/iCheck/icheck.min.js"></script>
-	<!-- message -->
-	<script
-		src="/phoenix_test/AdminLTE-2.4.2/plugins/jQuery/base-message.js"></script>
-	<!-- modal -->
-	<script src="/phoenix_test/AdminLTE-2.4.2/plugins/jQuery/base-modal.js"></script>
+
+
+	<footer>
+		
+		<div class="footer-limiter">
+		
+		<!-- <div class="row" style="color: white;">
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+</div> -->
+
+			<div class="footer-right">
+
+				<a href="contact_us.html"><i class="fa "></i>聯絡我們</a>
+				<a href="disclaimer.html"><i class="fa "></i>免責聲明</a>
+				<a href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
+
+			</div>
+
+			<div class="footer-left">
+
+				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+
+<!-- 				<p>Company Name © 2016</p> -->
+			</div>
+			
+			
+
+		</div>
+
+	</footer>
+
+<!--     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
 	<script>
-		/*   $(function () {
-		 $('input').iCheck({
-		 checkboxClass: 'icheckbox_square-blue',
-		 radioClass: 'iradio_square-blue',
-		 increaseArea: '20%' // optional
-		 });
-		 });
-		
-		 function validateEmail(){
-		
-		 if ($("#get_code").hasClass("disabled")){
-		 return;
-		 }
-		
-		 var email = $("#email").val();
-		 if ($.trim(email) == '') {
-		 modals.warn({text:'请输入邮箱地址'});
-		 return ;
-		 }
-		 if (!emailCheck(email)) {
-		 modals.warn({text:'请输入正确的邮箱地址，必须包括 ( @ 和 . )'});
-		 return ;
-		 }
-		 $.post("/phoenix_test/userInfo/sendEmail",{email:email},function(result){
-		 if(result.ok){
-		 modals.correct({title:'验证码发送成功',text:"请进入"+email+"邮箱中查看验证码！"});
-		 settime();
-		 }else{
-		 modals.error({text:result.msg});
-		 }
-		 },"json");
-		 }
+/* 		var dummyContent = $('.dummy-content').children(),
+			i;
 
-		 var countdown=60; 
 
-		 function settime() {
-		 var obj = $("#get_code");
-		 // 		console.info(countdown);
-		 if (countdown == 0) {
-		 obj.removeClass('disabled');
-		 obj.html("Get Code");
-		 countdown = 60;
-		 return;
-		 } else {
-		 obj.addClass("disabled");
-		 obj.html("Wait (" + countdown + ")");
-		 countdown--;
-		 }
-		 setTimeout(function() {
-		 settime()
-		 }, 1000)
-		 }
+		$('#add-content').click(function(e){
+			e.preventDefault();
 
-		 function emailCheck(emailStr) {
-		 // 	var emailStr=document.all.form1.tel.value;
-		 // 	alert(emailStr);
-		 var emailPat = /^(.+)@(.+)$/;
-		 var matchArray = emailStr.match(emailPat);
-		 if (matchArray == null) {
-		 // 		alert("电子邮件地址必须包括 ( @ 和 . )")
-		 return false;
-		 }
-		 return true;
-		 } */
-
-		function login() {
-			//邮件
-			var email = $("#email").val();
-			if ($.trim(email) == '') {
-				modals.warn({
-					text : '郵箱地址不能為空'
-				});
-				return;
-			}
-			//密码长度校验
-			var password = $("#password").val();
-			if ($.trim(password) == '') {
-				modals.warn({
-					text : '密碼不能為空'
-				});
-				return;
-			}
-
-			$.post("/phoenix_test/userInfo/login", {
-				username : $.trim(email),
-				password : password
-			}, function(result) {
-				if (result) {
-					modals.confirm("登錄成功，確認後馬上進入管理介面", function() {
-						// 				window.location.href  = '/phoenix_test/login';
-						window.location.href = '/phoenix_test/manager/';
-					});
-					// 				modals.correct({title:'登录成功',text:"马上进入管理界面"});
-				} else {
-					modals.error({
-						text : '用戶名或密碼錯誤'
-					});
+			if($(dummyContent[0]).is(":visible")){
+				for(i=0;i<dummyContent.length;i++){
+					$(dummyContent[i]).fadeOut(600);
 				}
-			}, "json");
-		}
+			}
+			else{
+				for(i=0;i<dummyContent.length;i++){
+					$(dummyContent[i]).delay(600*i).fadeIn(600);
+				}
+			}
+
+		}); */
 	</script>
+	<!-- Demo ads. Please ignore and remove. -->
+<!--     <script src="http://cdn.tutorialzine.com/misc/enhance/v2.js" async></script> -->
 </body>
+
 </html>

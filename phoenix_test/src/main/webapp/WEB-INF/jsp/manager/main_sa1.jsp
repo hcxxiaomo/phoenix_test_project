@@ -1,0 +1,172 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HeHe Journals</title>
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
+
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand nav-title">HeHe Journals</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"><a href="#">主頁</a></li>
+        <li class="nav-item"><a href="#">什麼是正向心理學?</a></li>
+        <li class="nav-item"><a href="#">問卷</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">資訊</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">使用指南</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">你好，XX</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">登出</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+
+	<div class="container" style="padding: 40px;">
+	
+	
+
+		<div class="row visible-on">
+			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
+
+				<div class="card">
+					<h1 class="text-primary">HIV 感染的新世代</h1>
+					<!-- 			<h3>This page demonstrates how you can create a footer with flexbox which always sticks to the bottom of the page, regardless of how much conotent there is.</h3> -->
+					<!-- 			<a href='#' id="add-content">註冊及了解更多</a> -->
+					<!-- 			<a href='#' id="login-content">登入</a> -->
+
+					<div class="text-center">
+
+
+
+						<p>
+							自1981 年世界發現首宗愛滋病感染已經過了36 年，當時HIV 在全球蔓延，香港官方
+							宣傳標語是“愛滋病就是絕症”。短短幾十年間醫學發展迅速，各種有效的藥物不斷
+							面世，社會也興起了反歧視運動。咁第一期我哋就主要來講下近年香港社群最新嘅感 染情況，同埋HIV 感染、治療嘅相關知識。<br />
+							<br /> <strong style="color: red">1.
+								香港男男性接觸者(MSM)社群的HIV感染情況 </strong><br />
+							自2010年起，香港感染HIV個案呈現不斷上升的趨勢，雖然2017年較上一年有輕微下降，性接觸仍然是最主要的愛滋病病毒傳播途徑<sup>1</sup>。衛生署在2017年全年共錄得，新增同性或雙性接觸個案427宗，佔總呈報個案的63%；而在2018年頭三個月，也已錄得個案共142宗，男男性接觸者(MSM)仍佔感染者的多數
+							<sup>2</sup>。一項最新的調查顯示MSM社群的HIV感染率是5.85%，相當於每17個人當中，就有一個是感染者 <sup>3</sup>。
+							<br /> <br />
+							<strong style="color: red">2. 愛滋病病毒(HIV)感染知識 </strong><br />
+							目前HIV一旦感染人體，即使進行治療，也永遠無法從體內完全清除。HIV主要攻擊免疫系統的CD4淋巴細胞，當愈來愈多的CD4細胞被破壞時，如不及時接受治療，人體將不能如常地抵抗其他感染和疾病，通常會經歷三個感染階段：
+							頭2-4個禮拜（週）的【急性期】，部分感染者可能出現類似流感的病徵，持續幾個禮拜（週）後就會消失；此階段作HIV測試可能檢測不出感染，即所謂的「空窗期」，一般是感染後3個月內，但此時感染者的傳染能力非常高。
+							跟著就會進入【無徵狀期】，此階段可維持10年或更久，一項調查結果顯示本地MSM感染者中只有10.7%曾出現過相關的感染徵狀<sup>4</sup>。雖然看似健康正常，但是免疫系統卻在持續地遭到破壞，而且有傳染性。
+							最終當CD4細胞跌破200，就被視為進入【愛滋病期】，出現寒顫、發燒、出汗、淋巴腫脹、體虛和體重下降。近年香港愛滋病新發個案持續高企，2018年第一季新增個案28人，當中有20人是因為同性或雙性接觸<sup>5</sup>。絕大部分本地愛滋病患者都是在確診HIV感染後三個月內發病，出現「機會性感染」或某種惡性腫瘤<sup>6</sup>。香港愛滋病患者最常見的三個併發症是肺囊蟲肺炎、結核病、真菌感染<sup>7</sup>。
+							<br /> <br />
+							<strong style="color: red">3. 香港愛滋病治療現狀 </strong><br />
+							目前尚未有能夠完全治癒HIV的藥物！但是現有的抗愛滋病病毒藥物可以有效地控制體內病毒水平，維持正常的免疫力，並且減低對他人的傳染能力。自1997年起，香港正式採用了「高效能抗病毒治療」，此方法混合不同種類的抗病毒藥物，能夠將血液內病毒數量，降低到不可被檢測出的水平「病毒抑制」。本地研究結果已證實該治療能有效地減緩末期HIV感染者的愛滋病病發、延長壽命<sup>8</sup>。近年香港的MSM感染者中，70.6%正接受抗病毒治療，其中又約85%是可以達到病毒抑制<sup>9</sup>。
+							但需要注意的是，只有嚴格遵守醫囑、每日準時地服用藥物先能保證藥效，間斷服藥易導致病毒快速突變而產生抗藥性。而且研究證實開始進行治療時的免疫水平，與感染者治療效果呈正比。與初時CD4細胞數量大於350相比較，CD4水平低於50的患者進展到愛滋病期或死亡的機率為5.6倍<sup>10</sup>。此外在最初數星期內，服藥可普遍地引起一些副作用，會給生活帶來一定不便。調查顯示本地感染者最常出現的徵狀為，皮膚問題如皮疹、睡眠問題、手腳疼痛發麻、惡心嘔吐、記憶力減退和體型變化<sup>11</sup>。*
+							更多關於抗愛滋病毒治療藥物的詳細資料（用量、副作用等）請見視頻最尾的參考資料12<sup>12</sup>。 <br /> <br />
+							<strong style="color: red">4. 香港HIV感染者的生存現況</strong> <br />
+							雖然新世代的感染者因為醫療進步，生活質數得到了較大提高，但是除了身體健康方面的影響外，香港HIV感染者面臨的一個主要困難是「社會歧視」。最新的本地數據顯示只有29.5%的患者覺得香港大眾對感染者的接受程度在中等以上<sup>13</sup>，歧視較多來源於公眾、媒體、社會關係和工作場所<sup>14</sup>；不容樂觀的還有他們的精神健康問題，約35%和40%的感染者分別患有抑鬱症和焦慮<sup>13</sup>。
+							在期望找到伴侶的感染者當中，近乎一半認為有較大甚至非常大的困難；此外，受到條例保護<sup>16</sup>，在香港感染者不需要向雇主披露HIV感染情況。但是目前仍有較多國家限制外籍HIV陽性患者入境、逗留或是居住<sup>17</sup>，所以感染者的學習或工作的發展機會，甚至是短暫旅行都可能受到一定的影響。
+							<br /> <br />
+							<strong style="color: red">5. 其他性傳播感染(STI) </strong><br />
+							除了愛滋病，還有一類疾病同樣是經性接觸傳染，稱為「性傳播感染（STI）」，常見的有梅毒、淋病(俗稱白濁)、非淋菌性尿道炎（如衣原體性尿道炎）、性病疣(俗稱椰菜花)、陰蝨。數據顯示（2011年）香港MSM社群的性傳播感染機率較其他人群高，衣原體感染率約為4.7%，即是每20個人當中，就有一個是感染者<sup>18</sup>。雖然相較愛滋病，有些性傳播感染可以無明顯的病徵，而且整體治療預後效果較好，但是部分病原體感染之後可能無法清除，比如HPV，有些感染亦會產生嚴重後果，比如晚期的梅毒感染。最重要的是，科學證據已表明（其他）性傳播感染能增加HIV的易感程度<sup>19</sup>。第一，STI可引發炎症，人體會產生更多被激活的免疫細胞，如CD4，成為HIV攻擊的目標。第二，STI常導致潰瘍或皮膚破損，使HIV更加容易進入人體。
+							<br /> <br />
+							<strong style="color: red">結語： </strong><br />
+							「即使今時醫學昌明，HIV依然是一個不能輕視的問題。齊來關注性健康，遠離HIV和其他性傳播感染！」 <br />
+						</p>
+
+
+						<p style="font-size: 13px;">
+							<br />參考資料<br /> 1 衞生署衞生防護中心, &#x27;愛滋病資訊：香港愛滋病情況(二零一七)&#x27;,
+							(香港:2018).<br /> 2 衞生防護中心回顧二○一八年第一季本地愛滋病情況, (香港: 2018).<br /> 3
+							衞生署衞生防護中心, &#x27;Haris -2014年度愛滋病預防項目指標調查-男男性 接觸者資料頁&#x27;, (香港:
+							2015).<br /> 4 J.T.F. Lau, J.H. Li, Z.H. Wang, and Y.L. Ma,
+							&#x27;A Community Driven Comprehensive Needs Assessment for
+							People Living with Hiv in Hong Kong&#x27;, (Hong Kong: The
+							Chinese University of Hong Kong, 2016), p. 10.<br /> 5 Department
+							of Health Centre for Health Protection, &#x27;The Hong Kong
+							Std/Aids Update: Quarter 4 2016&#x27;, in The Hong Kong STD/AIDS
+							update (Hong Kong: 2016), p. 24.<br /> 6 Kenny Chan, &#x27;Press
+							Conference on Local Hiv/Aids Situation in 2016&#x27;, (Hong Kong:
+							Centre for Health Protection, Department of Health, 2017), p. 22.<br />
+							7 Kenny Chan, &#x27;Press Conference on Local Hiv/Aids Situation
+							in 2016&#x27;, (Hong Kong: Centre for Health Protection,
+							Department of Health, 2017), p. 20.<br /> 8 Ka Hing Wong, Kenny
+							Chi Wai Chan, and Shui Shan Lee, &#x27;Delayed Progression to
+							Death and to Aids in a Hong Kong Cohort of Patients with Advanced
+							Hiv Type 1 Disease During the Era of Highly Active Antiretroviral
+							Therapy&#x27;, Clinical infectious diseases, 39 (2004), 853-60.<br />
+							9 香港愛滋病顧問局, &#x27;香港愛滋病建議策略(2017-2021)&#x27;, (香港: 2017), p. 15.
+							10 Matthias Egger, Margaret May, Geneviève Chêne, Andrew N
+							Phillips, Bruno Ledergerber, François Dabis, Dominique
+							Costagliola, Antonella D&#x27;Arminio Monforte, Frank De Wolf,
+							and Peter Reiss, &#x27;Prognosis of Hiv-1-Infected Patients
+							Starting Highly Active Antiretroviral Therapy: A Collaborative
+							Analysis of Prospective Studies&#x27;, The Lancet, 360 (2002),
+							119-29.<br /> 11 Alexander Molassiotis, Violeta Nahas-Lopez, WY
+							Rita Chung, SW Charlotte Lam, CK Patrick Li, and TF Joseph Lau,
+							&#x27;Factors Associated with Adherence to Antiretroviral
+							Medication in Hiv-Infected Patients&#x27;, International journal
+							of STD &amp; AIDS, 13 (2002), 301-10.<br /> 12 衞生署衞生防護中心,
+							&#x27;香港抗愛滋病病毒藥物&#x27;,(2017).<br /> 13 J.T.F. Lau, J.H. Li, Z.H.
+							Wang, and Y.L. Ma, &#x27;A Community Driven Comprehensive Needs
+							Assessment for People Living with Hiv in Hong Kong&#x27;, (Hong
+							Kong: The Chinese University of Hong Kong, 2016), p. 2.<br /> 14
+							J. T. Lau, H. Y. Tsui, C. K. Li, R. W. Chung, M. W. Chan, and A.
+							Molassiotis, &#x27;Needs Assessment and Social Environment of
+							People Living with Hiv/Aids in Hong Kong&#x27;, AIDS Care, 15
+							(2003), 699-706.<br /> 15 J.T.F. Lau, J.H. Li, Z.H. Wang, and
+							Y.L. Ma, &#x27;A Community Driven Comprehensive Needs Assessment
+							for People Living with Hiv in Hong Kong&#x27;, (Hong Kong: The
+							Chinese University of Hong Kong, 2016), p. 3.<br /> 16
+							&#x27;《殘疾歧視條例》&#x27;, ed. by 香港特別行政區政府律政司 (香港: 2014).<br /> 17
+							German AIDS Federation, and European AIDS Treatment Group,
+							&#x27;The Global Database
+						</p>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="col-md-1 col-lg-1   hidden-xs hidden-sm"></div>
+		</div>
+	</div>
+
+	<footer class="footer  ">
+		<div class="footer-limiter">
+			<!-- <div class="row" style="color: white;">
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+</div> -->
+			<div class="footer-right">
+				<a href="contact_us.html"><i class="fa "></i>聯絡我們</a> <a
+					href="disclaimer.html"><i class="fa "></i>免責聲明</a> <a
+					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
+			</div>
+			<div class="footer-left">
+				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+			</div>
+		</div>
+	</footer>
+
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

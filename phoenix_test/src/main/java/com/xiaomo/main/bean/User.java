@@ -16,18 +16,28 @@ public class User extends BaseBean{
 
 	@Name
     @Column
-    @Comment("保存的就是邮箱信息")
-    private String name;
-	@Column("passwd")
+    @Comment("主键")
+    private String email;
+	@Column
     private String password;
 	@Column
+	@Comment("还当作用户的校验码")
     private String salt;
+	@Column
+	private String name;
+	@Column
+	private String telephone;
+	@Column
+	private String address;
 	@Column
 	@Comment("类型：超级管理员super,管理员admin,普通人员user")
 	private String type;
 	@Column
 	@Comment("是否禁用：禁用1,启用0")
 	private Integer isClose;
+	@Column
+	@Comment("是否邮箱验证了：验证了1,未验证0")
+	private Integer isValidateEmail;
 	
 	public String getName() {
 		return name;
@@ -58,6 +68,30 @@ public class User extends BaseBean{
 	}
 	public void setIsClose(Integer isClose) {
 		this.isClose = isClose;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Integer getIsValidateEmail() {
+		return isValidateEmail;
+	}
+	public void setIsValidateEmail(Integer isValidateEmail) {
+		this.isValidateEmail = isValidateEmail;
 	}
 	
     

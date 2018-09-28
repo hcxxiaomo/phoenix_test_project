@@ -4,14 +4,12 @@ import java.util.Date;
 
 import org.nutz.dao.Dao;
 import org.nutz.dao.util.Daos;
-import org.nutz.integration.quartz.NutQuartzCronJobFactory;
-import org.nutz.integration.quartz.NutQuartzJobFactory;
 import org.nutz.ioc.Ioc;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
-import org.quartz.Scheduler;
 
 import com.xiaomo.main.bean.DataDictionary;
+import com.xiaomo.main.bean.IpInfo;
 import com.xiaomo.main.bean.MailValidate;
 import com.xiaomo.main.bean.User;
 
@@ -37,10 +35,12 @@ public class MainSetup  implements Setup{
         }
         dao.create(MailValidate.class, false);
         dao.create(DataDictionary.class, false);
+        dao.create(IpInfo.class, false);
         
         Daos.migration(dao, User.class, true, false);
         Daos.migration(dao, MailValidate.class, true, false);
         Daos.migration(dao, DataDictionary.class, true, false);
+        Daos.migration(dao, IpInfo.class, true, false);
         
         // 获取NutQuartzCronJobFactory从而触发计划任务的初始化与启动
 //        ioc.get(NutQuartzCronJobFactory.class);

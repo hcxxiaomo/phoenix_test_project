@@ -30,4 +30,11 @@ public class MailService extends BaseService<MailValidate>{
 	            return false;
 	        }
 	    }
+	    
+	    public boolean send(String email,String salt){
+	        String html = "<div>Validate Code：<br/><p><span style='color:red'>%s</span><p/>please copy the code<p/></div>";
+	        
+	        html = String.format(html,salt);
+	        return send(email, "Validate Code from HeHe Journals", html);
+	    }
 }
