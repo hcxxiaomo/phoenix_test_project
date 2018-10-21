@@ -7,10 +7,10 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
-<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 <script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -24,26 +24,26 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 
 				<div class="card">
-			<h1 class="text-primary">登录</h1>
+			<h1 class="text-primary">管理员登录</h1>
 			<div class="container">
 			<div class="row">
-                        <div class="col-md-offset-2 col-md-6">
+                        <div class="offset-md-3 col-md-6">
                             <form class="form-horizontal" style="text-align: left;">
-                                <span class="heading text-primary" >電郵地址</span>
+                                <span class="heading text-primary" >用户名</span>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="電郵地址">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
                                 </div>
                                 
                                 <span class="heading text-primary" >密碼</span>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="密碼">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="密碼">
                                 </div>
                                 
                             </form>
                         </div>
                     </div>
 			</div>
-			<a href='javascript:void(0)' onclick="submit()"  id="add-content">登入</a>
+			<a href='#' id="add-content">登入</a>
 		</div>
 				
 			</div>
@@ -51,7 +51,7 @@
 		</div>
 	</div>
 	
-		<footer  class="footer    navbar-fixed-bottom">
+		<footer  class="footer  ">
 		<div class="footer-limiter">
 			<!-- <div class="row" style="color: white;">
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>
@@ -70,20 +70,4 @@
 	</footer>
 
 </body>
-
-<script>
-	function submit() {
-		
-		$.post("/phoenix_test/land/login_check", {
-			inputEmail : $('#inputEmail').val()
-			,inputPassword:$('#inputPassword').val()
-		}, function(result) {
-			if (result.success) {
-				window.location.href = result.page;
-			} else {
-				var c = confirm(result.msg);
-			}
-		}, "json");
-	}
-</script>
 </html>

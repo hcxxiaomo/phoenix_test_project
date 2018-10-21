@@ -21,9 +21,8 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 			
 			<div class="card">
-			<h1>HeHe Journals</h1>
-			<a href='agree.html' id="add-content">註冊及了解更多</a>
-			<a href='login.html' id="login-content">登入</a>
+			<h1>提示</h1>
+			<p>请注意后续邮箱提示！</p>
 
 		</div>
 		</div>

@@ -10,7 +10,7 @@ import org.nutz.mvc.Setup;
 
 import com.xiaomo.main.bean.DataDictionary;
 import com.xiaomo.main.bean.IpInfo;
-import com.xiaomo.main.bean.MailValidate;
+import com.xiaomo.main.bean.TestInfo;
 import com.xiaomo.main.bean.User;
 
 public class MainSetup  implements Setup{
@@ -26,6 +26,7 @@ public class MainSetup  implements Setup{
         if (dao.count(User.class) == 0) {
             User user = new User();
             user.setName("admin");
+            user.setEmail("email@email.com");
             user.setPassword("8e0dd6b974fa4bce2573809d976487b6");//phoenix@test
             user.setSalt("apbb3v");
             user.setType("super");
@@ -33,14 +34,16 @@ public class MainSetup  implements Setup{
             user.setUpdateTime(new Date());
             dao.insert(user);
         }
-        dao.create(MailValidate.class, false);
+//        dao.create(MailValidate.class, false);
         dao.create(DataDictionary.class, false);
         dao.create(IpInfo.class, false);
+        dao.create(TestInfo.class, false);
         
         Daos.migration(dao, User.class, true, false);
-        Daos.migration(dao, MailValidate.class, true, false);
+//        Daos.migration(dao, MailValidate.class, true, false);
         Daos.migration(dao, DataDictionary.class, true, false);
         Daos.migration(dao, IpInfo.class, true, false);
+        Daos.migration(dao, TestInfo.class, true, false);
         
         // 获取NutQuartzCronJobFactory从而触发计划任务的初始化与启动
 //        ioc.get(NutQuartzCronJobFactory.class);

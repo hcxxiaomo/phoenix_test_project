@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
-	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -106,9 +106,9 @@
 
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
-	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script>
 		function submit(){
@@ -117,9 +117,10 @@
 					age = -1 ;
 				}
 				var str = $('input[name="sex"]:checked').val()+","
-				+age+","
-				$('input[name="net"]:checked').val()+","
-				$('input[name="fuck"]:checked').val()
+				+age
+				+","
+				+$('input[name="net"]:checked').val()+","
+				+$('input[name="fuck"]:checked').val()
 				$.post("/phoenix_test/land/answer",{str:str},function(result){
 					if(result.success){
 						window.location.href = 'register.html';

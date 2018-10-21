@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
-	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -20,8 +20,8 @@
 	<div class="container" style="padding: 40px;">
 
 		<div class="row visible-on">
-			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
-			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
+			<div class="col-md-3 col-lg-3 hidden-xs hidden-sm"></div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 				<div class="card">
 					<h1 class="text-primary">使用指南</h1>
@@ -38,19 +38,19 @@
 
 - 在賬戶啟動後系統就會<strong>馬上</strong>發佈基線問卷，需在<strong>兩週內</strong>完成，否則賬戶可能會註銷需重新註冊<br/>
 
-<strong style="color:red">Mission 2 「性健康資訊」</strong><br/>
+<strong style="color:red">Mission 2 「正向心理學訓練 + 行動計劃」</strong><br/>
 
 - 基線問卷後:<br/>
 
 - 系統每週會有不同的訓練，共四週<br/>
 
-- 每週需最少登入一次，閲讀該星期的資訊<br/>
+- 註：每週的訓練有時限<br/>
 
 - 日子按完成基線問卷該天開始計算<br/>
 
 <strong style="color:red">Mission 3 「問卷」</strong><br/>
 
-- 四週任務後系統就會<strong>馬上</strong>發佈問卷A，<strong>三個月</strong>後發佈問卷B，兩份問卷都需在<strong>兩週內</strong>完成，否則該問卷會自動關閉。<br/>
+-四週任務後系統就會<strong>馬上</strong>發佈問卷A，<strong>三個月</strong>後發佈問卷B，兩份問卷都需在<strong>兩週內</strong>完成，否則該問卷會自動關閉。<br/>
 </p>
 
 
@@ -61,7 +61,7 @@
 				
 				</div>
 			</div>
-			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+			<div class="col-md-3 col-lg-3   hidden-xs hidden-sm"></div>
 		</div>
 
 
@@ -91,7 +91,7 @@
 
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
-	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>

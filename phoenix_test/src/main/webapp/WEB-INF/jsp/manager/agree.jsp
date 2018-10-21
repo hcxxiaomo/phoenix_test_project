@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
-	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
-	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 

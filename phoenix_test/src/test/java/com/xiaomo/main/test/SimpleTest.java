@@ -29,7 +29,7 @@ public class SimpleTest {
     
     @Test
     public void testSendMail(){
-    	userService.sendEmail("hcxhcxhcx666666@163.com");
+//    	userService.sendEmail("hcxhcxhcx666666@163.com");
     }
   
 }

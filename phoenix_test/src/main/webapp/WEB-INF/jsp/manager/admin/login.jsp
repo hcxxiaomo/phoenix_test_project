@@ -24,7 +24,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 
 				<div class="card">
-			<h1 class="text-primary">登录</h1>
+			<h1 class="text-primary">管理员登录</h1>
 			<div class="container">
 			<div class="row">
                         <div class="col-md-offset-2 col-md-6">
@@ -74,12 +74,12 @@
 <script>
 	function submit() {
 		
-		$.post("/phoenix_test/land/login_check", {
+		$.post("/phoenix_test/manager/login_check", {
 			inputEmail : $('#inputEmail').val()
 			,inputPassword:$('#inputPassword').val()
 		}, function(result) {
 			if (result.success) {
-				window.location.href = result.page;
+				window.location.href = '/phoenix_test/manager/index';
 			} else {
 				var c = confirm(result.msg);
 			}

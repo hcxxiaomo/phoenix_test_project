@@ -9,7 +9,7 @@
 <title>HeHe Journals</title>
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
-	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 
 </head>
@@ -85,10 +85,10 @@
 搽潤滑劑lube可以減少性交時對黏膜組織的刺激，亦都能防止安全套的破裂。但是一定要選用sex專用的lube，它們屬於「水性」潤滑劑，而凡士林、按摩油、身體乳等「油性」潤滑劑會破壞乳膠安全套，千
 萬不要使用。另外，勿將殺精藥、消毒劑等混入lube中一起使用，它們不能減低性傳播感染，反而會因為破壞皮膚黏膜，增加感染風險<sup>10, 11</sup>。無論是安全套還是潤滑劑，現在都有不同的款式供大家選擇（口味、超薄、持久型）
 ，可以提升肛交的體驗。而且安全的性行為能夠令你更加安心、愉快地去享受性的過程。但要注意，如果因為存在一些客觀的生理原因，而無法使用安全套，就應該主動尋求相關的醫療幫助，而不是直程選擇無套肛交。  <br/>
-<br/>1. The condom in iOS style is obtained from <a target="_blank" href="https://icons8.com/icon/18845/Condom">https://icons8.com/icon/18845/Condom</a> ;<br/>
-2. The condom in flat color style is obtained from <a target="_blank" href="https://icons8.com/icon/18845/Condom">https://icons8.com/icon/18845/Condom</a>; <br/>
+<br/>1. The condom in iOS style is obtained from <a target="_blank" href=" //icons8.com/icon/18845/Condom"> //icons8.com/icon/18845/Condom</a> ;<br/>
+2. The condom in flat color style is obtained from <a target="_blank" href=" //icons8.com/icon/18845/Condom"> //icons8.com/icon/18845/Condom</a>; <br/>
 3. The strawberry icon is made by <a target="_blank" href="www.flaticon.com/authors/baianat">www.flaticon.com/authors/baianat</a> from www.flaticon.com; <br/>
-4. The clock, the snowflake and the thin condom icon are made by <a target="_blank" href="https://www.flaticon.com/authors/freepik">https://www.flaticon.com/authors/freepik</a> from www.flaticon.com; <br/>
+4. The clock, the snowflake and the thin condom icon are made by <a target="_blank" href=" //www.flaticon.com/authors/freepik"> //www.flaticon.com/authors/freepik</a> from www.flaticon.com; <br/>
 5. The ribbed icon is made by <a target="_blank" href="www.flaticon.com/authors/smashicons">www.flaticon.com/authors/smashicons</a> from www.flaticon.com.  <br/>
 <br/>
 
@@ -105,7 +105,7 @@
 6 ———, &#x27;事後預防性投藥(Pep)資料頁&#x27; &lt;http://aidsconcern.org.hk/chi/pep-fact- <br/>
 7 Richard Crosby, Stephanie Sanders, William L. Yarber, and Cynthia A. Graham, &#x27;Condom-Use Errors and Problems&#x27;, American Journal of Preventive Medicine, 24 (2003), 367-70. <br/>
 8 D. K. Smith, J. H. Herbst, X. Zhang, and C. E. Rose, &#x27;Condom Effectiveness for Hiv Prevention by Consistency of Use among Men Who Have Sex with Men in the United States&#x27;, J Acquir Immune Defic Syndr, 68 (2015), 337-44.  <br/>
-9 Boskey Elizabeth, &#x27;How to Use a Condom: 9 Steps for Safety&#x27;2017) &lt;https://www.verywell.com/how-to-use-a-condom-4020370&gt;. <br/>
+9 Boskey Elizabeth, &#x27;How to Use a Condom: 9 Steps for Safety&#x27;2017) &lt; //www.verywell.com/how-to-use-a-condom-4020370&gt;. <br/>
 10 David M. Phillips, Kristin M. Sudol, Clark L. Taylor, Laura Guichard, Robert Elsen, and Robin A. Maguire, &#x27;Lubricants Containing N-9 May Enhance Rectal Transmission of Hiv and Other Stis&#x27;, Contraception, 70 (2004), 107-10.  <br/>
 11 David Wilkinson, Maya Tholandi, Gita Ramjee, and George W. Rutherford, &#x27;Nonoxynol-9 Spermicide for Prevention of Vaginally Acquired Hiv and Other Sexually Transmitted Infections: Systematic Review and Meta-Analysis of Randomised Controlled Trials Including More Than 5000 Women&#x27;, The Lancet Infectious Diseases, 2 (2002), 613-17.  
 
@@ -145,7 +145,7 @@
 
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
-	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>

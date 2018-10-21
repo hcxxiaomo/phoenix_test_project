@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
@@ -15,27 +13,17 @@ import org.nutz.dao.pager.Pager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.dao.util.Daos;
 import org.nutz.ioc.loader.annotation.Inject;
-import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.lang.Strings;
 import org.nutz.lang.random.R;
 import org.nutz.lang.random.StringGenerator;
 import org.nutz.lang.util.NutMap;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
-import com.xiaoleilu.hutool.crypto.SecureUtil;
 import com.xiaoleilu.hutool.crypto.digest.DigestUtil;
-import com.xiaoleilu.hutool.crypto.symmetric.SymmetricAlgorithm;
-import com.xiaoleilu.hutool.crypto.symmetric.SymmetricCrypto;
 import com.xiaoleilu.hutool.date.DateUtil;
-import com.xiaoleilu.hutool.lang.Validator;
 import com.xiaoleilu.hutool.util.RandomUtil;
-import com.xiaoleilu.hutool.util.StrUtil;
-import com.xiaomo.main.bean.MailValidate;
 import com.xiaomo.main.bean.User;
 import com.xiaomo.main.pojo.EasyUiJsonObj;
-import com.xiaomo.main.utils.CacheData;
-import com.xiaomo.main.utils.Constants;
 
 public class UserService extends BaseService<User>{
 
@@ -143,7 +131,7 @@ public class UserService extends BaseService<User>{
 	}
 	
 	/**email需要trim一下*/
-	public NutMap sendEmail(String email){
+	/*public NutMap sendEmail(String email){
 		 NutMap re = new NutMap();
 	       //检查Email是否已经注册过，如果注册过就不允许再注册，直接去登录
 	       User u = dao.fetch(User.class,Cnd.where("name", "=", email));
@@ -184,7 +172,7 @@ public class UserService extends BaseService<User>{
 	        }
 	        return re.setv("ok", true);
 	}
-	/**注册的时候还是要校验一下*/
+	*//**注册的时候还是要校验一下*//*
 	public NutMap register(String email,String validate_code,String password){
 		NutMap re = new NutMap();
 		String validate = null;
@@ -220,5 +208,5 @@ public class UserService extends BaseService<User>{
 		}else{
 			return re.setv("ok", false).setv("msg", "保存用户失败，请稍后重试");
 		}
-	}
+	}*/
 }

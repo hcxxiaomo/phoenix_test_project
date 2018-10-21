@@ -9,7 +9,7 @@
 <title>HeHe Journals</title>
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
-	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 
 </head>
@@ -109,7 +109,7 @@
 7 AIDS CONCERN, &#x27;Data on Hiv Infection Surveillance in Hong Kong&#x27;,  (Hong Kong: 
 2015). <br/>
 8 Centers for Disease Control and Prevention U.S. Department of Health &amp; 
-Human Services, &#x27;Partner Communication and Agreements&#x27; &lt;https://wwwn.cdc.gov/hivrisk/decreased_risk/communication/&gt; [Accessed July 2017]. <br/>
+Human Services, &#x27;Partner Communication and Agreements&#x27; &lt; //wwwn.cdc.gov/hivrisk/decreased_risk/communication/&gt; [Accessed July 2017]. <br/>
 9 J.T.F. Lau, J.H. Li, Z.H. Wang, and Y.L. Ma, &#x27;A Community Driven Comprehensive Needs Assessment for People Living with Hiv in Hong Kong&#x27;,  (Hong Kong: The Chinese University of Hong Kong, 2016).  
 <br/>
 				</p>
@@ -146,7 +146,7 @@ Human Services, &#x27;Partner Communication and Agreements&#x27; &lt;https://www
 
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
-	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>

@@ -130,7 +130,7 @@ public class UserInfoModule {
 		return userService.getAllInfo();
 	}
 	/**发邮件*/
-	@At
+/*	@At
 	@Ok("json:compact")
 	public NutMap sendEmail(String email){
 		 NutMap re = new NutMap();
@@ -144,7 +144,7 @@ public class UserInfoModule {
        }
 		return userService.sendEmail(email);
 	}
-	/**注册*/
+	*//**注册*//*
 	@At
 	@Ok("json:compact")
 	public NutMap register(String email,String validate_code,String password){
@@ -166,7 +166,7 @@ public class UserInfoModule {
 //		return re.setv("ok",true);//Test
 		return userService.register(email, validate_code, password);
 	}
-	
+	*/
 	 @At
 	    public Object login(String username, String password, HttpSession session) {
 		 log.infof("name = %s , password = %s", username , password);
