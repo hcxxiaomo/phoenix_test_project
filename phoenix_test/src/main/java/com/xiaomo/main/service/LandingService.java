@@ -1,16 +1,20 @@
 package com.xiaomo.main.service;
 
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
+import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
+import org.nutz.dao.FieldMatcher;
 import org.nutz.dao.pager.Pager;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -19,18 +23,21 @@ import org.nutz.json.JsonFormat;
 import org.nutz.lang.util.NutMap;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+import org.nutz.mvc.ViewModel;
 import org.nutz.mvc.upload.TempFile;
 
 import com.xiaoleilu.hutool.crypto.digest.DigestUtil;
 import com.xiaoleilu.hutool.date.DateUnit;
 import com.xiaoleilu.hutool.date.DateUtil;
-import com.xiaoleilu.hutool.json.JSONObject;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xiaomo.main.bean.IpInfo;
 import com.xiaomo.main.bean.TestInfo;
 import com.xiaomo.main.bean.User;
 import com.xiaomo.main.pojo.EasyUiJsonObj;
 import com.xiaomo.main.pojo.HappyPojo;
+import com.xiaomo.main.pojo.TargetPojo;
+import com.xiaomo.main.pojo.TestPojo;
+import com.xiaomo.main.utils.CommonUtils;
 import com.xiaomo.main.utils.Constants;
 
 @IocBean
@@ -96,6 +103,7 @@ public class LandingService {
 			user.setSalt(salt);//当成邮箱的验证码来使用的
 			user.setCreateTime(date);
 			user.setUpdateTime(date);
+			user.setStageTemp(1);//TODO 测试时候需要的功能
 			dao.insert(user);
 			
 		}
@@ -147,14 +155,14 @@ public class LandingService {
 
 	public NutMap trial_happy_post(HappyPojo hp, TempFile[] file1, TempFile[] file2, TempFile[] file3,User user) {
 		log.info(Json.toJson(hp,JsonFormat.compact()));
-		if (file1 != null && file1[0] != null) {
-			hp.setHappyOneFile(file1[0].getFile().getAbsolutePath());//TODO 改成正确的url
+		if (file1 != null && file1.length >=1) {
+			hp.setHappyOneFile(getFilePath(file1[0].getFile().getAbsolutePath()));
 		}
-		if (file2 != null && file2[0] != null) {
-			hp.setHappyOneFile(file2[0].getFile().getAbsolutePath());//TODO 改成正确的url
+		if (file2 != null && file2.length >=1) {
+			hp.setHappyOneFile(getFilePath(file2[0].getFile().getAbsolutePath()));
 		}
-		if (file3 != null && file3[0] != null) {
-			hp.setHappyOneFile(file3[0].getFile().getAbsolutePath());//TODO 改成正确的url
+		if (file3 != null && file3.length >=1) {
+			hp.setHappyOneFile(getFilePath(file3[0].getFile().getAbsolutePath()));
 		}
 		TestInfo ti = new TestInfo();
 		ti.setCreateTime(new Date());
@@ -165,15 +173,49 @@ public class LandingService {
 	}
 
 
-	public void trial_letter_post(String letter, String stage) {
+	public NutMap trial_letter_post(String letter, String stage,User user) {
 		log.infof("letter= %s ,stage= %s",letter,stage);
+		NutMap nm = new NutMap();
+		nm.addv("letter", letter);
+		nm.addv("stage", stage);
+		
+		TestInfo ti = new TestInfo();
+		ti.setCreateTime(new Date());
+		ti.setStage(stage);
+		ti.setText(Json.toJson(nm,JsonFormat.compact()));
+		ti.setUserId(user.getId());
+		return testInfoService.addOrUpdate(ti, user);
 	}
 
-
-	public void trial_now_post(String experience, String vacation, String stage) {
-		log.infof("experience= %s ,vacation= %s,stage= %s",experience,vacation,stage);		
+	public NutMap trial_savoring_post(String experience, String vacation, String stage,User user) {
+		log.infof("experience= %s ,vacation= %s,stage= %s",experience,vacation,stage);	
+		NutMap nm = new NutMap();
+		nm.addv("letter", experience);
+		nm.addv("vacation", vacation);
+		nm.addv("stage", stage);
+		
+		TestInfo ti = new TestInfo();
+		ti.setCreateTime(new Date());
+		ti.setStage(stage);
+		ti.setText(Json.toJson(nm,JsonFormat.compact()));
+		ti.setUserId(user.getId());
+		return testInfoService.addOrUpdate(ti, user);
+		
 	}
 
+	public NutMap trial_optimism_post(String optimism, String stage,User user) {
+		log.infof("optimism= %s ,stage= %s",optimism,stage);
+		NutMap nm = new NutMap();
+		nm.addv("optimism", optimism);
+		nm.addv("stage", stage);
+		TestInfo ti = new TestInfo();
+		ti.setCreateTime(new Date());
+		ti.setStage(stage);
+		ti.setText(Json.toJson(nm,JsonFormat.compact()));
+		ti.setUserId(user.getId());
+		return testInfoService.addOrUpdate(ti, user);
+		
+	}
 
 	public User login_check(String inputEmail, String inputPassword) {
 		User user = dao.fetch(User.class, inputEmail);
@@ -225,7 +267,7 @@ public class LandingService {
 		}else if(user.getStartTime() == null){//如果没有分组，直接到等待结果页面
 			resultMap.addv("page", "/phoenix_test/land/finish");
 		}else{//计算时间，跳转到对应的页面中去
-			Date startTime = user.getStartTime();
+			/*Date startTime = user.getStartTime();
 			startTime = DateUtil.beginOfDay(startTime);//把2018-10-21 11:57:14变成 2018-10-21 00:00:00
 			Date now = DateUtil.beginOfDay(new Date());//把今天的日期改成零点的
 			long dateParid = DateUtil.between(startTime, now, DateUnit.DAY);
@@ -235,6 +277,14 @@ public class LandingService {
 				resultMap.setAll(getPageControl((int)dateParid, user));
 			}else{
 				resultMap.addv("page", "/phoenix_test/land/finish");
+			}*/
+			//修改成了直接跳转到对应的页面中去了
+			if ("experiment".equals(user.getType())) {
+				resultMap.addv("page", "/phoenix_test/land/experiment/today");
+			}else if ("control".equals(user.getType())){
+				resultMap.addv("page", "/phoenix_test/land/experiment/today");
+			}else{
+				resultMap.addv("page", "/phoenix_test/land/finish");
 			}
 		}
 		 
@@ -242,7 +292,8 @@ public class LandingService {
 	}
 	
 	/**实验组对应的页面信息*/
-	private Map<String,Object> getPageExperiment(int dateParid,User user){
+	@Deprecated
+	private Map<String,Object> getPageExperimentOld(int dateParid,User user){
 		Map<String,Object> map = new HashMap<>();
 		if (dateParid >= 1 || dateParid <= 7) {//三件开心的事（每天都可以写，一共可以写3*7件）
 			//会跳转到对应的那天去
@@ -266,18 +317,116 @@ public class LandingService {
 		return map;
 	}
 	
+	/**需要判断是否完成了当天的任务呢，所有当天任务的统一入口*/
+	public Map<String,Object> getPageExperiment(int dateParid,User user){
+		
+//		Date startTime = user.getStartTime();
+//		startTime = DateUtil.beginOfDay(startTime);//把2018-10-21 11:57:14变成 2018-10-21 00:00:00
+//		Date now = DateUtil.beginOfDay(new Date());//把今天的日期改成零点的
+//		int dateParid = (int)DateUtil.between(startTime, now, DateUnit.DAY);
+		
+		Map<String,Object> map = new HashMap<>();
+		
+		String stage = null;
+		TestInfo ti = null;
+		String page = null;
+		
+		if (dateParid >= 1 && dateParid <= 7) {//三件开心的事（每天都可以写，一共可以写3*7件）
+			//会跳转到对应的那天去
+			page = "jsp:jsp.manager.experiment.1_Three_good_things";
+			stage ="e1_1_"+dateParid;
+		}else if(dateParid >= 8 && dateParid <= 14){
+			//如果还没写感谢信
+			ti = getTi(user.getId(), "e2_1_1");
+			if (ti == null) {
+				page= "jsp:jsp.manager.experiment.2_Gratitude_Letter";
+				stage = "e2_1_1";
+				//如果没有完成 所有的任务，进入行动计划中去 TODO 
+			}else{//三件开心的事（每天都可以写，一共可以写3*7件）
+				page = "jsp:jsp.manager.experiment.1_Three_good_things";
+				stage = "e2_3_"+(dateParid-7);
+			}
+		}else if(dateParid >= 15 && dateParid <= 21){
+			ti = getTi(user.getId(), "e3_1_"+(dateParid-14));
+			if (ti == null) {// 活在當下練習
+				page = "jsp:jsp.manager.experiment.3_Savoring";
+				stage ="e3_1_"+(dateParid-14);
+			}else{//三件开心的事（每天都可以写，一共可以写3*7件）
+				page = "jsp:jsp.manager.experiment.1_Three_good_things";
+				stage ="e3_3_"+(dateParid-14);
+			}
+		}else if(dateParid >= 22 && dateParid <= 27){
+			
+			ti = getTi(user.getId(), "e4_1_"+(dateParid-21));
+			if (ti == null) {// 樂觀練習
+				page = "jsp:jsp.manager.experiment.4_Optimism";
+				stage ="e4_1_"+(dateParid-21);
+			}else{
+				ti = getTi(user.getId(), "e4_3_"+(dateParid-21));
+				if (ti == null) {// 活在當下練習
+					page = "jsp:jsp.manager.experiment.3_Savoring";
+					stage ="e4_3_"+(dateParid-21);
+				}else{//三件开心的事（每天都可以写，一共可以写3*7件）
+					page = "jsp:jsp.manager.experiment.1_Three_good_things";
+					stage ="e4_4_"+(dateParid-21);
+				}
+			}
+			
+//			 page = "jsp:jsp.manager.experiment.4_Optimism";
+//			 stage = "e4_1_"+(dateParid-21);
+		}else if(dateParid == 28){
+			ti = getTi(user.getId(), "e4_3_"+(dateParid-21));
+			if (ti == null) {// 活在當下練習
+				page = "jsp:jsp.manager.experiment.3_Savoring";
+				stage ="e4_3_"+(dateParid-21);
+			}else{//三件开心的事（每天都可以写，一共可以写3*7件）
+				page = "jsp:jsp.manager.experiment.1_Three_good_things";
+				stage ="e4_4_"+(dateParid-21);
+			}
+		}
+		//如果当天的已经完成了，跳转到已经完成的页面中去
+		if (getTi(user.getId(), stage) != null) {
+			page= "jsp:jsp.manager.experiment.finish";
+		}
+		
+		map.put("page", page);
+		map.put("stage", stage);
+		map.put("date", CommonUtils.getDate(user.getStartTime(), dateParid));
+		return map;
+	}
+	
+
+	 /**根据用户的状态，返回对应的页面，所有的入口都是这一个*/
+	public String experiment_today(User user, ViewModel model) {
+		Date startTime = user.getStartTime();
+		startTime = DateUtil.beginOfDay(startTime);//把2018-10-21 11:57:14变成 2018-10-21 00:00:00
+		Date now = DateUtil.beginOfDay(new Date());//把今天的日期改成零点的
+		//long dateParid = DateUtil.between(startTime, now, DateUnit.DAY); TODO 先改成测试的部分，走流程的那些
+		int dateParid = dao.fetch(User.class, user.getId()).getStageTemp();//需要从数据库中取出来
+		Map<String, Object> map =  getPageExperiment((int)dateParid, user);
+		model.setAll(map);
+		
+		return map.get("page").toString();
+	}
+	
+	public String control_today(User user, ViewModel model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	/**参照组对应的页面信息*/
 	private Map<String,Object> getPageControl(int dateParid,User user){
 		Map<String,Object> map = new HashMap<>();
-		if (dateParid >= 1 || dateParid <= 7) {//三件开心的事（每天都可以写，一共可以写3*7件）
+		if (dateParid >= 1 && dateParid <= 7) {//三件开心的事（每天都可以写，一共可以写3*7件）
 			//会跳转到对应的那天去
 			map.put("page", "/phoenix_test/land/control/c1_1/1");
-		}else if(dateParid >= 8 || dateParid <= 14){
-			map.put("page", "/phoenix_test/land/control/e2_1/1");
-		}else if(dateParid >= 15 || dateParid <= 21){
-			map.put("page", "/phoenix_test/land/control/e3_1/1");
-		}else if(dateParid >= 22 || dateParid <= 28){
-			map.put("page", "/phoenix_test/land/control/e4_1/1");
+		}else if(dateParid >= 8 && dateParid <= 14){
+			map.put("page", "/phoenix_test/land/control/c2_1/1");
+		}else if(dateParid >= 15 && dateParid <= 21){
+			map.put("page", "/phoenix_test/land/control/c3_1/1");
+		}else if(dateParid >= 22 && dateParid <= 28){
+			map.put("page", "/phoenix_test/land/control/c4_1/1");
 		}
 		return map;
 	}
@@ -286,11 +435,16 @@ public class LandingService {
 		return dao.fetch(TestInfo.class,Cnd.where("userId", "=", userId).and("stage", "=", stage));
 	}
 
+	public void updateStageTemp(long userId){
+		dao.update(User.class, Chain.makeSpecial("stageTemp", "+1"), Cnd.where("id", "=", userId));
+	}
+	
 
 	public NutMap t0_choose(Long userId, String type) {
 		User user = new User();
 		user.setId(userId);
 		user.setType(type);
+		user.setStartTime(new Date());
 		dao.updateIgnoreNull(user);
 		return new NutMap().addv("success", true);
 	}
@@ -322,5 +476,163 @@ public class LandingService {
 		 easyUiJsonObj.setRows(list);
 		 return easyUiJsonObj;
 	 }
+
+
+	public NutMap experiment_index(User user) {
+		NutMap mapDate = new NutMap();
+		//1-7天
+//		Date startTime = DateUtil.beginOfDay(user.getStartTime());
+		Date startTime = user.getStartTime();
+		/*mapDate.put("e1_1",CommonUtils.getDate(startTime, 1)+"-"+CommonUtils.getDate(startTime, 7));
+		mapDate.put("e2_1_1",CommonUtils.getDate(startTime, 8)+"-"+CommonUtils.getDate(startTime, 14));
+		mapDate.put("e2_3",CommonUtils.getDate(startTime, 8)+"-"+CommonUtils.getDate(startTime, 14));
+		mapDate.put("e3_1",CommonUtils.getDate(startTime, 15)+"-"+CommonUtils.getDate(startTime, 21));
+		mapDate.put("e4_1",CommonUtils.getDate(startTime, 22)+"-"+CommonUtils.getDate(startTime, 27));
+		mapDate.put("e4_3",CommonUtils.getDate(startTime, 28));*/
+		
+		List<TestInfo> listTi = dao.query(TestInfo.class, Cnd.where("userId", "=", user.getId()),null,FieldMatcher.simple("stage"));
+		Set<String> setStage = new HashSet<>();
+		if (listTi != null) {
+			for (TestInfo testInfo : listTi) {
+				setStage.add(testInfo.getStage());
+			}
+		}
+		List<TestPojo> list = new LinkedList<>();
+		TestPojo tp = null;
+		for (int i = 1; i < 29; i++) {//4个星期的数据
+			//几个特殊需要增加的
+			if (i >= 1 && i <= 7) {
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("三件開心的事");
+				tp.setStage(experiment_get_stage(i,1));
+				list.add(tp);
+			}else if (i == 8 ) {
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("感謝信");
+				tp.setStage(experiment_get_stage(i,1));
+				list.add(tp);
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("三件開心的事");
+				tp.setStage(experiment_get_stage(i,3));
+				list.add(tp);
+			}else if (i > 8 && i <= 14) {
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("三件開心的事");
+				tp.setStage(experiment_get_stage(i,3));
+				list.add(tp);
+			}else if (i >= 15 && i <= 21) {
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("活在當下練習");
+				tp.setStage(experiment_get_stage(i,1));
+				list.add(tp);
+				
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("三件開心的事");
+				tp.setStage(experiment_get_stage(i,3));
+				list.add(tp);
+				
+			}else if (i >= 22 && i <= 27) {
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("樂觀練習");
+				tp.setStage(experiment_get_stage(i,1));
+				list.add(tp);
+				
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("活在當下練習");
+				tp.setStage(experiment_get_stage(i,3));
+				list.add(tp);
+				
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("三件開心的事");
+				tp.setStage(experiment_get_stage(i,4));
+				list.add(tp);
+				
+			}else if (i == 28) {
+				
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("活在當下練習");
+				tp.setStage(experiment_get_stage(i,3));
+				list.add(tp);
+				
+				tp = new TestPojo();
+				tp.setDate(CommonUtils.getDate(startTime, i));
+				tp.setInfo("三件開心的事");
+				tp.setStage(experiment_get_stage(i,4));
+				list.add(tp);
+				
+			}
+			
+//			tp = new TestPojo();
+//			tp.setDate(CommonUtils.getDate(startTime, i));
+//			tp.setInfo("三件開心的事");
+//			tp.setStage(experiment_get_stage(i));
+//			
+//			list.add(tp);
+		}
+		//是否完成，需要处理一下
+//		String now = CommonUtils.getDate(new Date(), 0);
+		//TODO 测试的时候修改的数据信息
+		String now = CommonUtils.getDate(user.getStartTime(), user.getStageTemp());
+		for (TestPojo testPojo : list) {
+//			log.info("testPojo.getDate().compareTo(now) = "+testPojo.getDate()+"——————————————————"+(now)+"——————————————————"+testPojo.getDate().compareTo(now));
+			if (setStage.contains(testPojo.getStage())) {
+				testPojo.setDone(1);
+			}else if (!setStage.contains(testPojo.getStage())
+					&& testPojo.getDate().compareTo(now) < 0
+					) {
+					testPojo.setDone(2);
+			}else{
+				testPojo.setDone(0);
+			}
+		}
+		
+		
+		mapDate.addv("list", list);
+		return mapDate;
+	}
+	
+	private String experiment_get_stage(int dateParid,int stageParid){
+		String stage = null;
+		if (dateParid >= 1 && dateParid <= 7) {//三件开心的事（每天都可以写，一共可以写3*7件）
+			stage ="e1_"+stageParid+"_"+dateParid;
+		}else if(dateParid >= 8 && dateParid <= 14){
+			stage = "e2_"+stageParid+"_"+(dateParid-7);
+		}else if(dateParid >= 15 && dateParid <= 21){
+			 stage ="e3_"+stageParid+"_"+(dateParid-14);
+		}else if(dateParid >= 22 && dateParid <= 28){
+			 stage = "e4_"+stageParid+"_"+(dateParid-21);
+//		}else if(dateParid == 28){
+//			 stage =  "e4_"+stageParid+"_"+(dateParid-21);
+		}
+		return stage;
+	}
+	
+	private String getFilePath(String filePath){
+		if (filePath == null ) {
+			return null;
+		}
+		return  File.separator.concat(filePath.substring(filePath.indexOf("phoenix_test")));
+	}
+
+
+	public NutMap experiment_action_post(TargetPojo tp, User user) {
+		log.infof("tp= %s ",Json.toJson(tp));
+		TestInfo ti = new TestInfo();
+		ti.setCreateTime(new Date());
+		ti.setStage(tp.getStage());
+		ti.setText(Json.toJson(tp,JsonFormat.compact()));
+		ti.setUserId(user.getId());
+		return testInfoService.addOrUpdate(ti, user);
+	}
 
 }

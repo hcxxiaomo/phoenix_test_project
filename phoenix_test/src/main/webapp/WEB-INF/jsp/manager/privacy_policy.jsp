@@ -17,11 +17,8 @@
 <div class="container"  style="padding: 40px;">
 	
 		<div class="row visible-on">
-		<div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
-			
-			
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+		<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 			
 			<div class="card">
 			  <h1 class="text-primary">隱私政策</h1>
@@ -60,23 +57,14 @@
 
 			<div>
 				<!-- 				<img src="satelite.jpg" alt="Satelite Image">  -->
-				<p>
-					「健康行為研究中心」成立於2008年，隸屬於香港中文大學賽馬會公共衛生及基層醫療學院行為健康及健康促進學部。我們結合公共衛生科學及社會科學，通過更好地瞭解危險或預防行為，致力於促進人群的健康。‘愛滋病及性健康’是本中心最重要的研究領域之一，研究內容主要包括認識高危人群的危險性行為和‘藥物’使用行為；並應用健康行為理論以推廣愛滋病或性傳播疾病的預防行為（如HIV測試、安全套使用）。本中心已獲資助的‘愛滋病及性健康’相關研究項目超過35個，並且在國際性同行評審的雜誌上已發表相關文章共149篇。此外，本中心與其他海內外機構有密切合作，包括政府醫療機構、非政府慈善組織、高等院校等，為預防愛滋病和提升人群性健康水平共同努力。
-					<br />官網：<a href="http://www.chbr.sphpc.cuhk.edu.hk"
-						target="_blank">http://www.chbr.sphpc.cuhk.edu.hk</a>
-				</p>
 			</div>
 
 		</div>
 		</div>
-		<div class="col-md-3 col-lg-3   hidden-xs hidden-sm" >
-		
-			
-		</div>
+		<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
 	</div>
 	
 	
-</div>
 
 
 	<footer  class="footer  ">
@@ -92,7 +80,7 @@
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><a href="/phoenix_test/land/experiment/index"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></a></p>
 			</div>
 		</div>
 	</footer>

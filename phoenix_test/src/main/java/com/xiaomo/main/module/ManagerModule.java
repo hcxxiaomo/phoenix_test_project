@@ -68,6 +68,7 @@ public class ManagerModule {
 	  @At("/t0_result/?/?")
 	  @Ok("jsp:jsp.manager.admin.t0_result")
 	  public NutMap t0_result(int userId,String stage){
+		  log.infof("String userId = %s ,String stage = %s", userId,stage);
 		  return landingService.t0_result(userId,stage);
 	  }
 

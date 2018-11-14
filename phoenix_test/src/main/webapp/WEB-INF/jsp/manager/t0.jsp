@@ -112,7 +112,7 @@ width:100%;
 <label><input name="1_g" type="checkbox" value="3梅毒   " />3梅毒</label> 
 <label><input name="1_g" type="checkbox" value="4尖銳濕疣" />4尖銳濕疣 </label> 
 <label><input name="1_g" type="checkbox" value="5生殖器疱疹" />5生殖器疱疹 </label> 
-<label><input name="1_g" type="checkbox" value="6其他" />6其他 </label><br/>
+<label><input name="1_g" type="checkbox"   onclick="check_1_g(this)" value="6其他" />6其他 </label><br/>
 							
 <input type="text" id="1_g_text" name="1_g_text" style="display: none;"  placeholder="其他"><br/><br/>
 <!-- □1沒有性病          □2淋病          □3梅毒          □4尖銳濕疣           □5生殖器疱疹<br/> -->
@@ -127,6 +127,7 @@ width:100%;
 	<option value="2 沒有">2 沒有</option><!-- （跳至2f） -->
 </select><br/><br/>
 <!--       □1  有       □2 沒有（跳至2f）<br/> -->
+<div id="2a_to_2f" style="display: none;">
 2_b.	最近1個月，你的固定性伴有多少人？<br/>
       <input type="text"  name="2_b" id="2_b" placeholder="">位<br/><br/>
 2_c.	最近1次你與固定性伴肛交時使用安全套了嗎？<br/>
@@ -154,7 +155,7 @@ width:100%;
 	<option value="4 可能性很大">4 可能性很大</option>
 	<option value="5 完全可能">5 完全可能</option>
 </select><br/><br/>
-
+</div>
 <!-- □1  不可能                        □2  可能性很小               □3  一半一半          <br/> -->
 <!-- □4  可能性很大                □5  完全可能<br/> -->
 2_f.	最近1個月，你有非固定性伴嗎？<br/>
@@ -164,6 +165,7 @@ width:100%;
 	<option value="1 有">1 有</option>
 	<option value="2 沒有">2 沒有</option><!-- （跳至3a） -->
 </select><br/><br/>
+<div id="2f_to_3a" style="display: none;">
 2_g.	最近1個月，你的非固定性伴有多少人？<br/>
       <input type="text" name="2_g" id="2_g" placeholder="">位<br/><br/>
 2_h.	最近1次你與非固定性伴肛交時使用安全套了嗎？ <br/>
@@ -191,6 +193,7 @@ width:100%;
 	<option value="4 可能性很大">4 可能性很大</option>
 	<option value="5 完全可能">5 完全可能</option>
 </select><br/><br/>
+</div>
 <!-- □1  不可能                        □2  可能性很小               □3  一半一半          <br/> -->
 <!-- □4  可能性很大                □5  完全可能<br/> -->
 </div>
@@ -1383,8 +1386,8 @@ width:100%;
  
 </tbody></table>
 
-<p>15.	以下的描述為一些完結後，對本網上介入的想法，請按你的情況回答你有多同意。</p>
-<!-- (T1時才會出現，只有控制組會看到#15的四題問題) -->
+<!-- <p>15.	以下的描述為一些完結後，對本網上介入的想法，請按你的情況回答你有多同意。</p>
+(T1時才會出現，只有控制組會看到#15的四題問題)
 <table   style="text-align:left; border-collapse:collapse;border:none">
  <tbody>
  <tr>
@@ -1427,7 +1430,7 @@ width:100%;
  
 </tbody></table>
 
-<p></p>
+<p></p> -->
 
 <button type="submit" id="add-content">提交</button>
 				</form>
@@ -1454,7 +1457,7 @@ width:100%;
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><a href="/phoenix_test/land/experiment/index"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></a></p>
 			</div>
 		</div>
 	</footer>
@@ -1463,4 +1466,59 @@ width:100%;
 
 	<script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	
+	<script type="text/javascript">
+	$("select#1_b").change(function(){
+// 		    console.log($(this).val());
+		    if ($(this).val() == '9其他') {
+				$("#1_b_text").show();
+			}else{
+				$("#1_b_text").hide();
+			}
+		 });
+	$("select#1_c").change(function(){
+// 		    console.log($(this).val());
+		    if ($(this).val() == '7其他') {
+				$("#1_c_text").show();
+			}else{
+				$("#1_c_text").hide();
+			}
+		 });
+	$("select#2_a").change(function(){
+		    if ($(this).val() == '2 沒有') {
+				$("#2a_to_2f").hide();
+			}else{
+				$("#2a_to_2f").show();
+			}
+		 });
+	$("select#2_f").change(function(){
+		    if ($(this).val() == '2 沒有') {
+				$("#2f_to_3a").hide();
+			}else{
+				$("#2f_to_3a").show();
+			}
+		 });
+	/* $("select#1_g").change(function(){
+		    if ($(this).val() == '6其他') {
+				$("#1_g_text").show();
+			}else{
+				$("#1_g_text").hide();
+			}
+		 }); */
+	
+	
+// 	$("input[type=radio][name=infType][value=1]").prop("checked",'checked');
+	
+	function check_1_g(obj){
+		if ( obj.checked == true){
+// 			console.log("checked");
+			$("#1_g_text").show();
+			}else{
+// 				console.log("no");
+				$("#1_g_text").hide();
+			}
+
+	}
+	</script>
 </html>

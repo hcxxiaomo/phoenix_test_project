@@ -30,10 +30,10 @@
 
 					<div>
 						<form class="form-horizontal" style="text-align: left;">
-							<span class="heading text-primary">验证码[区分大小写]</span>
+							<span class="heading text-primary">驗證碼[區分大小寫]</span>
 							<div class="form-group">
 								<input type="email" class="form-control" id="inputCode"
-									placeholder="验证码(请检查被拦截的邮箱)">
+									placeholder="驗證碼(請檢查被攔截的郵箱)">
 							</div>
 
 						</form>

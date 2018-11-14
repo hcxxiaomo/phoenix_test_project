@@ -46,6 +46,10 @@ public class User extends BaseBean{
     @Column
     @Comment("哪个阶段了")
     private String stage;
+    
+    @Column
+    @Comment("阶段")
+    private Integer stageTemp;
 	
 	public String getName() {
 		return name;
@@ -112,6 +116,12 @@ public class User extends BaseBean{
 	}
 	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
+	}
+	public Integer getStageTemp() {
+		return stageTemp;
+	}
+	public void setStageTemp(Integer stageTemp) {
+		this.stageTemp = stageTemp;
 	}
 	
     

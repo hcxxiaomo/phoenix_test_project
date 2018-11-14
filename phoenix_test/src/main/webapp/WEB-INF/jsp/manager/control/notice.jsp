@@ -30,27 +30,26 @@
 			<!-- 			<a href='#' id="login-content">登入</a> -->
 
 			<div class="text-center">
-				<p class="text-primary">
-                    請在網頁上依次完成以下三步Mission，完成所有mission，將可獲得共$250超市禮券！</p>
+				<p class="text-primary text-center">
+                   請在網頁上依次完成以下三步Mission，完成所有mission，將可獲得共$250超市禮券！</p>
 
 <p>
-<strong style="color:red">Mission 1「基線問卷」</strong><br/>
+<strong >Mission 1「問卷」</strong><br/>
 
-- 在賬戶啟動後系統就會<strong>馬上</strong>發佈基線問卷，需在<strong>兩週內</strong>完成，否則賬戶可能會註銷需重新註冊<br/>
+- 在賬戶啟動後系統就會<strong>馬上</strong>發佈問卷，需在<strong>兩週內</strong>完成，否則賬戶可能會註銷需重新註冊<br/>
 
-<strong style="color:red">Mission 2 「性健康資訊」</strong><br/>
+<strong >Mission 2 「性健康資訊」</strong><br/>
 
-- 基線問卷後:<br/>
+-問卷後: <br/>
 
-- 系統每週會有不同的訓練，共四週<br/>
+- 系統每週會發放不同的資訊，共四週<br/>
 
 - 每週需最少登入一次，閲讀該星期的資訊<br/>
 
-- 日子按完成基線問卷該天開始計算<br/>
+<strong >Mission 3 「問卷」</strong><br/>
 
-<strong style="color:red">Mission 3 「問卷」</strong><br/>
-
-- 四週任務後系統就會<strong>馬上</strong>發佈問卷A，<strong>三個月</strong>後發佈問卷B，兩份問卷都需在<strong>兩週內</strong>完成，否則該問卷會自動關閉。<br/>
+Mission 3 「問卷」
+-四週任務後系統就會<strong>馬上</strong>發佈問卷A，<strong>三個月</strong>後發佈問卷B，兩份問卷都需在<strong>兩週內</strong>完成。<br/>
 </p>
 
 
@@ -68,7 +67,7 @@
 	</div>
 
 
-	<footer class="footer  ">
+	<footer class="footer  navbar-fixed-bottom">
 		<div class="footer-limiter">
 			<!-- <div class="row" style="color: white;">
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>

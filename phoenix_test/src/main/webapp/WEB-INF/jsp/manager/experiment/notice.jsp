@@ -16,7 +16,30 @@
 
 </head>
 <body>
-
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"><a href="/phoenix_test/land/experiment/index">主頁</a></li>
+        <li class="nav-item"><a href="/phoenix_test/land/experiment/ppi">什麼是正向心理學?</a></li>
+        <li class="nav-item"><a href="/phoenix_test/land/experiment/today">問卷</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">行动计划</a></li>
+        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/notice">使用指南</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">你好， ${sessionScope.user.name} </a></li>
+        <li class="nav-item"><a class="nav-link "  href="javascript:void(0)" onclick="logout()">登出</a></li>      </ul>
+    </div>
+  </div>
+</nav> 
 	<div class="container" style="padding: 40px;">
 
 		<div class="row visible-on">
@@ -30,31 +53,27 @@
 			<!-- 			<a href='#' id="login-content">登入</a> -->
 
 			<div class="text-center">
-				<p class="text-primary">
-                    請在網頁上依次完成以下三步Mission，完成所有mission，將可獲得共$250超市禮券！</p>
+				<p class="text-primary text-center">
+                   請在網頁上依次完成以下三步Mission，完成所有mission，除了提升你的精神健康和性健康，還可以獲得最多$250超市禮券！</p>
 
 <p>
-<strong style="color:red">Mission 1「基線問卷」</strong><br/>
+<strong >Mission 1「問卷」</strong><br/>
 
-- 在賬戶啟動後系統就會<strong>馬上</strong>發佈基線問卷，需在<strong>兩週內</strong>完成，否則賬戶可能會註銷需重新註冊<br/>
+- 請先完成問卷，需在註冊後<strong>兩週內</strong>完成<br/>
 
-<strong style="color:red">Mission 2 「正向心理學訓練 + 行動計劃」</strong><br/>
+<strong >Mission 2 「正向心理學練習 + 行動計劃」</strong><br/>
 
-- 基線問卷後:<br/>
+- 每週有不同的訓練，需在特定的時間内做，共四週<br/>
 
-- 系統每週會有不同的訓練，共四週<br/>
+- 行動計劃在第二週開始<br/>
 
-- 註：每週的訓練有時限<br/>
+<strong >Mission 3 「問卷」</strong><br/>
 
-- 日子按完成基線問卷該天開始計算<br/>
-
-<strong style="color:red">Mission 3 「問卷」</strong><br/>
-
--四週任務後系統就會<strong>馬上</strong>發佈問卷A，<strong>三個月</strong>後發佈問卷B，兩份問卷都需在<strong>兩週內</strong>完成，否則該問卷會自動關閉。<br/>
+- 四週任務後，請完成問卷A，<strong>三個月</strong>後會發佈問卷B，兩份問卷都需在<strong>兩週內</strong>完成<br/>
 </p>
 
 
-			<a href='#' id="add-content">我同意</a>
+<!-- 			<a href='#' id="add-content">我同意</a> -->
 
 				
 			</div>
@@ -68,7 +87,7 @@
 	</div>
 
 
-	<footer class="footer  ">
+	<footer class="footer  navbar-fixed-bottom">
 		<div class="footer-limiter">
 			<!-- <div class="row" style="color: white;">
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>

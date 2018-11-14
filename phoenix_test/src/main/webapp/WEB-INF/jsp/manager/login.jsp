@@ -24,7 +24,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 
 				<div class="card">
-			<h1 class="text-primary">登录</h1>
+			<h1 class="text-primary">登入</h1>
 			<div class="container">
 			<div class="row">
                         <div class="col-md-offset-2 col-md-6">
@@ -38,6 +38,7 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="inputPassword" placeholder="密碼">
                                 </div>
+                                 <span class="heading text-primary" style="float:right;font-size:12px" >忘記密碼</span>
                                 
                             </form>
                         </div>
@@ -64,7 +65,7 @@
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><a href="/phoenix_test/land/experiment/index"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></a></p>
 			</div>
 		</div>
 	</footer>
@@ -72,6 +73,14 @@
 </body>
 
 <script>
+
+$(document).keyup(function(event){
+	  if(event.keyCode ==13){
+// 	    $("#submit").trigger("click");
+		  submit();
+	  }
+	});
+
 	function submit() {
 		
 		$.post("/phoenix_test/land/login_check", {

@@ -14,11 +14,11 @@
       </init-param>
       <!-- 
       想忽略所有的 .html 请求.默认的，只要被正则表达式 `"^(.+[.])(jsp|png|gif|jpg|js|css|jspx|jpeg|swf|ico|map)$"` 匹配上的 URL 都不会被 Nutz 过滤器处理
+       -->
       <init-param>
             <param-name>ignore</param-name>
-            <param-value>^(.+[.])(jsp|png|gif|jpg|js|css|jspx|jpeg|swf|ico|map|html)$</param-value>
+            <param-value>^(.+[.])(jsp|png|gif|jpg|js|css|jspx|jpeg|swf|ico|map|mov)$</param-value>
         </init-param>
-       -->
   </filter>
   <filter-mapping>
       <filter-name>nutz</filter-name>

@@ -1,5 +1,6 @@
 package com.xiaomo.main.module;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,7 @@ import com.xiaoleilu.hutool.util.StrUtil;
 import com.xiaomo.main.bean.TestInfo;
 import com.xiaomo.main.bean.User;
 import com.xiaomo.main.pojo.HappyPojo;
+import com.xiaomo.main.pojo.TargetPojo;
 import com.xiaomo.main.service.LandingService;
 import com.xiaomo.main.utils.NetUtils;
 
@@ -45,6 +47,12 @@ public class LandingModule {
 	  @At
 	  @Ok("jsp:jsp.manager.login")
 	  public void login(){
+	  }
+	  
+	  @At
+	  @Ok("jsp:jsp.manager.landing")
+	  public void logout(HttpSession session) {
+	        session.invalidate();
 	  }
 	  
 	  @At
@@ -125,6 +133,11 @@ public class LandingModule {
 	  @At
 	  @Ok("jsp:jsp.manager.ppi")
 	  public void ppi(){
+	  }
+	  
+	  @At
+	  @Ok("jsp:jsp.manager.experiment.ppi")
+	  public void experiment_ppi(){
 	  }
 	  
 	  @At
@@ -222,11 +235,13 @@ public class LandingModule {
 	  }
 	  
 	  @At
-	  @Ok("jsp:jsp.manager.experiment.finish")
+	  @Ok("redirect:/land/experiment/today")
 	  @AdaptBy(type = UploadAdaptor.class, args = { "${app.root}/tmp" })
-	  public NutMap trial_happy_post(@Param("..") HappyPojo hp, @Attr(scope=Scope.SESSION, value="user") User user
+	  public NutMap trial_happy_post(@Param("..") HappyPojo hp, @Attr(scope=Scope.SESSION, value="user") User user,ServletContext sc
 			 , @Param("file1")TempFile[] file1, @Param("file2")TempFile[] file2, @Param("file3")TempFile[] file3){
 		  NutMap nm = landingService.trial_happy_post(hp,file1,file2,file3,user);
+		  
+		  log.info(sc.getContextPath());
 		  return nm.addv("url", hp.getStage());
 	  }
 	   
@@ -238,8 +253,15 @@ public class LandingModule {
 	  }
 	  
 	  @At
-	  public void trial_letter_post(String letter,String stage){
-		  landingService.trial_letter_post(letter,stage);
+	  @Ok("redirect:/land/experiment/today")
+	  public void trial_letter_post(String letter,String stage, @Attr(scope=Scope.SESSION, value="user") User user){
+		  landingService.trial_letter_post(letter,stage,user);
+	  }
+	  
+	  @At
+	  @Ok("redirect:/land/experiment/today")
+	  public void trial_savoring_post(String experience,String vacation,String stage, @Attr(scope=Scope.SESSION, value="user") User user){
+		  landingService.trial_savoring_post(experience,vacation,stage,user);
 	  }
 	  
 	  @At
@@ -248,8 +270,9 @@ public class LandingModule {
 	  }
 	  
 	  @At
-	  public void trial_now_post(String experience,String vacation,String stage){
-		  landingService.trial_now_post(experience,vacation, stage);
+	  @Ok("redirect:/land/experiment/today")
+	  public void trial_optimism_post(String optimism,String stage, @Attr(scope=Scope.SESSION, value="user") User user){
+		  landingService.trial_optimism_post(optimism, stage,user);
 	  }
 	  
 	  @At
@@ -268,6 +291,24 @@ public class LandingModule {
 	  public void finish(){
 	  }
 	  
+	  @At("/experiment/index")
+	  @Ok("jsp:jsp.manager.experiment.index")
+	  public NutMap experiment_index(@Attr(scope=Scope.SESSION, value="user")User user){ 
+		  //返回对应的日期就行了
+		  return  landingService.experiment_index(user);
+	  }
+	  
+	  @At("/experiment/action")
+	  @Ok("jsp:jsp.manager.experiment.action")
+	  public void experiment_action(@Attr(scope=Scope.SESSION, value="user")User user){
+	  }
+	  
+	  @At
+	  @Ok("redirect:/land/experiment/today")
+	  public void experiment_action_post(@Param("..") TargetPojo tp, @Attr(scope=Scope.SESSION, value="user") User user){
+		  landingService.experiment_action_post(tp,user);
+	  }
+	  
 	  @At("/experiment/notice")
 	  @Ok("jsp:jsp.manager.experiment.notice")
 	  public void experiment_notice(){
@@ -278,30 +319,77 @@ public class LandingModule {
 	  public void control_notice(){
 	  }
 	  
+	  /**所有页面都跳转到对应的今天的页面中来*/
+	  @At("/experiment/today")
+	  @Ok("re:jsp:jsp.manager.finish")
+	  public String experiment_today(@Attr(scope=Scope.SESSION, value="user")User user,ViewModel model){
+//		  log.infof("String testPrefix = %s ,String testSuffix = %s", testPrefix,testSuffix);
+//		  String stage = testPrefix+"_"+testSuffix;
+//		  model.setv("stage", stage); 
+//		  model.setv("url", testPrefix+"/"+testSuffix);
+//		  TestInfo  ti = landingService.getTi(user.getId(),stage);
+//		  landingService.getPageExperiment(user);
+//		  if (ti != null) {//没有完成当天的任务
+//			  return "jsp:jsp.manager.experiment.finish";
+//		  }else{
+//			  //很多页面重复的，可以进行相应的跳转到
+//			  if ("e1_1".equals(testPrefix)) {
+//				  return "jsp:jsp.manager.experiment.e1_1";
+//			  }
+//			  return "jsp:jsp.manager.experiment."+stage;
+//		  }
+		  
+		  return landingService.experiment_today(user,model);
+	  }
+	  
+	  @At("/control/today")
+	  @Ok("re:jsp:jsp.manager.finish")
+	  public String control_today(@Attr(scope=Scope.SESSION, value="user")User user,ViewModel model){
+//		  log.infof("String testPrefix = %s ,String testSuffix = %s", testPrefix,testSuffix);
+//		  String stage = testPrefix+"_"+testSuffix;
+//		  model.setv("stage", stage); 
+//		  model.setv("url", testPrefix+"/"+testSuffix);
+//		  TestInfo  ti = landingService.getTi(user.getId(),stage);
+//		  landingService.getPageExperiment(user);
+//		  if (ti != null) {//没有完成当天的任务
+//			  return "jsp:jsp.manager.experiment.finish";
+//		  }else{
+//			  //很多页面重复的，可以进行相应的跳转到
+//			  if ("e1_1".equals(testPrefix)) {
+//				  return "jsp:jsp.manager.experiment.e1_1";
+//			  }
+//			  return "jsp:jsp.manager.experiment."+stage;
+//		  }
+		  
+		  return landingService.control_today(user,model);
+	  }
+	  
 	  @At("/experiment/?/?")
 	  @Ok("re:jsp:jsp.manager.finish")
-	  public String experiment(ViewModel model ,@Attr(scope=Scope.SESSION, value="user")User user,String testPrefix,String testSuffix){
-		  String url = testPrefix+"_"+testSuffix;
-		  model.setv("url", url);
-		  TestInfo  ti = landingService.getTi(user.getId(),url);
-		  if (ti == null) {//没有完成当天的任务
+	  public String experiment(String testPrefix,String testSuffix ,@Attr(scope=Scope.SESSION, value="user")User user,ViewModel model){
+		  log.infof("String testPrefix = %s ,String testSuffix = %s", testPrefix,testSuffix);
+		  String stage = testPrefix+"_"+testSuffix;
+		  model.setv("stage", stage);
+		  model.setv("url", testPrefix+"/"+testSuffix);
+		  TestInfo  ti = landingService.getTi(user.getId(),stage);
+		  if (ti != null) {//没有完成当天的任务
 			  return "jsp:jsp.manager.experiment.finish";
 		  }else{
 			  //很多页面重复的，可以进行相应的跳转到
 			  if ("e1_1".equals(testPrefix)) {
 				  return "jsp:jsp.manager.experiment.e1_1";
 			  }
-			  return "jsp:jsp.manager.experiment."+url;
+			  return "jsp:jsp.manager.experiment."+stage;
 		  }
 	  }
 	  
 	  @At("/control/?/?")
 	  @Ok("jsp:jsp.manager.finish")
-	  public String control(ViewModel model ,@Attr(scope=Scope.SESSION, value="user")User user,String testPrefix,String testSuffix){
+	  public String control(String testPrefix,String testSuffix,@Attr(scope=Scope.SESSION, value="user")User user,ViewModel model ){
 		  String url = testPrefix+"_"+testSuffix;
 		  model.setv("url", url);
 		  TestInfo  ti = landingService.getTi(user.getId(),url);
-		  if (ti == null) {//没有完成当天的任务
+		  if (ti != null) {//没有完成当天的任务
 			  return "jsp:jsp.manager.control.finish";
 		  }else{
 			  return "jsp:jsp.manager.control."+url;

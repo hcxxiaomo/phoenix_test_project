@@ -109,7 +109,7 @@
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><a href="/phoenix_test/land/experiment/index"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></a></p>
 			</div>
 		</div>
 	</footer>

@@ -51,7 +51,7 @@
 				</p>
 				
 				<p>
-	3. 你平日一個星期內可否至少使用一次網絡（手機、電腦等任何設備均可）?<br/>
+	3. 你平日一個星期內會否至少使用一次網絡（手機、電腦等任何設備均可）?<br/>
 				
 				<label for="r8"><input id="r8" type="radio" value="0" name="net">可以</label><br/>
 				<label for="r9"><input id="r9" type="radio" value="1" name="net">不可以</label>
@@ -99,7 +99,7 @@
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><a href="/phoenix_test/land/experiment/index"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></a></p>
 			</div>
 		</div>
 	</footer>

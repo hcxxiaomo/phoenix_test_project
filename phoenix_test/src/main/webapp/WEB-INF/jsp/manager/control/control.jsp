@@ -25,7 +25,7 @@
         <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       </button>
-      <a href="#" class="navbar-brand nav-title">HeHe Journals</a>
+      <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">

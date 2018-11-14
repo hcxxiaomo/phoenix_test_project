@@ -25,17 +25,17 @@
         <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       </button>
-      <a href="#" class="navbar-brand nav-title">HeHe Journals</a>
+      <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a href="#">主頁</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/ppi">什麼是正向心理學?</a></li>
-        <li class="nav-item"><a href="${obj.url }">問卷</a></li>
+        <li class="nav-item"><a href="/phoenix_test/land/experiment/index">主頁</a></li>
+        <li class="nav-item"><a href="/phoenix_test/land/experiment/ppi">什麼是正向心理學?</a></li>
+        <li class="nav-item"><a href="/phoenix_test/land/experiment/today">問卷</a></li>
         <li class="nav-item"><a class="nav-link " href="#">行动计划</a></li>
         <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/notice">使用指南</a></li>
         <li class="nav-item"><a class="nav-link " href="#">你好， ${sessionScope.user.name} </a></li>
-        <li class="nav-item"><a class="nav-link " href="#">登出</a></li>
+        <li class="nav-item"><a class="nav-link "  href="javascript:void(0)" onclick="logout()">登出</a></li>
       </ul>
     </div>
   </div>
@@ -50,7 +50,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 
 				<div class="card">
-					<h1 class="text-primary">提交成功，今日任务已经完成！</h1>
+					<h1 class="text-primary">已经提交，今日任务已经完成！</h1>
 					</div>
 
 
@@ -59,7 +59,7 @@
 		</div>
 	</div>
 
-	<footer class="footer  ">
+	<footer class="footer   navbar-fixed-bottom">
 		<div class="footer-limiter">
 			<!-- <div class="row" style="color: white;">
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>
@@ -72,7 +72,7 @@
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img alt="logo" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><img alt="logo" style="height: 50px;"  src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
 			</div>
 		</div>
 	</footer>
@@ -82,4 +82,6 @@
 <script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
 </html>

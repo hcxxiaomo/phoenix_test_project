@@ -29,5 +29,23 @@ import com.xiaomo.main.pojo.EasyUiJsonObj;
 public class TestInfoService extends BaseService<TestInfo>{
 
 	 private static final Log log = Logs.get();
+
+	@Override
+	public NutMap addOrUpdate(TestInfo baseBean, User user) {
+		NutMap nm =  super.addOrUpdate(baseBean, user);
+		 
+		 //TODO 测试的时候增加修改用户信息的部分
+		if (baseBean.getStage().startsWith("e1_1_")
+				||baseBean.getStage().startsWith("e2_3_")
+				||baseBean.getStage().startsWith("e3_3_")
+				||baseBean.getStage().startsWith("e4_4_")
+				) {
+			
+			updateStageTemp(user.getId());
+		}
+			 return nm;
+	}
+	 
+	 
 	 
 }

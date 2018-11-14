@@ -156,6 +156,9 @@ body {
 .text_c{
 	text-align: center;
 }
+.text_l{
+	text-align: left;
+}
 .text_red{
 	color:red;
 }

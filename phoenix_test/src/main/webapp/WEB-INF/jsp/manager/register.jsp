@@ -32,39 +32,39 @@
 						<div class="row">
 							<div class="col-md-offset-2 col-md-6">
 								<form class="form-horizontal" id="ajaxForm"  style="text-align: left;">
-									<span class="heading text-primary">電郵地址</span>
+									<span class="heading text-primary">電郵地址<span style="color:red">*</span></span>
 									<div class="form-group">
 										<input type="email" class="form-control" id="inputEmail" name="inputEmail"
 											placeholder="電郵地址">
-											<span style="color:red">*</span>
+											
 									</div>
 
-									<span class="heading text-primary">密碼</span>
+									<span class="heading text-primary">密碼<span style="color:red">*</span></span>
 									<div class="form-group">
 										<input type="password" class="form-control" id="inputPassword" name="inputPassword"
 											placeholder="密碼">
-											<span style="color:red">*</span>
+											
 									</div>
 
-									<span class="heading text-primary">用戶名稱</span>
+									<span class="heading text-primary">用戶名稱<span style="color:red">*</span></span>
 									<div class="form-group">
 										<input type="text" class="form-control" id="inputName" name="inputName"
 											placeholder="用戶名稱">
-											<span style="color:red">*</span>
+											
 									</div>
 
-									<span class="heading text-primary">電話號碼</span>
+									<span class="heading text-primary">電話號碼(只供香港中文大學研究之用)<span style="color:red">*</span></span>
 									<div class="form-group">
 										<input type="text" class="form-control" id="inputTelephone" name="inputTelephone"
 											placeholder="電話號碼">
-											<span style="color:red">*</span>
+											
 									</div>
 
-									<span class="heading text-primary">地址（供郵寄禮券）</span>
-									<div class="form-group">
-										<input type="text" class="form-control" id="inputAddress" name="inputAddress"
-											placeholder="地址（供郵寄禮券）"><span style="color:red">*</span>
-									</div>
+<!-- 									<span class="heading text-primary">地址（供郵寄禮券）</span> -->
+<!-- 									<div class="form-group"> -->
+<!-- 										<input type="text" class="form-control" id="inputAddress" name="inputAddress" -->
+<!-- 											placeholder="地址（供郵寄禮券）"><span style="color:red">*</span> -->
+<!-- 									</div> -->
 
 									<div class="form-group">
 										<div class="main-checkbox">
@@ -76,8 +76,8 @@
 							</div>
 						</div>
 					</div>
-					<a  href='javascript:void(0)' onclick="submit()"  id="add-content">注册</a>
-					<p style="color:red;text-align: center;display: none;"  id="add-notice" >已提交，请不要关闭此页面，稍等片刻！</p>
+					<a  href='javascript:void(0)' onclick="submit()"  id="add-content">註冊</a>
+					<p style="color:red;text-align: center;display: none;"  id="add-notice" >已提交資料，請稍候！</p>
 				</div>
 		</div>
 					<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
@@ -101,7 +101,7 @@
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><a href="/phoenix_test/land/experiment/index"><img style="height: 50px;" alt="" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></a></p>
 			</div>
 		</div>
 	</footer>

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.pager.Pager;
@@ -15,6 +16,7 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
 import com.xiaomo.main.bean.BaseBean;
+import com.xiaomo.main.bean.TestInfo;
 import com.xiaomo.main.bean.User;
 import com.xiaomo.main.pojo.EasyUiJsonObj;
 
@@ -38,6 +40,7 @@ public abstract class BaseService<T extends BaseBean> {
 				 baseBean.setCreateTime(date);
 				 baseBean = dao.insert(baseBean);
 //				 insertLog("增加",baseBean, user);//日志处理
+				 
 				}else{
 					dao.updateIgnoreNull(baseBean);
 //					 insertLog("修改",baseBean, user);//日志处理
@@ -135,5 +138,8 @@ public abstract class BaseService<T extends BaseBean> {
 		 return dao.query(baseBean.getClass(),null);
 	 }
 	 
-	 
+
+		public void updateStageTemp(long userId){
+			dao.update(User.class, Chain.makeSpecial("stageTemp", "+1"), Cnd.where("id", "=", userId));
+		}
 }
