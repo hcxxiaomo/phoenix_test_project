@@ -29,13 +29,17 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/index">主頁</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/ppi">什麼是正向心理學?</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/today">問卷</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/action">行动计划</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/notice">使用指南</a></li>
-        <li class="nav-item"><a class="nav-link " href="#">你好， ${sessionScope.user.name} </a></li>
-        <li class="nav-item"><a class="nav-link "  href="javascript:void(0)" onclick="logout()">登出</a></li>
+        <li class="nav-item"><a href="#">主頁</a></li>
+        <li class="nav-item"><a href="/phoenix_test/land/ppi">什麼是正向心理學?</a></li>
+        <li class="nav-item"><a href="#">問卷</a></li>
+        <li class="nav-item"><a href="#">性健康資訊一(日子-日子/月份)</a></li>
+        <li class="nav-item"><a href="#">性健康資訊二(日子-日子/月份)</a></li>
+        <li class="nav-item"><a href="#">性健康資訊三(日子-日子/月份)</a></li>
+        <li class="nav-item"><a href="#">性健康資訊四(日子-日子/月份)</a></li>
+<!--         <li class="nav-item"><a class="nav-link " href="#">行动计划</a></li> -->
+        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/control/notice">使用指南</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">你好，XX</a></li>
+        <li class="nav-item"><a class="nav-link " href="#">登出</a></li>
       </ul>
     </div>
   </div>
@@ -49,26 +53,7 @@
 			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 
-				<div class="card">
-					<h1 class="text-primary">本星期任務：對感恩對象寫一封信、訂立有關性健康的行動計劃、每日記錄三件美好的事<br/>傳達感恩的信</h1>
-					
-					<video src="/phoenix_test/AdminLTE-2.4.2/media/2_Gratitude_Letter.mov" style="width: 100%;"  controls="controls">
-						</video>
-
-					<div >
-					<form action="/phoenix_test/land/trial_letter_post"  method="post">
-						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
-<!-- 						<h4>你的第一件開心事</h4> -->
-
-						<p>
-							<textarea  id="letter" name="letter" rows="20"  style="width:100%" ></textarea>
-						</p>
-						
-
-	<button type="submit" id="add-content">儲存並繼續</button>
-</form>
-					</div>
-				</div>
+				中间部分！
 
 
 			</div>
@@ -89,7 +74,7 @@
 					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img alt="logo" style="height: 50px;"  src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><img alt="logo" src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
 			</div>
 		</div>
 	</footer>
@@ -99,6 +84,4 @@
 <script src=" //cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-	<script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
 </html>

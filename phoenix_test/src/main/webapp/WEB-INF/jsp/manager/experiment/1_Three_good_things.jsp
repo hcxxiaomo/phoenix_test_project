@@ -49,48 +49,77 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
 
 				<div class="card">
-					<h1 class="text-primary">${obj.date }-三件開心的事</h1>
+					<h1 class="text-primary">本星期任務：每日記錄三件美好的事<br/>三件美好的事</h1>
 					<!-- 			<h3>This page demonstrates how you can create a footer with flexbox which always sticks to the bottom of the page, regardless of how much conotent there is.</h3> -->
 					<!-- 			<a href='#' id="add-content">註冊及了解更多</a> -->
 					<!-- 			<a href='#' id="login-content">登入</a> -->
 					<video src="/phoenix_test/AdminLTE-2.4.2/media/1_Three_good_things.mov" style="width: 100%;" controls="controls">
 						</video>
+						<div>
+						試想想自己今天發生了什麼美好的事情。這件事情可以是任何為你帶來正面能量的事。不論事情大小，只要該事件令你感到良好、開心和充滿正面能量。例如：你今天吃了一個豐富的早餐 / 昨天晚上睡得很好。
+
+<br/>寫三項美好的事情（例如：我對......感到感激）
+<br/>思考每件美好事情發生的原因，為什麼它們對你來說是美好的。
+
+<br/>*寫作形式不拘，不用擔心文法錯誤或錯字
+<br/>請盡可能詳細地描述。
+						</div>
 
 
 					<div >
 					<form action="/phoenix_test/land/trial_happy_post"  enctype="multipart/form-data" method="post">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
-						<h4>你的第一件開心事</h4>
+						<h4>你的第一件美好的事</h4>
 
 						<p>
 							<textarea  id="happyOne" name="happyOne" rows="8"  style="width:100%" placeholder="這件開心事是怎樣發生的? 為什麼這件事是一件開心事?"></textarea>
 						</p>
+						<h4>這件美好的事是怎樣發生的? 為什麼這件事是美好的?</h4>
+
+						<p>
+							<textarea  id="happyOneHow" name="happyOneHow" rows="8"  style="width:100%" placeholder="這件開心事是怎樣發生的? 為什麼這件事是一件開心事?"></textarea>
+						</p>
 						<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">上传照片或者视频：</span>
+  <span class="input-group-addon" id="basic-addon1">上傳照片或者視頻：</span>
   <input type="file" name="file1" id="file1" class="form-control" >
 </div>
 						
-						<h4>你的第二件開心事</h4>
+						<h4>你的第二件美好的事</h4>
 
 						<p>
 							<textarea  id="happyTwo" name="happyTwo" rows="8" style="width:100%"  placeholder="這件開心事是怎樣發生的? 為什麼這件事是一件開心事?"></textarea>
 						</p>
+						<h4>這件美好的事是怎樣發生的? 為什麼這件事是美好的?</h4>
+
+						<p>
+							<textarea  id="happyTwoHow" name="happyTwoHow" rows="8"  style="width:100%" placeholder="這件開心事是怎樣發生的? 為什麼這件事是一件開心事?"></textarea>
+						</p>
 												<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">上传照片或者视频：</span>
+  <span class="input-group-addon" id="basic-addon1">上傳照片或者視頻：</span>
   <input type="file" name="file2" id="file2" class="form-control" >
 </div>
-						<h4>你的第三件開心事</h4>
+						<h4>你的第三件美好的事</h4>
 
 						<p>
 							<textarea  id="happyThree" name="happyThree" rows="8" style="width:100%" placeholder="這件開心事是怎樣發生的? 為什麼這件事是一件開心事?"></textarea>
 						</p>
+						<h4>這件美好的事是怎樣發生的? 為什麼這件事是美好的?</h4>
+
+						<p>
+							<textarea  id="happyThreeHow" name="happyThreeHow" rows="8"  style="width:100%" placeholder="這件開心事是怎樣發生的? 為什麼這件事是一件開心事?"></textarea>
+						</p>
 						<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">上传照片或者视频：</span>
+  <span class="input-group-addon" id="basic-addon1">上傳照片或者視頻：</span>
   <input type="file" name="file3" id="file3" class="form-control" >
 </div>
 
+<p>
+在一個星期後檢視，你會發現自己留意多了生活中正面的事情，更樂觀和正面！
+</p>
 
-	<button type="submit" id="add-content">提交</button>
+
+
+	<button type="submit" id="add-content">儲存並繼續</button>
 </form>
 					</div>
 				</div>
