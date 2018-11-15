@@ -51,7 +51,7 @@
 
 		<div class="row visible-on">
 			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
-			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 
 				中间部分！
 

@@ -48,20 +48,22 @@
 
 		<div class="row visible-on">
 			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
-			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 
 				<div class="card">
 <%-- 				${obj.stage  eq 'e4_1_1'} --%>
 <%-- 				${obj.stage} --%>
 <%-- 				<c:if test="${obj.stage  eq 'e4_1_1'}">整體生活</c:if> --%>
+
+
 				
 				 <c:choose>
-					<c:when test="${obj.stage  eq 'e4_1_1'}"><h1 class="text-primary">${obj.date }-整體生活</h1></c:when>
-					<c:when test="${obj.stage  eq 'e4_1_2'}"><h1 class="text-primary">${obj.date }-家庭關系</h1></c:when>
-					<c:when test="${obj.stage  eq 'e4_1_3'}"><h1 class="text-primary">${obj.date }-事業</h1></c:when>
-					<c:when test="${obj.stage  eq 'e4_1_4'}"><h1 class="text-primary">${obj.date }-健康</h1></c:when>
-					<c:when test="${obj.stage  eq 'e4_1_5'}"><h1 class="text-primary">${obj.date }-感情生活</h1></c:when>
-					<c:when test="${obj.stage  eq 'e4_1_6'}"><h1 class="text-primary">${obj.date }-社交生活</h1></c:when>
+					<c:when test="${obj.stage  eq 'e4_1_1'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>社交</h1></c:when>
+					<c:when test="${obj.stage  eq 'e4_1_2'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>感情生活</h1></c:when>
+					<c:when test="${obj.stage  eq 'e4_1_3'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>健康</h1></c:when>
+					<c:when test="${obj.stage  eq 'e4_1_4'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>工作</h1></c:when>
+					<c:when test="${obj.stage  eq 'e4_1_5'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>家庭關係</h1></c:when>
+					<c:when test="${obj.stage  eq 'e4_1_6'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>生命的意義</h1></c:when>
 					<c:otherwise>樂觀練習</c:otherwise>
 				 </c:choose>
 			
@@ -78,9 +80,50 @@
 					
 					<video src="/phoenix_test/AdminLTE-2.4.2/media/4_Optimism.mov" style="width: 100%;"  controls="controls">
 						</video>
+						
+						<div>
+						<p>
+							現在，用10分鐘時間，請你不間斷地寫下你對未來5年的想像:
+<br/>1.	發揮你的想像力和創造力
+<br/>2.	你想用什麽寫作形式都可以、不用擔心文法錯誤或錯字
+<br/>3.	寫得越詳細越好
+<br/>4.	四十字左右，歡迎寫得更多
+<br/>
+						<c:choose>
+					<c:when test="${obj.stage  eq 'e4_1_1'}">
+		社交
+<br/>請用一點時間去思考你未來最理想的社交生活（假設是五年後），想像所有的事情都進行得可以有多好就有多好。可能你有一群很好的朋友或者鄰居，你從來不會擔心沒有人支持你或沒有人與你交際。想著這是實現你心目中最理想的社交生活。
+					</c:when>
+					<c:when test="${obj.stage  eq 'e4_1_2'}">
+感情生活
+<br/>請用一點時間去思考你未來最理想的感情生活（假設是五年後），想像所有的事情都進行得可以有多好就有多好。可能你有一個很好的伴侶/丈夫/妻子，其他人都十分欣賞你的感情生活。想著這是實現你心目中最理想的感情生活。
+</c:when>
+					<c:when test="${obj.stage  eq 'e4_1_3'}">
+健康
+<br/>請用一點時間去思考你未來最理想的身體健康和心理健康（假設是五年後），想像所有的事情都進行得可以有多好就有多好。可能你定期做運動和有一個健康的飲食習慣，令你感到強壯。又或者你少了感到焦慮和不會像以前那樣擔心事物。想著這是實現你心目中最理想的身體健康和心理健康
+</c:when>
+					<c:when test="${obj.stage  eq 'e4_1_4'}">
+工作
+<br/>請用一點時間去思考你未來最理想的職業或工作（假設是五年後），想像所有的事情都進行得可以有多好就有多好。可能你有一個「夢想中的職業」或有自己的事業，不論是全職工作或者是一個星期只有數小時的職業。想著這是實現你心目中最理想的工作或職業。
+</c:when>
+					<c:when test="${obj.stage  eq 'e4_1_5'}">
+家庭關係
+<br/>請用一點時間去思考你未來最理想的家庭生活（假設是五年後），想像所有的事情都進行得可以有多好就有多好。可能你有一個可以給予你支持的同伴或者良好的親子關係，又或者你現在和父母、朋友或兄弟姊妹住得很近，可以經常見面。想著這是實現你心目中最理想的家庭生活。
+</c:when>
+					<c:when test="${obj.stage  eq 'e4_1_6'}">
+生命的意義
+<br/>思考一下你未來的生活，想像所有的事情都進行得可以有多好就有多好。你十分努力並成功完成所有的人生目標，想著這是實現你人生的所有夢想。現在，請寫出你所想像到的事。
+					</c:when>
+					<c:otherwise>樂觀練習</c:otherwise>
+				 </c:choose>
+				 
+						</p>
+						
+						
+						</div>
 
 					<div >
-					<form action="/phoenix_test/land/trial_letter_post"  method="post">
+					<form action="/phoenix_test/land/trial_optimism_post"  method="post">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
 <!-- 						<h4>你的第一件開心事</h4> -->
 
@@ -89,7 +132,7 @@
 						</p>
 						
 
-	<button type="submit" id="add-content">提交</button>
+	<button type="submit" id="add-content">儲存並繼續</button>
 </form>
 					</div>
 				</div>

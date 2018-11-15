@@ -11,7 +11,9 @@
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
-
+<style>
+.textarea {width:100%;height:600px;background:url(/phoenix_test/AdminLTE-2.4.2/media/mail_b_01.jpg);border:1px dotted #999666; line-height: 25px; }
+</style>
 </head>
 <body>
 
@@ -47,7 +49,7 @@
 
 		<div class="row visible-on">
 			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
-			<div class="col-xs-12 col-sm-12 col-md-10 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 
 				<div class="card">
 					<h1 class="text-primary">本星期任務：對感恩對象寫一封信、訂立有關性健康的行動計劃、每日記錄三件美好的事<br/>傳達感恩的信</h1>
@@ -58,10 +60,15 @@
 					<div >
 					<form action="/phoenix_test/land/trial_letter_post"  method="post">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
-<!-- 						<h4>你的第一件開心事</h4> -->
+						<h4>信</h4>
 
 						<p>
-							<textarea  id="letter" name="letter" rows="20"  style="width:100%" ></textarea>
+							<textarea  id="letter" name="letter" class="textarea" ></textarea>
+						</p>
+						<h4>在寫信的時候，你有什麼感受？</h4>
+
+						<p>
+							<textarea  id="letterFeeling" name="letterFeeling" style="width:100%;height:600px;" ></textarea>
 						</p>
 						
 
