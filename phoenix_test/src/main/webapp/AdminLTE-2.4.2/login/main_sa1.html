@@ -8,8 +8,38 @@
 	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../media/main.css">
 
+		<!-- Font awesome 4 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<link rel="stylesheet" href="../media/jq.dice-menu.min.css">
+<!-- // BODY -->
+
+
 </head>
 <body>
+
+<!-- Dice Menu, we use font-awesome 4 here -->
+<ul class="jq-dice-menu" default-open="true" layout="column" reverse="false" snap-to="left" offset="35%" show-hints="true" hints-order="top">
+	<div class="jq-items">
+		<!-- first element as a switch button -->
+		<li state="close"><span class="fa fa-th-large"></span></li>
+		<!-- page anchor to paragraph 2 -->
+		<li>三件开心的事情 2018-11-11 已经完成</li>
+		<!-- page anchor to paragraph 3 -->
+		<li>三件开心的事情 2018-11-11 已经完成</li>
+		<!-- open a page in a new window -->
+		<li>三件开心的事情 2018-11-11 已经完成</li>
+		<!-- <li><span class="fa fa-github" href="https://github.com" hint="Github"></span></li>
+		<li><span class="fa fa-yahoo" href="https://hk.yahoo.com"></span></li>
+		<li><span class="fa fa-phone" href="tel:+85299887766" hint="Call to hotline"></span></li>
+		<li><span class="fa fa-envelope" href="mailto:donotreply@github.com" hint="Email for support"></span></li>
+		<li><span class="fa fa-angle-double-up" href="https://github.com"></span></li> -->
+	</div>
+	<!-- hints of button -->
+	<div class="jq-hints">
+		<div class="hint">&nbsp;</div>
+	</div>
+</ul>
 
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -165,4 +195,7 @@
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<!-- jquery-dice-menu - put below script tag above the close tag of 'body' -->
+<script src="../media/jq.dice-menu.js"></script>
 </html>
