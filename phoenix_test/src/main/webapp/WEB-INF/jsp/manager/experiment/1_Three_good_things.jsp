@@ -12,8 +12,13 @@
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.min.css">
+
+
 </head>
 <body>
+
+		<jsp:include page="panel.jsp"></jsp:include>
 
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -28,14 +33,8 @@
       <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-menu">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/index">主頁</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/ppi">什麼是正向心理學?</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/today">問卷</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/action">行动计划</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/notice">使用指南</a></li>
-        <li class="nav-item"><a class="nav-link " href="#">你好， ${sessionScope.user.name} </a></li>
-        <li class="nav-item"><a class="nav-link "  href="javascript:void(0)" onclick="logout()">登出</a></li>      </ul>
+        
+        <jsp:include page="menu.jsp"></jsp:include>
     </div>
   </div>
 </nav> 
@@ -154,6 +153,6 @@
 <script
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
-	
+	<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
 
 </html>
