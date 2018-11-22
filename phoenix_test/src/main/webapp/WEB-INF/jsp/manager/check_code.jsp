@@ -30,9 +30,14 @@
 
 					<div>
 						<form class="form-horizontal" style="text-align: left;">
+							<span class="heading text-primary">電郵地址</span>
+							<div class="form-group">
+								<input  type="email" class="form-control" id="email" readonly="readonly" value="${sessionScope.email }"
+									placeholder="電郵地址">
+							</div>
 							<span class="heading text-primary">驗證碼[區分大小寫]</span>
 							<div class="form-group">
-								<input type="email" class="form-control" id="inputCode"
+								<input type="text" class="form-control" id="inputCode"
 									placeholder="驗證碼(請檢查被攔截的郵箱)">
 							</div>
 
@@ -81,11 +86,11 @@
 <script>
 	function submit() {
 		
-		$.post("/phoenix_test/land/code_check", {
+		$.post("/phoenix_test/land/check_code_post", {
 			inputCode : $('#inputCode').val()
 		}, function(result) {
 			if (result.success) {
-				window.location.href = 't0.html';
+				window.location.href =  result.page;
 			} else {
 				var c = confirm("抱歉，验证码错误，请仔细检查邮箱!")
 			}

@@ -19,28 +19,8 @@
 <body>
 
 		<jsp:include page="panel.jsp"></jsp:include>
-
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-        <span class="sr-only">切换导航</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      </button>
-      <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-        
-        <jsp:include page="menu.jsp"></jsp:include>
-    </div>
-  </div>
-</nav> 
-
+	       <jsp:include page="menu.jsp"></jsp:include>
 	<div class="container" style="padding: 40px;">
-	
 	
 
 		<div class="row visible-on">

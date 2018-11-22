@@ -38,6 +38,9 @@ public class User extends BaseBean{
 	@Column
 	@Comment("是否邮箱验证了：验证了1,未验证0")
 	private Integer isValidateEmail;
+	@Column
+	@Comment("是否看了使用指南：看了1,未看0")
+	private Integer isNotice;
 	
     @Column
     @Comment("开始答题时间，来计算进入哪个阶段了")
@@ -122,6 +125,12 @@ public class User extends BaseBean{
 	}
 	public void setStageTemp(Integer stageTemp) {
 		this.stageTemp = stageTemp;
+	}
+	public Integer getIsNotice() {
+		return isNotice;
+	}
+	public void setIsNotice(Integer isNotice) {
+		this.isNotice = isNotice;
 	}
 	
     

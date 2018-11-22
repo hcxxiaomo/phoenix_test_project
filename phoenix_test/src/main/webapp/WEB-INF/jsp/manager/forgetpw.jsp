@@ -7,6 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+ <link rel="icon" href="/phoenix_test/favicon.png"/>
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
@@ -34,21 +35,24 @@
                                     <input type="email" class="form-control" id="inputEmail" placeholder="電郵地址">
                                 </div>
                                 
-                                <span class="heading text-primary" >驗證碼</span>
+                                <div id="input_code_div"  class=" hide">
+	                                <span class="heading text-primary" >驗證碼</span>
+	                                <div class="form-group">
+	                                    <input type="text" class="form-control" id="inputCode" placeholder="驗證碼">
+	                                </div>
+<!--                                 </div> -->
+<!--                                 <div id="input_pass_div"  class=" hide"> -->
+                                <span class="heading text-primary" >新密碼</span>
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="inputPassword" placeholder="密碼">
                                 </div>
-                                
-                                <span class="heading text-primary" >密碼</span>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="密碼">
                                 </div>
-                                
                             </form>
                         </div>
                     </div>
 			</div>
-			<a href='javascript:void(0)' onclick="submit()"  id="add-content">获取驗證碼</a>
+			<a href='javascript:void(0)' onclick="submit1()" id="code" class="add-content">获取驗證碼</a>
+			<a href='javascript:void(0)' onclick="submit2()" id="pass" class="add-content hide">修改密码</a>
 		</div>
 				
 			</div>
@@ -77,18 +81,66 @@
 </body>
 
 <script>
-	function submit() {
+	function submit1() {
 		
-		$.post("/phoenix_test/land/login_check", {
+		 if (!isMailAvailable($("#inputEmail").val())) {
+			 alert("請輸入正確的電郵地址");
+			 return;
+		}
+
+		$.post("/phoenix_test/land/forget_password_send_code", {
 			inputEmail : $('#inputEmail').val()
+		}, function(result) {
+			if (result.success) {
+				alert("驗證碼已經發送成功，請輸入郵箱中的驗證碼，並輸入新密碼");
+				$('#inputEmail').attr("readonly","readonly")
+				$("#code").hide();
+				$("#pass").show();
+				$("#input_code_div").show();
+			} else {
+				alert("驗證碼未發送成功，請檢查帳號是否正確");
+			}
+		}, "json");
+	}
+	function submit2() {
+		
+// 		 if (!isMailAvailable($("#inputEmail").val())) {
+// 			 alert("請輸入正確的電郵地址");
+// 			 return;
+// 		}
+		 
+		 if (!$("#inputCode").val()) {
+			 alert("請輸入正確的驗證碼");
+			 return;
+		}
+		 
+		 if (!$("#inputPassword").val() || $("#inputPassword").val().length < 8) {
+			 alert("請輸入新密碼,至少為8位數");
+			 return;
+		}
+		
+		
+		$.post("/phoenix_test/land/forget_password_new_password", {
+			inputEmail : $('#inputEmail').val()
+			,inputCode:$('#inputCode').val()
 			,inputPassword:$('#inputPassword').val()
 		}, function(result) {
 			if (result.success) {
+			 alert("密碼修改成功，即將進入登入頁面");
 				window.location.href = result.page;
 			} else {
 				var c = confirm(result.msg);
 			}
 		}, "json");
 	}
+	
+	   var mailReg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+	   function isMailAvailable(mail){
+	       if(mailReg.test(mail)){
+	           return true;
+	       }else{
+	           return false;
+	       }
+	   }
 </script>
 </html>

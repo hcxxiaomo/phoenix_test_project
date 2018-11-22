@@ -103,14 +103,54 @@ public class LandingService {
 			user.setSalt(salt);//当成邮箱的验证码来使用的
 			user.setCreateTime(date);
 			user.setUpdateTime(date);
+			user.setType("experiment");//  TODO 后期需要按照给定的数据，来分实验组还是对照组
 			user.setStageTemp(1);//TODO 测试时候需要的功能
+			user.setIsNotice(0);
 			dao.insert(user);
 			
 		}
 		//发邮件 验证码数据
-		 flag = mailService.send(inputEmail, user.getSalt());
+		 flag = mailService.sendRegisterCode(inputEmail, user.getSalt());
 		  return flag;
 	  }
+	 
+	 public boolean forget_password_send_code(String inputEmail ){
+		 boolean flag = false;
+		 //先检查，是否已经注册过了
+		 User user = dao.fetch(User.class, inputEmail);
+		 if (user != null) {//如果已经存在
+			 user.setEmail(inputEmail);
+			 //发邮件 验证码数据
+			 flag = mailService.sendRegisterCode(inputEmail, user.getSalt());
+		 }
+		return flag;
+	 }
+
+
+	public NutMap forget_password_new_password(String inputEmail, String inputCode, String inputPassword) {
+		 boolean flag = false;
+		 //先检查，是否已经注册过了 还要区分是实验组还是对照组
+		 NutMap nm = new NutMap();
+		 String page = "/phoenix_test/land/index";
+		 
+		 User user = dao.fetch(User.class, inputEmail);
+		 if (user != null && user.getSalt().equals(inputCode)) {//如果已经存在
+			 user.setEmail(inputEmail);
+			 String salt = RandomUtil.randomString(6);
+			 user.setPassword(DigestUtil.md5Hex(inputPassword.concat(salt)));
+			user.setSalt(salt);//当成邮箱的验证码来使用的
+			dao.updateIgnoreNull(user);
+			if("experiment".equals(user.getType())) {
+				page = "/phoenix_test/land/experiment/today";
+			}else if("control".equals(user.getType())) {
+				page = "/phoenix_test/land/control/today";
+			}
+			
+			flag = true;
+		 }
+		 nm.addv("flag", flag).addv("page", page).addv("user", user);
+		 return nm;
+	}
 
 
 	public User code_check(String email) {
@@ -260,8 +300,10 @@ public class LandingService {
 		//查看用户的阶段，来跳转到对应的页面中去！ TODO 其他地方改变以后，也要更新这里面的阶段信息呢
 		 if (user.getIsValidateEmail() == null || user.getIsValidateEmail() == 0) {//如果用户没有验证邮箱，需要验证邮箱
 			//发邮件 验证码数据
-			 mailService.send(user.getEmail(), user.getSalt());
+			 mailService.sendRegisterCode(user.getEmail(), user.getSalt());
 			 resultMap.addv("page", "/phoenix_test/land/check_code");
+		}else if(user.getIsNotice() == null ||  user.getIsNotice() == 0){//是否看完成了Notice
+			resultMap.addv("page", "/phoenix_test/land/"+user.getType()+"/notice");
 		}else if(dao.fetch(TestInfo.class,Cnd.where("userId", "=", user.getId()).and("stage", "=", "t0")) == null){//如果没有完成 t0，跳转到对应的阶段
 			resultMap.addv("page", "/phoenix_test/land/t0");
 		}else if(user.getStartTime() == null){//如果没有分组，直接到等待结果页面
@@ -303,7 +345,7 @@ public class LandingService {
 			TestInfo ti = getTi(user.getId(), "e2_1_1");
 			if (ti == null) {
 				map.put("page", "/phoenix_test/land/experiment/e2_1/1");
-				//如果没有完成 所有的任务，进入行动计划中去 TODO 
+				//TODO 如果没有完成 所有的任务，进入行动计划中去 
 			}else{////三件开心的事（每天都可以写，一共可以写3*7件）
 				map.put("page", "/phoenix_test/land/experiment/e2_3/"+(dateParid-7));
 			}
@@ -633,6 +675,16 @@ public class LandingService {
 		ti.setText(Json.toJson(tp,JsonFormat.compact()));
 		ti.setUserId(user.getId());
 		return testInfoService.addOrUpdate(ti, user);
+	}
+
+
+	public void notice_ok(User user) {
+		User userUpdate = new User();
+		userUpdate.setId(user.getId());
+		userUpdate.setUpdateTime(new Date());
+		userUpdate.setIsNotice(1);
+		user.setStartTime(new Date());
+		dao.updateIgnoreNull(userUpdate);
 	}
 
 }

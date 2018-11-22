@@ -3,7 +3,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family:PMingLiU,微软雅黑,"Times new Roman",MingLiu;
+	font-family:PMingLiU,微软雅黑,"Times new Roman",MingLiu !important; 
 }
 
 html{
@@ -170,6 +170,16 @@ header .header-limiter nav a.selected {
 }
 
 .card #add-content{
+	display: inline-block;
+    padding: 15px 60px;
+    background: #E91E63;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.add-content{
 	display: inline-block;
     padding: 15px 60px;
     background: #E91E63;

@@ -10,6 +10,7 @@
 	    <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 	    <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 	<link rel="stylesheet" href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+	         <link rel="icon" href="/phoenix_test/favicon.png"/>
 <style type="text/css">
 table tr:nth-child(even){
 background: #A2D79B;
@@ -41,7 +42,7 @@ width:100%;
 				您好！我們是香港中文大學公共衛生及基層醫療學院的研究人員。是次研究之主要目的為深入地了解如何透過網上正向心理介入，改善情緒調節來減低男男性接觸者高風險不安全性行為。請花大概10分鐘的時間完成此問卷。以下問題是關於你的看法和情緒，並無對錯之分。資料絕對保密，多謝你的幫忙。<br/>
 				
 				<br/>
-				<form action="/phoenix_test/land/t0_post" method="post">
+				<form action="/phoenix_test/land/t0_post" id="test_t0" method="post"  onsubmit="return check()">
 				<div style="text-align: left;">
 1.	基本資料<br/>
 1_a.	請問你幾多歲？<input type="text" id="1_a" name="1_a" placeholder="岁"><br/><br/>
@@ -59,7 +60,7 @@ width:100%;
 	<option value="9其他">9其他</option>
 </select><br/>
 
-<input type="text" id="1_b_text" name="1_b_text"  style="display: none;" placeholder="最高學歷"><br/>
+<input type="text" id="1_b_text" name="1_b_text"  disabled="disabled" style="display: none;" placeholder="最高學歷"><br/>
 
 <!-- 	□1.小學以下	□2小學	□3初中	□4高中(中四至中五)	□5預科<br/> -->
 <!-- 	□6大專（非學位）	□7 大學或以上	□8不便透露	□9其他 (註明__________________)<br/> -->
@@ -75,7 +76,7 @@ width:100%;
 	<option value="6學生">6學生</option>
 	<option value="7其他">7其他</option>
 </select><br/>
-<input type="text" id="1_c_text" name="1_c_text" style="display: none;" placeholder="目前工作狀況"><br/><br/>
+<input type="text" id="1_c_text" name="1_c_text"  disabled="disabled"  style="display: none;" placeholder="目前工作狀況"><br/><br/>
 <!-- □1全職                         □2兼職                         □3退休                         □4自僱        <br/> -->
 <!-- □5待業                         □6學生                         □7其他(註明_________________)<br/> -->
 1_d.	請問你的性傾向是？<br/>
@@ -114,7 +115,7 @@ width:100%;
 <label><input name="1_g" type="checkbox" value="5生殖器疱疹" />5生殖器疱疹 </label> 
 <label><input name="1_g" type="checkbox"   onclick="check_1_g(this)" value="6其他" />6其他 </label><br/>
 							
-<input type="text" id="1_g_text" name="1_g_text" style="display: none;"  placeholder="其他"><br/><br/>
+<input type="text" id="1_g_text" name="1_g_text"  disabled="disabled"  style="display: none;"  placeholder="其他"><br/><br/>
 <!-- □1沒有性病          □2淋病          □3梅毒          □4尖銳濕疣           □5生殖器疱疹<br/> -->
 <!-- □6其他(註明_________________)<br/> -->
 				
@@ -1440,6 +1441,7 @@ width:100%;
 		<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
 	</div>
 	
+	<button onclick="check()" >提交</button>
 	
 </div>
 
@@ -1473,6 +1475,7 @@ width:100%;
 // 		    console.log($(this).val());
 		    if ($(this).val() == '9其他') {
 				$("#1_b_text").show();
+				$("#1_b_text").removeAttr("disabled");
 			}else{
 				$("#1_b_text").hide();
 			}
@@ -1481,6 +1484,7 @@ width:100%;
 // 		    console.log($(this).val());
 		    if ($(this).val() == '7其他') {
 				$("#1_c_text").show();
+				$("#1_c_text").removeAttr("disabled");
 			}else{
 				$("#1_c_text").hide();
 			}
@@ -1488,6 +1492,7 @@ width:100%;
 	$("select#2_a").change(function(){
 		    if ($(this).val() == '2 沒有') {
 				$("#2a_to_2f").hide();
+// 				$("#2a_to_2f").removeAttr("disabled");
 			}else{
 				$("#2a_to_2f").show();
 			}
@@ -1495,6 +1500,7 @@ width:100%;
 	$("select#2_f").change(function(){
 		    if ($(this).val() == '2 沒有') {
 				$("#2f_to_3a").hide();
+// 				$("#2f_to_3a").removeAttr("disabled");
 			}else{
 				$("#2f_to_3a").show();
 			}
@@ -1514,11 +1520,57 @@ width:100%;
 		if ( obj.checked == true){
 // 			console.log("checked");
 			$("#1_g_text").show();
+			$("#1_g_text").removeAttr("disabled");
 			}else{
 // 				console.log("no");
 				$("#1_g_text").hide();
 			}
 
 	}
+	
+	function check(){
+		var sAll = new Set();
+		var sChecked = new Set();
+
+		$("input[type='radio']").each(function(n){
+			sAll.add($(this).attr("name"));
+		});
+		$("input[type='radio']:checked").each(function(n){
+// 			console.info($(this).attr("checked"));
+// 			if ($(this).attr("checked")) {
+				sChecked.add($(this).attr("name"));
+// 			}
+		});
+		
+		//计算差集
+		var diffSet = difference(sAll,sChecked);
+// 		console.info(sAll);
+		console.info(sChecked);
+		console.info(diffSet);
+		
+		if(diffSet.size > 0){
+			alert( diffSet.values().next().value + "不能為空，請填寫後提交！");
+			return false;
+		}
+		return true;
+	}
+	
+	
+	function difference (setA,setB) {
+	    var tempSet = new  Set();
+	   /*  for( var i = 0 ; i < setA.size ; i ++ ){
+	        if( !setB.has(setA[i])){
+	            tempSet.add( setA[i] );
+	        }
+	    } */
+	    for (var i of setA) {
+	    	if( !setB.has(i)){
+	            tempSet.add(i);
+	        }
+	    	}
+	    return tempSet;
+	}
+
+
 	</script>
 </html>

@@ -16,35 +16,13 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-        <span class="sr-only">切换导航</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      </button>
-      <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/index">主頁</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/ppi">什麼是正向心理學?</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/today">問卷</a></li>
-        <li class="nav-item"><a class="nav-link " href="#">行动计划</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/notice">使用指南</a></li>
-        <li class="nav-item"><a class="nav-link " href="#">你好， ${sessionScope.user.name} </a></li>
-        <li class="nav-item"><a class="nav-link "  href="javascript:void(0)" onclick="logout()">登出</a></li>      </ul>
-    </div>
-  </div>
-</nav> 
+		<jsp:include page="panel.jsp"></jsp:include>
+	       <jsp:include page="menu.jsp"></jsp:include>
 	<div class="container" style="padding: 40px;">
 
-		<div class="row visible-on">
-			<div class="col-md-3 col-lg-3 hidden-xs hidden-sm"></div>
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<div class="row visible-on">
+			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 
 				<div class="card">
 					<h1 class="text-primary">使用指南</h1>
@@ -73,14 +51,14 @@
 </p>
 
 
-<!-- 			<a href='#' id="add-content">我同意</a> -->
+			<a href='/phoenix_test/land/experiment/notice_ok' id="add-content">我同意</a>
 
 				
 			</div>
 				
 				</div>
 			</div>
-			<div class="col-md-3 col-lg-3   hidden-xs hidden-sm"></div>
+			<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
 		</div>
 
 
@@ -95,9 +73,9 @@
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>
 </div> -->
 			<div class="footer-right">
-				<a href="contact_us.html"><i class="fa "></i>聯絡我們</a> <a
-					href="disclaimer.html"><i class="fa "></i>免責聲明</a> <a
-					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
+				<a href="/phoenix_test/land/contact_us.html"><i class="fa "></i>聯絡我們</a> <a
+					href="/phoenix_test/land/disclaimer.html"><i class="fa "></i>免責聲明</a> <a
+					href="/phoenix_test/land/privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
 				<p class="footer-links">

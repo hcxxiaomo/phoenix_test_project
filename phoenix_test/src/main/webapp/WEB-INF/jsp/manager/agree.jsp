@@ -7,6 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+        <link rel="icon" href="/phoenix_test/favicon.png"/>
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
@@ -86,7 +87,7 @@
 
 							。完成問卷每次亦可獲贈$50超市禮券。完成3份問卷，可獲得$150禮券。<br />
 							完成兩個星期的練習或閲讀兩個星期的資訊可獲贈$50超市禮券，最多可獲得$100禮券。<br />
-參加者最多可獲得$250 禮券。
+參加者最多可獲得 <strong >$250 禮券</strong>。
 <br />
 
 							如有任何查詢，請致電2647-5322與李小姐聯絡，或電郵至hehejournals@gmail.com。你亦可致電香港中文大學-
@@ -143,7 +144,7 @@
 <script type="text/javascript">
 function show(){
 	alert("謝謝你對本計畫的興趣");
-	window.location.href = "/phoenix_test/land/landing";
+	window.location.href = "/phoenix_test/land/index";
 }
 </script>
 

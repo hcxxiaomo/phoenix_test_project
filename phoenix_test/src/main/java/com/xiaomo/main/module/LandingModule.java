@@ -1,5 +1,7 @@
 package com.xiaomo.main.module;
 
+import java.util.Date;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,7 @@ import org.nutz.mvc.annotation.Param;
 import org.nutz.mvc.upload.TempFile;
 import org.nutz.mvc.upload.UploadAdaptor;
 
+import com.xiaoleilu.hutool.lang.Validator;
 import com.xiaoleilu.hutool.util.StrUtil;
 import com.xiaomo.main.bean.TestInfo;
 import com.xiaomo.main.bean.User;
@@ -40,8 +43,13 @@ public class LandingModule {
 	private LandingService landingService;
 	
 	  @At
-	    @Ok("jsp:jsp.manager.landing")
-	    public void landing(){
+	    @Ok("jsp:jsp.manager.index")
+	    public void index(){
+	  }
+	  
+	  @At
+	  @Ok("jsp:jsp.manager.landing")
+	  public void landing(){
 	  }
 	  
 	  @At
@@ -174,16 +182,49 @@ public class LandingModule {
 	  //检测注册信息，并发送邮件 TODO  也需要验证一下是否有权限注册呢！！
 	  @At
 	  public NutMap register_check(String inputEmail, String inputPassword, String inputName, String inputTelephone, String inputAddress ,HttpSession session){
+		  log.infof("String inputEmail = %s, String inputPassword = %s, String inputName = %s, String inputTelephone = %s", inputEmail,  inputPassword,  inputName,  inputTelephone);
+		  NutMap nm = new NutMap();
+		  if (StrUtil.isBlank(inputEmail)
+				  || StrUtil.isBlank(inputPassword)
+				  || StrUtil.isBlank(inputName)
+				  || StrUtil.isBlank(inputTelephone)
+				  ) {
+			  return nm.addv("success", false).addv("msg", "必填项不能为空");
+		}
+		  if (!Validator.isEmail(inputEmail)) {
+			  return nm.addv("success", false).addv("msg", "请输入正确的邮箱地址");
+		}
 		  
 		  boolean flag = landingService.register_check(inputEmail, inputPassword, inputName, inputTelephone, inputAddress);
 		 if (flag) {
 			 session.setAttribute("email", inputEmail);
 		 }
-		  return new NutMap().addv("success", flag);
+		  return nm.addv("success", flag);
+	  }
+	  
+	  @At
+	  public NutMap forget_password_new_password(String inputEmail,String inputCode, String inputPassword,HttpSession session){
+		  
+		  NutMap nm = landingService.forget_password_new_password(inputEmail,inputCode,inputPassword);
+		  if (nm.getBoolean("flag")) {
+			  session.setAttribute("user", nm.get("user"));
+		  }
+		  return nm.addv("success", nm.getBoolean("flag"));
 	  }
 	  @At
-	  public NutMap code_check(String inputCode,@Attr(scope=Scope.SESSION, value="email")String email,HttpSession session){
+	  public NutMap forget_password_send_code(String inputEmail,HttpSession session){
+		  
+		  boolean flag = landingService.forget_password_send_code(inputEmail);
+		  if (flag) {
+			  session.setAttribute("email", inputEmail);
+		  }
+		  return new NutMap().addv("success", flag);
+	  }
+	  
+	  @At
+	  public NutMap check_code_post(String inputCode,@Attr(scope=Scope.SESSION, value="email")String email,HttpSession session){
 		  User user = landingService.code_check(email);
+		   NutMap nm = new NutMap();
 		  boolean flag = false;
 		  if (user != null
 					 && user.getSalt().equals(inputCode)
@@ -197,8 +238,33 @@ public class LandingModule {
 			  user.setIsValidateEmail(1);
 			  session.setAttribute("user", user);//放用户数据进去使用
 			  landingService.updateUser(userUpdate);
+			  nm.addv("page", "/phoenix_test/land/"+user.getType()+"/notice");
 		  }
-		  return new NutMap().addv("success", flag);
+		  return nm.addv("success", flag);
+	  }
+	  
+	  @At
+	  @Ok("re:jsp:jsp.manager.t0")
+	  public String validate(String email,String code,HttpSession session){
+		  User user = landingService.code_check(email);
+		  boolean flag = false;
+		  if (user != null
+				  && user.getSalt().equals(code)
+				  ) {
+			  session.removeAttribute("email");
+			  flag = true;
+			  //更新用户表中验证为1
+			  User userUpdate = new User();
+			  userUpdate.setId(user.getId());
+			  userUpdate.setIsValidateEmail(1);
+			  user.setIsValidateEmail(1);
+			  session.setAttribute("user", user);//放用户数据进去使用
+			  landingService.updateUser(userUpdate);
+		  }else {
+			  session.setAttribute("email", email);
+			  return "jsp:jsp.manager.check_code";
+		  }
+		  return null;
 	  }
 	  
 	 /* @At("/register")
@@ -209,6 +275,12 @@ public class LandingModule {
 		}
 		  return null;
 	  }*/
+	  
+	  
+	  @At
+	  @Ok("jsp:jsp.manager.forgetpw")
+	  public void forget_password(){
+	  }
 	  
 	  @At
 	  @Ok("jsp:jsp.manager.test_before")
@@ -273,6 +345,15 @@ public class LandingModule {
 	  @Ok("redirect:/land/experiment/today")
 	  public void trial_optimism_post(String optimism,String stage, @Attr(scope=Scope.SESSION, value="user") User user){
 		  landingService.trial_optimism_post(optimism, stage,user);
+	  }
+	  
+	  @At("/experiment/notice_ok")
+	  @Ok("redirect:/land/experiment/today")
+	  public void experiment_notice_ok(@Attr(scope=Scope.SESSION, value="user") User user,HttpSession session){
+		  landingService.notice_ok(user);
+		  user.setIsNotice(1);
+		  user.setStartTime(new Date());
+		  session.setAttribute("user", user);
 	  }
 	  
 	  @At

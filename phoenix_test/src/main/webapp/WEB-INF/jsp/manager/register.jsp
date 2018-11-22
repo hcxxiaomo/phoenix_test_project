@@ -7,6 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>HeHe Journals</title>
+	 <link rel="icon" href="/phoenix_test/favicon.png"/>
 	<link rel="stylesheet" href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
 	    <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 	    <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
@@ -129,7 +130,7 @@
 				    if(responseText.success){
 						window.location.href = 'check_code.html';
 					}else{
-						var c = confirm("抱歉，验证码发送错误，请确认邮箱地址正确后再次提交数据!")
+						var c = confirm(responseText.msg); //"抱歉，验证码发送错误，请确认邮箱地址正确后再次提交数据!"
 //	 					if (c == true || c == false) {
 //	 					window.location.href = 'landing.html';
 //	 					}
@@ -149,7 +150,8 @@
 			};
 		
 		function submit(){
-			 $("#ajaxForm").ajaxSubmit(options);	}
+			 $("#ajaxForm").ajaxSubmit(options);	
+			 }
 		//表单提交前，数据校验
 		/*
 		 * formData：表单元素数组对象，数组里面每一个元素都是一个<input>元素，可以通过.name、.value的方式访问元素
@@ -173,6 +175,16 @@
 			 }
 			 if (!isMailAvailable($("#inputEmail").val())) {
 				 alert("请输入正确的邮箱地址");
+				 return false;
+			}
+			 
+			 if (!(regMobilePhone.test($("#inputTelephone").val()) || regTelephone.test($("#inputTelephone").val()))) {
+				 alert("请输入正确的電話號碼");
+				 return false;
+	            }
+			 
+			 if (!$("#inputPassword").val() || $("#inputPassword").val().length < 8) {
+				 alert("請輸入密碼,至少為8位數");
 				 return false;
 			}
 			 
@@ -203,6 +215,10 @@
 		           return false;
 		       }
 		   }
+		   var regMobilePhone = new RegExp(/^(5[1-6,9]|6[0-9]|9[0-8])\d{6}$/);
+           var regTelephone = new RegExp(/^(2[1-9]|3[1,4-7,9])\d{6}$/);
+           
+           
 	</script>
 	
 </html>

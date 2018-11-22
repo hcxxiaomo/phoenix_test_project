@@ -7,6 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+ <link rel="icon" href="/phoenix_test/favicon.png"/>
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
@@ -38,7 +39,7 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="inputPassword" placeholder="密碼">
                                 </div>
-                                 <span class="heading text-primary" style="float:right;font-size:12px" >忘記密碼</span>
+                                 <a href='forget_password.html' ><span class="heading text-primary" style="float:right;font-size:12px" >忘記密碼</span></a>
                                 
                             </form>
                         </div>
