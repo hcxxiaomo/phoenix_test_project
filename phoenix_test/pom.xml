@@ -268,7 +268,7 @@
                 <artifactId>maven-war-plugin</artifactId>  
                 <configuration>  
                     <escapeString>\</escapeString>  
-                    <warName>${project.build.name}</warName>  
+                    <warName>phoenix_test</warName>  
                    <!-- <warSourceExcludes>src/main/resources/packaged/**</warSourceExcludes>  
                     <webResources>  
                         <resource>  
