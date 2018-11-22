@@ -84,7 +84,7 @@ $(document).keyup(function(event){
 
 	function submit() {
 		
-		$.post("/phoenix_test/land/login_check", {
+		$.post("/phoenix_test/land/login_check_page", {
 			inputEmail : $('#inputEmail').val()
 			,inputPassword:$('#inputPassword').val()
 		}, function(result) {

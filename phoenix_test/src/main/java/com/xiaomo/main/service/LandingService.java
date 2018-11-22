@@ -1,6 +1,7 @@
 package com.xiaomo.main.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -130,7 +131,7 @@ public class LandingService {
 	public NutMap forget_password_new_password(String inputEmail, String inputCode, String inputPassword) {
 		 boolean flag = false;
 		 //先检查，是否已经注册过了 还要区分是实验组还是对照组
-		 NutMap nm = new NutMap();
+		 NutMap nm = null;
 		 String page = "/phoenix_test/land/index";
 		 
 		 User user = dao.fetch(User.class, inputEmail);
@@ -140,15 +141,16 @@ public class LandingService {
 			 user.setPassword(DigestUtil.md5Hex(inputPassword.concat(salt)));
 			user.setSalt(salt);//当成邮箱的验证码来使用的
 			dao.updateIgnoreNull(user);
-			if("experiment".equals(user.getType())) {
+/*			if("experiment".equals(user.getType())) {
 				page = "/phoenix_test/land/experiment/today";
 			}else if("control".equals(user.getType())) {
 				page = "/phoenix_test/land/control/today";
-			}
-			
+			}*/
+			nm = login_check_page(user);
+			nm.remove("success");
 			flag = true;
 		 }
-		 nm.addv("flag", flag).addv("page", page).addv("user", user);
+		 nm.addv("flag", flag).addv("user", user);
 		 return nm;
 	}
 
@@ -362,21 +364,30 @@ public class LandingService {
 	/**需要判断是否完成了当天的任务呢，所有当天任务的统一入口*/
 	public Map<String,Object> getPageExperiment(int dateParid,User user){
 		
-//		Date startTime = user.getStartTime();
+		Date startTime = user.getStartTime();
 //		startTime = DateUtil.beginOfDay(startTime);//把2018-10-21 11:57:14变成 2018-10-21 00:00:00
 //		Date now = DateUtil.beginOfDay(new Date());//把今天的日期改成零点的
 //		int dateParid = (int)DateUtil.between(startTime, now, DateUnit.DAY);
 		
-		Map<String,Object> map = new HashMap<>();
+		NutMap map = new NutMap();
+		Map<String,List<TestPojo>> mapTestInfoPojo = new HashMap<>();
 		
 		String stage = null;
 		TestInfo ti = null;
 		String page = null;
 		
+		//保存当前的任务-时间-是否完成
+//		List<TestPojo> list = null;
+//		TestPojo tp = null;
+		
 		if (dateParid >= 1 && dateParid <= 7) {//三件开心的事（每天都可以写，一共可以写3*7件）
 			//会跳转到对应的那天去
 			page = "jsp:jsp.manager.experiment.1_Three_good_things";
 			stage ="e1_1_"+dateParid;
+			//要增加当天的信息
+//			List<TestPojo> list = getTestPojoInfo(1,7,"三件開心的事",startTime);
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(1,7,"三件開心的事",startTime));
+			
 		}else if(dateParid >= 8 && dateParid <= 14){
 			//如果还没写感谢信
 			ti = getTi(user.getId(), "e2_1_1");
@@ -388,7 +399,9 @@ public class LandingService {
 				page = "jsp:jsp.manager.experiment.1_Three_good_things";
 				stage = "e2_3_"+(dateParid-7);
 			}
-		}else if(dateParid >= 15 && dateParid <= 21){
+			mapTestInfoPojo.put("Gratitude_Letter", getTestPojoInfo(8,8,"感谢信",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(8,14,"三件開心的事",startTime));
+		}else if(dateParid >= 15 && dateParid <= 21){//TODO 增加行动计划
 			ti = getTi(user.getId(), "e3_1_"+(dateParid-14));
 			if (ti == null) {// 活在當下練習
 				page = "jsp:jsp.manager.experiment.3_Savoring";
@@ -397,7 +410,9 @@ public class LandingService {
 				page = "jsp:jsp.manager.experiment.1_Three_good_things";
 				stage ="e3_3_"+(dateParid-14);
 			}
-		}else if(dateParid >= 22 && dateParid <= 27){
+			mapTestInfoPojo.put("Savoring", getTestPojoInfo(15,21,"活在當下",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(15,21,"三件開心的事",startTime));
+		}else if(dateParid >= 22 && dateParid <= 27){//TODO 增加行动计划
 			
 			ti = getTi(user.getId(), "e4_1_"+(dateParid-21));
 			if (ti == null) {// 樂觀練習
@@ -413,7 +428,9 @@ public class LandingService {
 					stage ="e4_4_"+(dateParid-21);
 				}
 			}
-			
+			mapTestInfoPojo.put("Optimism", getTestPojoInfo(22,27,"樂觀練習",startTime));
+			mapTestInfoPojo.put("Savoring", getTestPojoInfo(22,28,"活在當下",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(22,28,"三件開心的事",startTime));
 //			 page = "jsp:jsp.manager.experiment.4_Optimism";
 //			 stage = "e4_1_"+(dateParid-21);
 		}else if(dateParid == 28){
@@ -425,16 +442,64 @@ public class LandingService {
 				page = "jsp:jsp.manager.experiment.1_Three_good_things";
 				stage ="e4_4_"+(dateParid-21);
 			}
+			mapTestInfoPojo.put("Optimism", getTestPojoInfo(22,27,"樂觀練習",startTime));
+			mapTestInfoPojo.put("Savoring", getTestPojoInfo(22,28,"活在當下",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(22,28,"三件開心的事",startTime));
 		}
 		//如果当天的已经完成了，跳转到已经完成的页面中去
 		if (getTi(user.getId(), stage) != null) {
 			page= "jsp:jsp.manager.experiment.finish";
 		}
 		
+		//判断TestPojo状态
+		List<TestInfo> listTi = dao.query(TestInfo.class, Cnd.where("userId", "=", user.getId()),null,FieldMatcher.simple("stage"));
+		Set<String> setStage = new HashSet<>();
+		if (listTi != null) {
+			for (TestInfo testInfo : listTi) {
+				setStage.add(testInfo.getStage());
+			}
+		}
+		if (mapTestInfoPojo.values() != null) {
+			for (List<TestPojo> lsitTestPojo : mapTestInfoPojo.values()) {
+				setTestPojoStatus(lsitTestPojo, user, setStage);
+			}
+		}
+		map.addv("mapTestInfoPojo", mapTestInfoPojo);
 		map.put("page", page);
 		map.put("stage", stage);
 		map.put("date", CommonUtils.getDate(user.getStartTime(), dateParid));
 		return map;
+	}
+
+	/**根据开始·结束时间，得到对应的TestPojo信息*/
+	private List<TestPojo> getTestPojoInfo(int start,int end,String info ,Date startTime) {
+		List<TestPojo>  list = new ArrayList<>();
+		TestPojo tp = null;
+		for (int i = start; i <= end; i++) {
+			tp = new TestPojo();
+			tp.setDate(CommonUtils.getDate(startTime, i));
+			tp.setInfo(info);//"三件開心的事"
+			tp.setStage(experiment_get_stage(i,1));
+			list.add(tp);
+		}
+		return list;
+	}
+	
+	/**TestPojo是否完成的状态更新到List里面去*/
+	private void setTestPojoStatus(List<TestPojo> list,User user,Set<String> setStage) {
+		String now = CommonUtils.getDate(user.getStartTime(), user.getStageTemp());//TODO 之后需要修改的
+		for (TestPojo testPojo : list) {
+//			log.info("testPojo.getDate().compareTo(now) = "+testPojo.getDate()+"——————————————————"+(now)+"——————————————————"+testPojo.getDate().compareTo(now));
+			if (setStage.contains(testPojo.getStage())) {
+				testPojo.setDone(1);
+			}else if (!setStage.contains(testPojo.getStage())
+					&& testPojo.getDate().compareTo(now) < 0
+					) {
+					testPojo.setDone(2);
+			}else{
+				testPojo.setDone(0);
+			}
+		}
 	}
 	
 
@@ -683,7 +748,7 @@ public class LandingService {
 		userUpdate.setId(user.getId());
 		userUpdate.setUpdateTime(new Date());
 		userUpdate.setIsNotice(1);
-		user.setStartTime(new Date());
+		userUpdate.setStartTime(new Date());
 		dao.updateIgnoreNull(userUpdate);
 	}
 

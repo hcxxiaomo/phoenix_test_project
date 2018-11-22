@@ -35,7 +35,7 @@
                                     <input type="email" class="form-control" id="inputEmail" placeholder="電郵地址">
                                 </div>
                                 
-                                <div id="input_code_div"  class=" hide">
+                                <div id="input_code_div"  style="display: none;">
 	                                <span class="heading text-primary" >驗證碼</span>
 	                                <div class="form-group">
 	                                    <input type="text" class="form-control" id="inputCode" placeholder="驗證碼">
@@ -95,7 +95,7 @@
 				alert("驗證碼已經發送成功，請輸入郵箱中的驗證碼，並輸入新密碼");
 				$('#inputEmail').attr("readonly","readonly")
 				$("#code").hide();
-				$("#pass").show();
+				$("#pass").removeClass("hide");
 				$("#input_code_div").show();
 			} else {
 				alert("驗證碼未發送成功，請檢查帳號是否正確");

@@ -16,8 +16,8 @@
 
 </head>
 <body>
-		<jsp:include page="panel.jsp"></jsp:include>
-	       <jsp:include page="menu.jsp"></jsp:include>
+		<%-- <jsp:include page="panel.jsp"></jsp:include>
+	       <jsp:include page="menu.jsp"></jsp:include> --%>
 	<div class="container" style="padding: 40px;">
 
 				<div class="row visible-on">

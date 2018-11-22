@@ -7,6 +7,9 @@ public class HappyPojo {
 	private String happyOne;
 	private String happyTwo;
 	private String happyThree;
+	private String happyOneHow;
+	private String happyTwoHow;
+	private String happyThreeHow;
 	
 	private String happyOneFile;
 	private String happyTwoFile;
@@ -60,6 +63,24 @@ public class HappyPojo {
 	}
 	public void setHappyThreeFile(String happyThreeFile) {
 		this.happyThreeFile = happyThreeFile;
+	}
+	public String getHappyOneHow() {
+		return happyOneHow;
+	}
+	public void setHappyOneHow(String happyOneHow) {
+		this.happyOneHow = happyOneHow;
+	}
+	public String getHappyTwoHow() {
+		return happyTwoHow;
+	}
+	public void setHappyTwoHow(String happyTwoHow) {
+		this.happyTwoHow = happyTwoHow;
+	}
+	public String getHappyThreeHow() {
+		return happyThreeHow;
+	}
+	public void setHappyThreeHow(String happyThreeHow) {
+		this.happyThreeHow = happyThreeHow;
 	}
 
 	

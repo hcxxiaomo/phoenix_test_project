@@ -64,7 +64,7 @@ public class LandingModule {
 	  }
 	  
 	  @At
-	  public NutMap login_check(String inputEmail, String inputPassword, HttpSession session){
+	  public NutMap login_check_page(String inputEmail, String inputPassword, HttpSession session){
 		  
 		 User  user =  landingService.login_check(inputEmail,inputPassword);
 		 if (user == null) {
@@ -85,7 +85,13 @@ public class LandingModule {
 	  
 	  @At
 	  @Ok("jsp:jsp.manager.check_code")
-	  public void check_code(){
+	  public void check_code(String email,String code,HttpSession session){
+		  if (StrUtil.isNotBlank(email)) {
+			  session.setAttribute("email", email);
+		}
+		  if (StrUtil.isNotBlank(code)) {
+			  session.setAttribute("code", code);
+		  }
 	  }
 	  
 	  @At
@@ -295,7 +301,7 @@ public class LandingModule {
 	  }
 	  
 	  @At
-	  @Ok("jsp:jsp.manager.t0_post")
+	  @Ok("redirect:/land/experiment/today")
 	  public void t0_post(HttpServletRequest  request,@Attr(scope=Scope.SESSION, value="user") User user){
 		  landingService.t0_post(request.getParameterMap(),user);
 	  }
@@ -348,7 +354,7 @@ public class LandingModule {
 	  }
 	  
 	  @At("/experiment/notice_ok")
-	  @Ok("redirect:/land/experiment/today")
+	  @Ok("redirect:/land/t0")
 	  public void experiment_notice_ok(@Attr(scope=Scope.SESSION, value="user") User user,HttpSession session){
 		  landingService.notice_ok(user);
 		  user.setIsNotice(1);
@@ -393,6 +399,7 @@ public class LandingModule {
 	  @At("/experiment/notice")
 	  @Ok("jsp:jsp.manager.experiment.notice")
 	  public void experiment_notice(){
+		  
 	  }
 	  
 	  @At("/control/notice")

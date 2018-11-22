@@ -45,7 +45,7 @@ width:100%;
 				<form action="/phoenix_test/land/t0_post" id="test_t0" method="post"  onsubmit="return check()">
 				<div style="text-align: left;">
 1.	基本資料<br/>
-1_a.	請問你幾多歲？<input type="text" id="1_a" name="1_a" placeholder="岁"><br/><br/>
+1_a.	請問你幾多歲？<input type="text" id="1_a" name="1_a" placeholder="歲"><br/><br/>
 1_b.	請問你的最高學歷是？<br/>
 <select id="1_b" name="1_b" >
 	<option value=""></option>
@@ -55,7 +55,7 @@ width:100%;
 	<option value="4高中(中四至中五)">4高中(中四至中五)</option>
 	<option value="5預科">5預科</option>
 	<option value="6大專（非學位）">6大專（非學位）</option>
-	<option value="7 大學或以上">7 大學或以上</option>
+	<option value="7大學或以上">7大學或以上</option>
 	<option value="8不便透露">8不便透露</option>
 	<option value="9其他">9其他</option>
 </select><br/>
@@ -72,7 +72,7 @@ width:100%;
 	<option value="2兼職">2兼職</option>
 	<option value="3退休">3退休</option>
 	<option value="4自僱">4自僱</option>
-	<option value="5待業 ">5待業</option>
+	<option value="5待業">5待業</option>
 	<option value="6學生">6學生</option>
 	<option value="7其他">7其他</option>
 </select><br/>
@@ -130,16 +130,16 @@ width:100%;
 <!--       □1  有       □2 沒有（跳至2f）<br/> -->
 <div id="2a_to_2f" style="display: none;">
 2_b.	最近1個月，你的固定性伴有多少人？<br/>
-      <input type="text"  name="2_b" id="2_b" placeholder="">位<br/><br/>
+      <input type="text"  name="2_b" id="2_b" disabled="disabled"  placeholder="">位<br/><br/>
 2_c.	最近1次你與固定性伴肛交時使用安全套了嗎？<br/>
-<select id="2_c" name="2_c" >
+<select id="2_c" name="2_c" disabled="disabled" >
 <option value=""></option>
 	<option value="1 有使用">1 有使用</option>
 	<option value="2 沒有使用">2 沒有使用</option>
 </select><br/><br/>
 <!--        □1  有使用       □2 沒有使用<br/> -->
 2_d.	在過去1個月內，你和固定性伴肛交時安全套的使用情況？<br/>
-<select id="2_d" name="2_d" >
+<select id="2_d" name="2_d" disabled="disabled" >
 <option value=""></option>
 	<option value="1 從不使用">1  從不使用</option>
 	<option value="2 間中使用">2 間中使用</option>
@@ -148,7 +148,7 @@ width:100%;
 </select><br/><br/>
 <!-- □1  從不使用               □2   間中使用               □3  經常使用               □4  每次使用<br/> -->
 2_e.	在未來的6個月，你與固定性伴肛交時，每次都使用安全套的可能性有多大？<br/>
-<select id="2_e" name="2_e" >
+<select id="2_e" name="2_e" disabled="disabled" >
 <option value=""></option>
 	<option value="1 不可能">1 不可能</option>
 	<option value="2 可能性很小 ">2 可能性很小 </option>
@@ -168,16 +168,16 @@ width:100%;
 </select><br/><br/>
 <div id="2f_to_3a" style="display: none;">
 2_g.	最近1個月，你的非固定性伴有多少人？<br/>
-      <input type="text" name="2_g" id="2_g" placeholder="">位<br/><br/>
+      <input type="text" name="2_g" id="2_g" disabled="disabled" placeholder="">位<br/><br/>
 2_h.	最近1次你與非固定性伴肛交時使用安全套了嗎？ <br/>
 <!--       □1  有使用       □2 沒有使用 -->
-<select id="2_h" name="2_h" >
+<select id="2_h" name="2_h" disabled="disabled">
 <option value=""></option>
 	<option value="1 有使用">1有使用</option>
 	<option value="2 沒有使用">2沒有使用</option>
 </select><br/><br/>
 2_i.	在過去1個月內，你和非固定性伴肛交時安全套的使用情況？<br/>
-<select id="2_i" name="2_i" >
+<select id="2_i" name="2_i" disabled="disabled">
 <option value=""></option>
 	<option value="1 從不使用">1  從不使用</option>
 	<option value="2 間中使用">2 間中使用</option>
@@ -186,7 +186,7 @@ width:100%;
 </select><br/><br/>
 <!-- 	□1  從不使用               □2   間中使用               □3  經常使用               □4  每次使用<br/> -->
 2_j.	在未來的6個月，你與固定性伴肛交時，每次都使用安全套的可能性有多大？<br/>
-<select id="2_j" name="2_j" >
+<select id="2_j" name="2_j" disabled="disabled">
 <option value=""></option>
 	<option value="1 不可能">1 不可能</option>
 	<option value="2 可能性很小 ">2 可能性很小 </option>
@@ -1441,8 +1441,7 @@ width:100%;
 		<div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
 	</div>
 	
-	<button onclick="check()" >提交</button>
-	
+<!-- 	<button onclick="check()" >提交</button> -->	
 </div>
 
 
@@ -1478,6 +1477,7 @@ width:100%;
 				$("#1_b_text").removeAttr("disabled");
 			}else{
 				$("#1_b_text").hide();
+				$("#1_b_text").attr("disabled","disabled");
 			}
 		 });
 	$("select#1_c").change(function(){
@@ -1486,22 +1486,38 @@ width:100%;
 				$("#1_c_text").show();
 				$("#1_c_text").removeAttr("disabled");
 			}else{
+				$("#1_c_text").attr("disabled","disabled");
 				$("#1_c_text").hide();
 			}
 		 });
 	$("select#2_a").change(function(){
 		    if ($(this).val() == '2 沒有') {
+				$("#2_b").attr("disabled","disabled");
+				$("#2_c").attr("disabled","disabled");
+				$("#2_d").attr("disabled","disabled");
+				$("#2_e").attr("disabled","disabled");
 				$("#2a_to_2f").hide();
-// 				$("#2a_to_2f").removeAttr("disabled");
 			}else{
+				$("#2_b").removeAttr("disabled");
+				$("#2_c").removeAttr("disabled");
+				$("#2_d").removeAttr("disabled");
+				$("#2_e").removeAttr("disabled");
 				$("#2a_to_2f").show();
 			}
 		 });
 	$("select#2_f").change(function(){
 		    if ($(this).val() == '2 沒有') {
+				$("#2_g").attr("disabled","disabled");
+				$("#2_h").attr("disabled","disabled");
+				$("#2_i").attr("disabled","disabled");
+				$("#2_j").attr("disabled","disabled");
 				$("#2f_to_3a").hide();
 // 				$("#2f_to_3a").removeAttr("disabled");
 			}else{
+				$("#2_g").removeAttr("disabled");
+				$("#2_h").removeAttr("disabled");
+				$("#2_i").removeAttr("disabled");
+				$("#2_j").removeAttr("disabled");
 				$("#2f_to_3a").show();
 			}
 		 });
@@ -1523,12 +1539,29 @@ width:100%;
 			$("#1_g_text").removeAttr("disabled");
 			}else{
 // 				console.log("no");
+			$("#1_g_text").attr("disabled","disabled");
 				$("#1_g_text").hide();
 			}
 
 	}
 	
 	function check(){
+		//所有input校验
+		var formData = $("#test_t0").serializeArray();
+		 for (var i = 0; i < formData.length; i++) {
+		        //打印每一个元素的name属性和value值
+		        console.info(formData[i].name + "  " + formData[i].value);
+		        //排除一些不需要校验的情况
+		       /*  if ($("select#2_a").val()  == '2 沒有' ) {
+					
+				} */
+		        if (!$.trim(formData[i].value)) {
+		        	 alert(formData[i].name+"不能為空，請填寫後提交！");
+					return false;
+				}
+		    }
+		
+		//所有radio校验
 		var sAll = new Set();
 		var sChecked = new Set();
 
@@ -1541,10 +1574,20 @@ width:100%;
 				sChecked.add($(this).attr("name"));
 // 			}
 		});
+
+		$("input[type='checkbox']").each(function(n){
+			sAll.add($(this).attr("name"));
+		});
+		$("input[type='checkbox']:checked").each(function(n){
+// 			console.info($(this).attr("checked"));
+// 			if ($(this).attr("checked")) {
+				sChecked.add($(this).attr("name"));
+// 			}
+		});
 		
 		//计算差集
 		var diffSet = difference(sAll,sChecked);
-// 		console.info(sAll);
+		console.info(sAll);
 		console.info(sChecked);
 		console.info(diffSet);
 		

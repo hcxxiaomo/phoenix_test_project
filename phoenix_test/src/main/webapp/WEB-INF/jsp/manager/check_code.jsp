@@ -37,7 +37,7 @@
 							</div>
 							<span class="heading text-primary">驗證碼[區分大小寫]</span>
 							<div class="form-group">
-								<input type="text" class="form-control" id="inputCode"
+								<input type="text" class="form-control" id="inputCode" value="${sessionScope.code }"
 									placeholder="驗證碼(請檢查被攔截的郵箱)">
 							</div>
 
