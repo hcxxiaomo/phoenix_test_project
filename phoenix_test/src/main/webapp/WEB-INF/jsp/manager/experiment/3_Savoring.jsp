@@ -7,39 +7,20 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+	         <link rel="icon" href="/phoenix_test/favicon.png"/>
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.min.css">
+
+
 </head>
 <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-        <span class="sr-only">切换导航</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      </button>
-      <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/index">主頁</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/ppi">什麼是正向心理學?</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/today">問卷</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/action">行动计划</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/notice">使用指南</a></li>
-        <li class="nav-item"><a class="nav-link " href="#">你好， ${sessionScope.user.name} </a></li>
-        <li class="nav-item"><a class="nav-link "  href="javascript:void(0)" onclick="logout()">登出</a></li>
-      </ul>
-    </div>
-  </div>
-</nav> 
+		<jsp:include page="panel.jsp"></jsp:include>
+	       <jsp:include page="menu.jsp"></jsp:include>
 
 	<div class="container" style="padding: 40px;">
 	
@@ -50,21 +31,37 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 
 				<div class="card">
+				
+				<c:choose>
+					<c:when test="${obj.stageParid eq 0}">
+<!-- 					<h1 class="text-primary">本星期任務：每日記錄三件美好的事<br/>傳達感恩的信</h1> -->
+					</c:when>
+					<c:when test="${obj.stageParid eq 1}">
+<!-- 					<h1 class="text-primary">本星期任務：對感恩對象寫一封信、訂立有關性健康的行動計劃、每日記錄三件美好的事<br/>傳達感恩的信</h1> -->
+					</c:when>
+					<c:when test="${obj.stageParid eq 2}">
 					<h1 class="text-primary">本星期任務：每日練習活在當下並記錄感受、跟進有關性健康的行動計劃、每日記錄三件美好的事<br/>細味生活</h1>
+					</c:when>
+					<c:when test="${obj.stageParid eq 3}">
+					<h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>細味生活</h1>
+					</c:when>
+				</c:choose>
+				
+<!-- 					<h1 class="text-primary">本星期任務：每日練習活在當下並記錄感受、跟進有關性健康的行動計劃、每日記錄三件美好的事<br/>細味生活</h1> -->
 					
 					<video src="/phoenix_test/AdminLTE-2.4.2/media/3_Savoring.mov" style="width: 100%;"  controls="controls">
 						</video>
-						<div>
+						<div  class="text_l"  style="padding-top: 20px;">
 						每天預留20分鐘去做一些你享受的事。在你的「小假期」裏，嘗試完全專注於你的感覺、感受。這些可以來自視覺、聽覺、嗅覺等。留意每一個正面的感覺，不要讓它流走。你就會留意到爲什麽你覺得某一件事讓你感到愉快。
 						</div>
 
 					<div >
 					
-	<form action="/phoenix_test/land/trial_savoring_post"   method="post">
+	<form action="/phoenix_test/land/trial_savoring_post"   method="post"   onsubmit="return check()">
 					<!-- 左右像书本那样的 -->
-					<div class="row">
+					<div class="row"  style="padding-top: 20px;">
 			<div class="col-md-6 col-lg-6 col-xs-6 col-sm-12">
-			<p>
+			<p >
 				第一步：
 <br/>在這一天，習慣不時問自己這個問題：我現在的思緒在哪裡？無論你的思緒在哪裡，你都可以簡單留意到它在哪裡徘徊。
 <br/> 
@@ -88,12 +85,13 @@
 			<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
 <h4>當你活在當下的時候，你體驗到什麽？</h4>
 						<p>
-							<textarea  id="experience" name="experience" rows="10"  style="width:100%" placeholder="write about the experience"></textarea>
+							<textarea  id="experience" name="experience" rows="11"  style="width:100%" placeholder=""></textarea>
 						</p>
 <h4>在進入到「愉快、舒服的時刻」後，嘗試用一段時間去紀錄你所細味的時刻<br/>你預備在明天的練習做什麽？</h4>
 						<p>
-							<textarea  id="vacation" name="vacation" rows="10"  style="width:100%" placeholder="Plan your next days’ vacation"></textarea>
+							<textarea  id="vacation" name="vacation" rows="11"  style="width:100%" placeholder=""></textarea>
 						</p>
+						<p>
 						小貼士提升令你更細味生活
 <br/>-	分享：與別人分享你的體驗和你如何珍惜這一刻
 <br/>-	建立回憶：在腦海中拍照或留下屬於這件事的紀念品，之後和其他人分享回憶
@@ -101,7 +99,7 @@
 <br/>-	提升感官敏銳度：專注於五官中一個感覺（例如：閉目聽音樂）
 <br/>-	陶醉：讓你自己完全專注現在所做的事，嘗試不用思考、只需感覺，不用提醒自己之後要做的事
 <br/>
-			
+		</p>	
 			</div>
 			</div>
 
@@ -125,9 +123,9 @@
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>
 </div> -->
 			<div class="footer-right">
-				<a href="contact_us.html"><i class="fa "></i>聯絡我們</a> <a
-					href="disclaimer.html"><i class="fa "></i>免責聲明</a> <a
-					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
+				<a href="../contact_us.html"><i class="fa "></i>聯絡我們</a> <a
+					href="../disclaimer.html"><i class="fa "></i>免責聲明</a> <a
+					href="../privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
 				<p class="footer-links"><img alt="logo" style="height: 50px;"  src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
@@ -142,4 +140,19 @@
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
+	
+			<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
+			
+				<script type="text/javascript">
+function check(){
+// 	alert("on...");
+	if (!$.trim($("#experience").val())
+			||!$.trim($("#vacation").val())
+	) {
+		alert("細味生活不能為空，請填寫後提交！");
+		return false;
+	}
+	return true;
+}
+</script>
 </html>

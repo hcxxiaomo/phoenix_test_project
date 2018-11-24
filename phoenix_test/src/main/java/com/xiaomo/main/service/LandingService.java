@@ -30,6 +30,8 @@ import org.nutz.mvc.upload.TempFile;
 import com.xiaoleilu.hutool.crypto.digest.DigestUtil;
 import com.xiaoleilu.hutool.date.DateUnit;
 import com.xiaoleilu.hutool.date.DateUtil;
+import com.xiaoleilu.hutool.json.JSONObject;
+import com.xiaoleilu.hutool.json.JSONUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xiaomo.main.bean.IpInfo;
 import com.xiaomo.main.bean.TestInfo;
@@ -180,6 +182,11 @@ public class LandingService {
 		ti.setStage("t0");
 		ti.setText(Json.toJson(map,JsonFormat.compact()));
 		ti.setUserId(user.getId());
+		//完成需要更新一下startDate，完成T0才算正式开始测试呢
+		User userInsert = new User();
+		userInsert.setId(user.getId());
+		userInsert.setStartTime(new Date());
+		dao.updateIgnoreNull(userInsert);
 		return testInfoService.addOrUpdate(ti, user);
 	}
 
@@ -386,7 +393,7 @@ public class LandingService {
 			stage ="e1_1_"+dateParid;
 			//要增加当天的信息
 //			List<TestPojo> list = getTestPojoInfo(1,7,"三件開心的事",startTime);
-			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(1,7,"三件開心的事",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(1,7,1,"三件開心的事",startTime));
 			
 		}else if(dateParid >= 8 && dateParid <= 14){
 			//如果还没写感谢信
@@ -394,30 +401,48 @@ public class LandingService {
 			if (ti == null) {
 				page= "jsp:jsp.manager.experiment.2_Gratitude_Letter";
 				stage = "e2_1_1";
-				//如果没有完成 所有的任务，进入行动计划中去 TODO 
+				//如果没有完成 所有的任务，进入行动计划中去 TODO
+			}else if (getTi(user.getId(), "a_1") == null) {
+				page= "jsp:jsp.manager.experiment.action_1";
+				stage = "a_1";
 			}else{//三件开心的事（每天都可以写，一共可以写3*7件）
 				page = "jsp:jsp.manager.experiment.1_Three_good_things";
 				stage = "e2_3_"+(dateParid-7);
 			}
-			mapTestInfoPojo.put("Gratitude_Letter", getTestPojoInfo(8,8,"感谢信",startTime));
-			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(8,14,"三件開心的事",startTime));
+			mapTestInfoPojo.put("Gratitude_Letter", getTestPojoInfo(8,8,1,"感恩信",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(8,14,3,"三件開心的事",startTime));
 		}else if(dateParid >= 15 && dateParid <= 21){//TODO 增加行动计划
 			ti = getTi(user.getId(), "e3_1_"+(dateParid-14));
 			if (ti == null) {// 活在當下練習
 				page = "jsp:jsp.manager.experiment.3_Savoring";
 				stage ="e3_1_"+(dateParid-14);
+//			}else if (getTi(user.getId(), "a_1") == null) {
+//				page= "jsp:jsp.manager.experiment.action_1";
+//				stage = "a_1";
+			}else if (getTi(user.getId(), "a_2") == null) {
+				page= "jsp:jsp.manager.experiment.action_2";
+				stage = "a_2";
+				TestInfo ti_a_1 = getTi(user.getId(), "a_1");//增加第一次行动计划数据
+				if (ti_a_1 != null) {
+					Map<String, String> ti_a_1_map = Json.fromJsonAsMap(String.class, ti_a_1.getText());
+					map.addv("ti_a_1_map", ti_a_1_map);
+				}
+//				map.addv("a_1", getTi(user.getId(), "a_1"));
 			}else{//三件开心的事（每天都可以写，一共可以写3*7件）
 				page = "jsp:jsp.manager.experiment.1_Three_good_things";
 				stage ="e3_3_"+(dateParid-14);
 			}
-			mapTestInfoPojo.put("Savoring", getTestPojoInfo(15,21,"活在當下",startTime));
-			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(15,21,"三件開心的事",startTime));
-		}else if(dateParid >= 22 && dateParid <= 27){//TODO 增加行动计划
+			mapTestInfoPojo.put("Savoring", getTestPojoInfo(15,21,1,"活在當下",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(15,21,3,"三件開心的事",startTime));
+		}else if(dateParid >= 22 && dateParid <= 28){//TODO 增加行动计划
 			
 			ti = getTi(user.getId(), "e4_1_"+(dateParid-21));
-			if (ti == null) {// 樂觀練習
+			if (ti == null && dateParid != 28) {// 樂觀練習
 				page = "jsp:jsp.manager.experiment.4_Optimism";
 				stage ="e4_1_"+(dateParid-21);
+			}else if (getTi(user.getId(), "a_3") == null) {
+				page= "jsp:jsp.manager.experiment.action_3";
+				stage = "a_3";
 			}else{
 				ti = getTi(user.getId(), "e4_3_"+(dateParid-21));
 				if (ti == null) {// 活在當下練習
@@ -428,12 +453,12 @@ public class LandingService {
 					stage ="e4_4_"+(dateParid-21);
 				}
 			}
-			mapTestInfoPojo.put("Optimism", getTestPojoInfo(22,27,"樂觀練習",startTime));
-			mapTestInfoPojo.put("Savoring", getTestPojoInfo(22,28,"活在當下",startTime));
-			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(22,28,"三件開心的事",startTime));
+			mapTestInfoPojo.put("Optimism", getTestPojoInfo(22,27,1,"樂觀練習",startTime));
+			mapTestInfoPojo.put("Savoring", getTestPojoInfo(22,28,3,"活在當下",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(22,28,4,"三件開心的事",startTime));
 //			 page = "jsp:jsp.manager.experiment.4_Optimism";
 //			 stage = "e4_1_"+(dateParid-21);
-		}else if(dateParid == 28){
+		/*}else if(dateParid == 28){
 			ti = getTi(user.getId(), "e4_3_"+(dateParid-21));
 			if (ti == null) {// 活在當下練習
 				page = "jsp:jsp.manager.experiment.3_Savoring";
@@ -442,9 +467,9 @@ public class LandingService {
 				page = "jsp:jsp.manager.experiment.1_Three_good_things";
 				stage ="e4_4_"+(dateParid-21);
 			}
-			mapTestInfoPojo.put("Optimism", getTestPojoInfo(22,27,"樂觀練習",startTime));
-			mapTestInfoPojo.put("Savoring", getTestPojoInfo(22,28,"活在當下",startTime));
-			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(22,28,"三件開心的事",startTime));
+			mapTestInfoPojo.put("Optimism", getTestPojoInfo(22,27,1,"樂觀練習",startTime));
+			mapTestInfoPojo.put("Savoring", getTestPojoInfo(22,28,3,"活在當下",startTime));
+			mapTestInfoPojo.put("Three_good_things", getTestPojoInfo(22,28,4,"三件開心的事",startTime));*/
 		}
 		//如果当天的已经完成了，跳转到已经完成的页面中去
 		if (getTi(user.getId(), stage) != null) {
@@ -467,19 +492,27 @@ public class LandingService {
 		map.addv("mapTestInfoPojo", mapTestInfoPojo);
 		map.put("page", page);
 		map.put("stage", stage);
-		map.put("date", CommonUtils.getDate(user.getStartTime(), dateParid));
+		map.put("dateParid", dateParid);
+		map.put("stageParid", String.valueOf((dateParid - 1) / 7));
+		map.put("date", CommonUtils.getDate(startTime, dateParid));
+		map.put("test_first", CommonUtils.getDateWithOutYear(startTime, 1)+"-"+CommonUtils.getDateWithOutYear(startTime, 7));
+		map.put("test_second", CommonUtils.getDateWithOutYear(startTime, 8)+"-"+CommonUtils.getDateWithOutYear(startTime, 14));
+		map.put("test_third", CommonUtils.getDateWithOutYear(startTime, 15)+"-"+CommonUtils.getDateWithOutYear(startTime, 21));
+		map.put("test_fourth", CommonUtils.getDateWithOutYear(startTime, 22)+"-"+CommonUtils.getDateWithOutYear(startTime, 28));
 		return map;
 	}
 
 	/**根据开始·结束时间，得到对应的TestPojo信息*/
-	private List<TestPojo> getTestPojoInfo(int start,int end,String info ,Date startTime) {
+	private List<TestPojo> getTestPojoInfo(int start,int end,int stage,String info ,Date startTime) {
 		List<TestPojo>  list = new ArrayList<>();
 		TestPojo tp = null;
 		for (int i = start; i <= end; i++) {
 			tp = new TestPojo();
-			tp.setDate(CommonUtils.getDate(startTime, i));
+			tp.setDate(CommonUtils.getDate(startTime, i));//格式是yyyy-MM-dd 便于时间比较，所以为了显示还需要进行格式的修改
+			tp.setDateShort(CommonUtils.getDateWithOutYear(startTime, i));//格式是dd/MM ，便于页面显示查看
 			tp.setInfo(info);//"三件開心的事"
-			tp.setStage(experiment_get_stage(i,1));
+			tp.setStage(experiment_get_stage(i,stage));
+			tp.setDay(CommonUtils.getDateByInt(i - start + 1));
 			list.add(tp);
 		}
 		return list;
@@ -489,7 +522,7 @@ public class LandingService {
 	private void setTestPojoStatus(List<TestPojo> list,User user,Set<String> setStage) {
 		String now = CommonUtils.getDate(user.getStartTime(), user.getStageTemp());//TODO 之后需要修改的
 		for (TestPojo testPojo : list) {
-//			log.info("testPojo.getDate().compareTo(now) = "+testPojo.getDate()+"——————————————————"+(now)+"——————————————————"+testPojo.getDate().compareTo(now));
+//			log.info("testPojo.getDate().compareTo(now) = "+testPojo.getDate()+"——"+(now)+"—"+testPojo.getDate().compareTo(now));
 			if (setStage.contains(testPojo.getStage())) {
 				testPojo.setDone(1);
 			}else if (!setStage.contains(testPojo.getStage())
@@ -505,6 +538,9 @@ public class LandingService {
 
 	 /**根据用户的状态，返回对应的页面，所有的入口都是这一个*/
 	public String experiment_today(User user, ViewModel model) {
+		if (user == null) {
+			return "redirect:/land/index";
+		}
 		Date startTime = user.getStartTime();
 		startTime = DateUtil.beginOfDay(startTime);//把2018-10-21 11:57:14变成 2018-10-21 00:00:00
 		Date now = DateUtil.beginOfDay(new Date());//把今天的日期改成零点的
@@ -612,35 +648,41 @@ public class LandingService {
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("三件開心的事");
+				tp.setDay(CommonUtils.getDateByInt(i));
 				tp.setStage(experiment_get_stage(i,1));
 				list.add(tp);
 			}else if (i == 8 ) {
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("感謝信");
+				tp.setDay(CommonUtils.getDateByInt(i-7));
 				tp.setStage(experiment_get_stage(i,1));
 				list.add(tp);
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("三件開心的事");
+				tp.setDay(CommonUtils.getDateByInt(i-7));
 				tp.setStage(experiment_get_stage(i,3));
 				list.add(tp);
 			}else if (i > 8 && i <= 14) {
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("三件開心的事");
+				tp.setDay(CommonUtils.getDateByInt(i-7));
 				tp.setStage(experiment_get_stage(i,3));
 				list.add(tp);
 			}else if (i >= 15 && i <= 21) {
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("活在當下練習");
+				tp.setDay(CommonUtils.getDateByInt(i-14));
 				tp.setStage(experiment_get_stage(i,1));
 				list.add(tp);
 				
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("三件開心的事");
+				tp.setDay(CommonUtils.getDateByInt(i-14));
 				tp.setStage(experiment_get_stage(i,3));
 				list.add(tp);
 				
@@ -648,18 +690,21 @@ public class LandingService {
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("樂觀練習");
+				tp.setDay(CommonUtils.getDateByInt(i-21));
 				tp.setStage(experiment_get_stage(i,1));
 				list.add(tp);
 				
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("活在當下練習");
+				tp.setDay(CommonUtils.getDateByInt(i-21));
 				tp.setStage(experiment_get_stage(i,3));
 				list.add(tp);
 				
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("三件開心的事");
+				tp.setDay(CommonUtils.getDateByInt(i-21));
 				tp.setStage(experiment_get_stage(i,4));
 				list.add(tp);
 				
@@ -668,12 +713,14 @@ public class LandingService {
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("活在當下練習");
+				tp.setDay(CommonUtils.getDateByInt(i-21));
 				tp.setStage(experiment_get_stage(i,3));
 				list.add(tp);
 				
 				tp = new TestPojo();
 				tp.setDate(CommonUtils.getDate(startTime, i));
 				tp.setInfo("三件開心的事");
+				tp.setDay(CommonUtils.getDateByInt(i-21));
 				tp.setStage(experiment_get_stage(i,4));
 				list.add(tp);
 				
@@ -751,5 +798,5 @@ public class LandingService {
 		userUpdate.setStartTime(new Date());
 		dao.updateIgnoreNull(userUpdate);
 	}
-
+	
 }

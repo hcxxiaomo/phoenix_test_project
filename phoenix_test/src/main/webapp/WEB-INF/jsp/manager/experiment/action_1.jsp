@@ -14,31 +14,9 @@
 
 </head>
 <body>
-
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-        <span class="sr-only">切换导航</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      </button>
-      <a href="/phoenix_test/land/experiment/index" class=" nav-title"><img alt="logo" style="height: 50px;" src="/phoenix_test/AdminLTE-2.4.2/media/logo_1.png"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-menu">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/index">主頁</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/ppi">什麼是正向心理學?</a></li>
-        <li class="nav-item"><a href="/phoenix_test/land/experiment/today">問卷</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/action">行动计划</a></li>
-        <li class="nav-item"><a class="nav-link " href="/phoenix_test/land/experiment/notice">使用指南</a></li>
-        <li class="nav-item"><a class="nav-link " href="#">你好， ${sessionScope.user.name} </a></li>
-        <li class="nav-item"><a class="nav-link "  href="javascript:void(0)" onclick="logout()">登出</a></li>      </ul>
-    </div>
-  </div>
-</nav> 
+	
+		<jsp:include page="panel.jsp"></jsp:include>
+	       <jsp:include page="menu.jsp"></jsp:include>
 
 	<div class="container" style="padding: 40px;">
 	
@@ -55,8 +33,8 @@
 					<!-- 			<a href='#' id="login-content">登入</a> -->
 
 					<div >
-					<form action="/phoenix_test/land/experiment_action_post"  method="post">
-						<input type="text" name="stage" id="stage" value="a_1" hidden="hidden">
+					<form action="/phoenix_test/land/experiment_action_post"  method="post"   onsubmit="return check()">
+						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
 <!-- 						<h4>你的第一件開心事</h4> -->
 	<p>
 	
@@ -130,4 +108,24 @@
 <script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
 	
 
+				<script type="text/javascript">
+function check(){
+// 	alert("on...");
+	if (!$.trim($("#target").val())
+			||!$.trim($("#longGet").val())
+			||!$.trim($("#shortGet").val())
+			||!$.trim($("#step1").val())
+			||!$.trim($("#step2").val())
+			||!$.trim($("#step3").val())
+			||!$.trim($("#hard1").val())
+			||!$.trim($("#hard1sove").val())
+			||!$.trim($("#hard2").val())
+			||!$.trim($("#hard2sove").val())
+	) {
+		alert("目標及行動計劃制定不能為空，請填寫後提交！");
+		return false;
+	}
+	return true;
+}
+</script>
 </html>

@@ -16,9 +16,12 @@ import org.nutz.mvc.ViewModel;
 import org.nutz.mvc.annotation.AdaptBy;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Attr;
+import org.nutz.mvc.annotation.By;
 import org.nutz.mvc.annotation.Fail;
+import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
+import org.nutz.mvc.filter.CheckSession;
 import org.nutz.mvc.upload.TempFile;
 import org.nutz.mvc.upload.UploadAdaptor;
 
@@ -58,7 +61,7 @@ public class LandingModule {
 	  }
 	  
 	  @At
-	  @Ok("jsp:jsp.manager.landing")
+	  @Ok("jsp:jsp.manager.index")
 	  public void logout(HttpSession session) {
 	        session.invalidate();
 	  }
@@ -149,7 +152,7 @@ public class LandingModule {
 	  public void ppi(){
 	  }
 	  
-	  @At
+	  @At("/experiment/ppi")
 	  @Ok("jsp:jsp.manager.experiment.ppi")
 	  public void experiment_ppi(){
 	  }
@@ -302,8 +305,11 @@ public class LandingModule {
 	  
 	  @At
 	  @Ok("redirect:/land/experiment/today")
-	  public void t0_post(HttpServletRequest  request,@Attr(scope=Scope.SESSION, value="user") User user){
+	  @Filters(@By(type=CheckSession.class, args={"user", "/land/index"}))
+	  public void t0_post(HttpServletRequest  request,@Attr(scope=Scope.SESSION, value="user") User user,HttpSession session){
 		  landingService.t0_post(request.getParameterMap(),user);
+		  user.setStartTime(new Date());
+		  session.setAttribute("user", user);
 	  }
 	  
 	  @At

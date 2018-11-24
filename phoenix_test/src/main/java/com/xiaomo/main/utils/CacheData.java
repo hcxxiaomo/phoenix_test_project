@@ -6,4 +6,6 @@ import java.util.Map;
 public class CacheData {
 
 	public static Map<String,String> cacheEmail = new HashMap<>();
+	
+	public static final String URL = "http://17.27.138.166:8080/phoenix_test/";
 }

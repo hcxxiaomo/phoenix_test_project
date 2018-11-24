@@ -29,7 +29,20 @@
 			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 
 				<div class="card">
+				<c:choose>
+					<c:when test="${obj.stageParid eq 0}">
 					<h1 class="text-primary">本星期任務：每日記錄三件美好的事<br/>三件美好的事</h1>
+					</c:when>
+					<c:when test="${obj.stageParid eq 1}">
+					<h1 class="text-primary">本星期任務：對感恩對象寫一封信、訂立有關性健康的行動計劃、每日記錄三件美好的事<br/>三件美好的事</h1>
+					</c:when>
+					<c:when test="${obj.stageParid eq 2}">
+					<h1 class="text-primary">本星期任務：每日練習活在當下並記錄感受、跟進有關性健康的行動計劃、每日記錄三件美好的事<br/>三件美好的事</h1>
+					</c:when>
+					<c:when test="${obj.stageParid eq 3}">
+					<h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>三件美好的事</h1>
+					</c:when>
+				</c:choose>
 					<!-- 			<h3>This page demonstrates how you can create a footer with flexbox which always sticks to the bottom of the page, regardless of how much conotent there is.</h3> -->
 					<!-- 			<a href='#' id="add-content">註冊及了解更多</a> -->
 					<!-- 			<a href='#' id="login-content">登入</a> -->
@@ -47,7 +60,7 @@
 
 
 					<div >
-					<form action="/phoenix_test/land/trial_happy_post"  enctype="multipart/form-data" method="post">
+					<form action="/phoenix_test/land/trial_happy_post"  enctype="multipart/form-data" method="post"   onsubmit="return check()">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
 						<h4>你的第一件美好的事</h4>
 
@@ -135,5 +148,27 @@
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
 	<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
-
+<script type="text/javascript">
+function check(){
+	if (!$.trim($("#happyOne").val())
+			|| !$.trim($("#happyOneHow").val())
+	) {
+		alert("第一件美好的事不能為空，請填寫後提交！");
+		return false;
+	}
+	if (!$.trim($("#happyTwo").val())
+			|| !$.trim($("#happyTwoHow").val())
+	) {
+		alert("第二件美好的事不能為空，請填寫後提交！");
+		return false;
+	}
+	if (!$.trim($("#happyThree").val())
+			|| !$.trim($("#happyThreeHow").val())
+	) {
+		alert("第三件美好的事不能為空，請填寫後提交！");
+		return false;
+	}
+	return true;
+}
+</script>
 </html>

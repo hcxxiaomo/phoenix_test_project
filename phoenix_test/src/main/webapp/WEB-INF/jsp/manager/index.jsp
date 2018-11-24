@@ -130,8 +130,10 @@
                         <div class="carousel-caption">
                             <h1>心理健康及性健康自學計劃</h1>
                             <br/>
+                            <c:if test="${ empty sessionScope.user }">
                             <a type="button" href='agree.html'  class="btn btn-register">註冊</a> 
                             <a type="button"  href='login.html'  class="btn btn-login">登入</a>
+                            </c:if>
                         </div>
                     </div>
                    <!--  <div class="item"> <img src="images/banner2.png" style="width:100%; height: 500px" alt="Second slide">

@@ -1550,7 +1550,7 @@ width:100%;
 		var formData = $("#test_t0").serializeArray();
 		 for (var i = 0; i < formData.length; i++) {
 		        //打印每一个元素的name属性和value值
-		        console.info(formData[i].name + "  " + formData[i].value);
+// 		        console.info(formData[i].name + "  " + formData[i].value);
 		        //排除一些不需要校验的情况
 		       /*  if ($("select#2_a").val()  == '2 沒有' ) {
 					
@@ -1587,9 +1587,9 @@ width:100%;
 		
 		//计算差集
 		var diffSet = difference(sAll,sChecked);
-		console.info(sAll);
-		console.info(sChecked);
-		console.info(diffSet);
+// 		console.info(sAll);
+// 		console.info(sChecked);
+// 		console.info(diffSet);
 		
 		if(diffSet.size > 0){
 			alert( diffSet.values().next().value + "不能為空，請填寫後提交！");
@@ -1614,6 +1614,13 @@ width:100%;
 	    return tempSet;
 	}
 
+	function select_all(){
+		$("input[type='radio']").each(function(n){
+			//sAll.add($(this).attr("name"));
+			$(this).attr("checked",'checked');
+		});
+// 		$("input:radio").eq(0).attr("checked",'checked');
+	}
 
 	</script>
 </html>

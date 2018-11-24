@@ -43,6 +43,7 @@ public class CommonTest {
 	@Test
 	public void testJson(){
 		String str = "{\"9_a\":\"從不\"}";
+		 str = "{\"stage\":\"e4_4_6\",\"happyOne\":\"111\",\"happyTwo\":\"222\",\"happyThree\":\"444\",\"happyOneHow\":\"222\",\"happyTwoHow\":\"333\",\"happyThreeHow\":\"555\"}";
 		System.out.println(Json.fromJsonAsMap(String.class, str));
 		
 	}
@@ -52,5 +53,14 @@ public class CommonTest {
 		String filePath = "D:\\apache-tomcat-7.0.42\\wtpwebapps\\phoenix_test\\tmp\\00\\0\\0\\0\\0\\1.jpg";
 		System.out.println(File.separator.concat(filePath.substring(filePath.indexOf("phoenix_test"))));
 	}
+	
+	@Test
+	public void testInt() {
+		int i = 6;
+		int j = 8;
+		System.out.println(i / 7);
+		System.out.println((long)(j / 7));
+	}
+	
 	
 }

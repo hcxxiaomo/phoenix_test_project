@@ -84,21 +84,40 @@ to {
 	order: 2
 }
 
-.jq-dice-menu .jq-items li {
+/* .jq-dice-menu .jq-items li {
 	display: flex;
-/* 	align-self: flex-end; */
-/* 	width: 16px; */
-/* 	height: 16px; */
+	align-self: flex-end;
+	width: 16px;
+	height: 16px;
 	padding: 10px;
 	border: 1px solid #000;
 	border-radius: 8px;
 	background: #000;
 	opacity: .7;
-	line-height: 16px;
+	line-height: 12px;
 	justify-content: center;
 	cursor: pointer;
 	margin-bottom: 0;
 	color: white;
+} */
+
+.jq-dice-menu .jq-items li {
+    display: flex;
+    /* align-self: flex-end; */
+    /* width: 16px; */
+    height: 26px;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background: #000;
+    opacity: .7;
+    line-height: 14px;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: white;
+    /* padding-top: 5px; */
+    /* padding-bottom: 5px; */
 }
 
 .jq-dice-menu .jq-items li:nth-child(n+2) {
@@ -107,7 +126,7 @@ to {
 
 .jq-dice-menu .jq-items li span {
 	color: #fff;
-	font-size: 14pt
+	font-size: 10pt
 }
 
 .jq-dice-menu .jq-items li:hover {

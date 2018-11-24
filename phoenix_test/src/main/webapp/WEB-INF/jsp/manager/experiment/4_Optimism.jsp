@@ -8,15 +8,20 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+	         <link rel="icon" href="/phoenix_test/favicon.png"/>
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
 
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.min.css">
 </head>
 <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<jsp:include page="panel.jsp"></jsp:include>
+	       <jsp:include page="menu.jsp"></jsp:include>
+
+<%-- 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
@@ -40,7 +45,7 @@
       </ul>
     </div>
   </div>
-</nav> 
+</nav>  --%>
 
 	<div class="container" style="padding: 40px;">
 	
@@ -62,7 +67,7 @@
 					<c:when test="${obj.stage  eq 'e4_1_2'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>感情生活</h1></c:when>
 					<c:when test="${obj.stage  eq 'e4_1_3'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>健康</h1></c:when>
 					<c:when test="${obj.stage  eq 'e4_1_4'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>工作</h1></c:when>
-					<c:when test="${obj.stage  eq 'e4_1_5'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>家庭關係</h1></c:when>
+					<c:when test="${obj.stage  eq 'e4_1_5'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>關係</h1></c:when>
 					<c:when test="${obj.stage  eq 'e4_1_6'}"><h1 class="text-primary">本星期任務：樂觀練習、跟進有關性健康的行動計劃、每日練習活在當下並記錄感受、每日記錄三件美好的事<br/>樂觀練習<br/>生命的意義</h1></c:when>
 					<c:otherwise>樂觀練習</c:otherwise>
 				 </c:choose>
@@ -123,7 +128,7 @@
 						</div>
 
 					<div >
-					<form action="/phoenix_test/land/trial_optimism_post"  method="post">
+					<form action="/phoenix_test/land/trial_optimism_post"  method="post"  onsubmit="return check()">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
 <!-- 						<h4>你的第一件開心事</h4> -->
 
@@ -151,9 +156,9 @@
   <div class="col-6 col-md-4">.col-6 .col-md-4</div>
 </div> -->
 			<div class="footer-right">
-				<a href="contact_us.html"><i class="fa "></i>聯絡我們</a> <a
-					href="disclaimer.html"><i class="fa "></i>免責聲明</a> <a
-					href="privacy_policy.html"><i class="fa "></i>隱私政策</a>
+				<a href="../contact_us.html"><i class="fa "></i>聯絡我們</a> <a
+					href="../disclaimer.html"><i class="fa "></i>免責聲明</a> <a
+					href="../privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
 				<p class="footer-links"><img alt="logo" style="height: 50px;"  src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
@@ -168,4 +173,17 @@
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
+	
+				<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
+	<script type="text/javascript">
+function check(){
+	if (!$.trim($("#optimism").val())
+			
+	) {
+		alert("樂觀練習不能為空，請填寫後提交！");
+		return false;
+	}
+	return true;
+}
+</script>
 </html>

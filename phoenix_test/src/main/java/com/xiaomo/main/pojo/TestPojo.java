@@ -3,6 +3,8 @@ package com.xiaomo.main.pojo;
 public class TestPojo {
 	
 	private String date;//完成日期
+	private String dateShort;//显示的短日期
+	private String day;//第几天
 	private String stage;//完成阶段
 	private String info;//试题内容
 	private Integer done;//是否完成(0：待完成；1：完成；2：未完成)
@@ -29,6 +31,18 @@ public class TestPojo {
 	}
 	public void setDone(Integer done) {
 		this.done = done;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
+	public String getDateShort() {
+		return dateShort;
+	}
+	public void setDateShort(String dateShort) {
+		this.dateShort = dateShort;
 	}
 	
 	
