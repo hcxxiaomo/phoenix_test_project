@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<%-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
@@ -38,7 +38,7 @@
       </ul>
     </div>
   </div>
-</nav> 
+</nav>  --%>
 
 <div class="container"  style="padding: 40px;">
 	

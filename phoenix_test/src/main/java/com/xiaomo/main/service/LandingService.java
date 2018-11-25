@@ -447,17 +447,28 @@ public class LandingService {
 			if (ti == null && dateParid != 28) {// 樂觀練習
 				page = "jsp:jsp.manager.experiment.4_Optimism";
 				stage ="e4_1_"+(dateParid-21);
-			}else if (getTi(user.getId(), "a_3") == null) {
-				page= "jsp:jsp.manager.experiment.action_3";
-				stage = "a_3";
-			}else{
-				ti = getTi(user.getId(), "e4_3_"+(dateParid-21));
-				if (ti == null) {// 活在當下練習
-					page = "jsp:jsp.manager.experiment.3_Savoring";
-					stage ="e4_3_"+(dateParid-21);
-				}else{//三件开心的事（每天都可以写，一共可以写3*7件）
-					page = "jsp:jsp.manager.experiment.1_Three_good_things";
-					stage ="e4_4_"+(dateParid-21);
+			}else {
+				
+				TestInfo ti_a_2 = getTi(user.getId(), "a_2");//增加第一次行动计划数据
+				Map<String, String> ti_a_2_map = null ;
+				if (ti_a_2 != null) {
+					 ti_a_2_map = Json.fromJsonAsMap(String.class, ti_a_2.getText());
+					map.addv("ti_a_2_map", ti_a_2_map);
+				}
+				if (getTi(user.getId(), "a_3") == null 
+						&& ti_a_2_map != null 
+						&& !"繼續堅持此行動計劃至成功實現目標".equals(ti_a_2_map.get("not_finish"))) {
+					page= "jsp:jsp.manager.experiment.action_3";
+					stage = "a_3";
+				}else{
+					ti = getTi(user.getId(), "e4_3_"+(dateParid-21));
+					if (ti == null) {// 活在當下練習
+						page = "jsp:jsp.manager.experiment.3_Savoring";
+						stage ="e4_3_"+(dateParid-21);
+					}else{//三件开心的事（每天都可以写，一共可以写3*7件）
+						page = "jsp:jsp.manager.experiment.1_Three_good_things";
+						stage ="e4_4_"+(dateParid-21);
+					}
 				}
 			}
 			mapTestInfoPojo.put("Optimism", getTestPojoInfo(22,27,1,"樂觀練習",startTime));

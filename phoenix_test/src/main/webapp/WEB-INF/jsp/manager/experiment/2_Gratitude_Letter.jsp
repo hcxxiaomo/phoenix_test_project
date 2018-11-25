@@ -7,6 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+	         <link rel="icon" href="/phoenix_test/favicon.png"/>
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -98,7 +99,7 @@
 					href="../privacy_policy.html"><i class="fa "></i>隱私政策</a>
 			</div>
 			<div class="footer-left">
-				<p class="footer-links"><img alt="logo" style="height: 50px;"  src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></p>
+				<p class="footer-links"><a href="/phoenix_test/land/index.html"><img alt="logo" style="height: 50px;"  src="/phoenix_test/AdminLTE-2.4.2/media/logo_2.png"></a></p>
 			</div>
 		</div>
 	</footer>

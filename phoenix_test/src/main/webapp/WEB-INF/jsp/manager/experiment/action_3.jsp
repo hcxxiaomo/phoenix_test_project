@@ -43,34 +43,34 @@
 	
 	1.	關於安全性行為(堅持正確使用安全套)和愛滋病(性傳播疾病)測試, 請制定一個你最希望並能夠在4星期內能完成的目標 (注: 進度和成果能夠便於準確評價, 例如成功預約一次HIV測試, 和伴侶認真進行一次關於堅持戴套的對話等):
 	
-							<textarea readonly="readonly"  id="target" name="target" rows="3"  style="width:100%" placeholder="">${obj.ti_a_1_map['a_1_target'] }</textarea>
+							<textarea readonly="readonly"  id="target" name="target" rows="3"  style="width:100%" placeholder="">${obj.ti_a_2_map['a_2_target'] }</textarea>
 						</p>
 						
 						<p>2.	請寫出你認為如若此目標能夠達成你能夠最受益的方面是:<br/>
 						长期：
-							<textarea  readonly="readonly"  id="longGet" name="longGet" rows="3" style="width:100%"  placeholder="">${obj.ti_a_1_map['a_1_longGet'] }</textarea>
+							<textarea  readonly="readonly"  id="longGet" name="longGet" rows="3" style="width:100%"  placeholder="">${obj.ti_a_2_map['a_2_longGet'] }</textarea>
 						短期：
-							<textarea  readonly="readonly"  id="shortGet" name="shortGet" rows="3" style="width:100%"  placeholder="">${obj.ti_a_1_map['a_1_shortGet'] }</textarea>
+							<textarea  readonly="readonly"  id="shortGet" name="shortGet" rows="3" style="width:100%"  placeholder="">${obj.ti_a_2_map['a_2_shortGet'] }</textarea>
 						</p>
 						
 						<p>3.	請寫出2-3個你認為實現此目標需要的具體行動計劃:<br/>
 						Step 1：
-							<textarea  readonly="readonly"  id="step1" name="step1" rows="3" style="width:100%"  placeholder="">${obj.ti_a_1_map['a_1_step1'] }</textarea>
+							<textarea  readonly="readonly"  id="step1" name="step1" rows="3" style="width:100%"  placeholder="">${obj.ti_a_2_map['a_2_step1'] }</textarea>
 						Step 2：
-							<textarea  readonly="readonly"  id="step2" name="step2" rows="3" style="width:100%"  placeholder="">${obj.ti_a_1_map['a_1_step2'] }</textarea>
+							<textarea  readonly="readonly"  id="step2" name="step2" rows="3" style="width:100%"  placeholder="">${obj.ti_a_2_map['a_2_step2'] }</textarea>
 						Step 3：
-							<textarea  readonly="readonly"  id="step3" name="step3"  rows="3" style="width:100%"  placeholder="">${obj.ti_a_1_map['a_1_step3'] }</textarea>
+							<textarea  readonly="readonly"  id="step3" name="step3"  rows="3" style="width:100%"  placeholder="">${obj.ti_a_2_map['a_2_step3'] }</textarea>
 						</p>
 						
 						<p>4.	請寫出你認為目前會影響此目標實現的2項最主要的困難/問題以及相應的解決方法:<br/>
 						A.困難：
-							<textarea  readonly="readonly"  id="hard1" name="hard1" rows="2" style="width:35%"  placeholder="">${obj.ti_a_1_map['a_1_hard1'] }</textarea>
+							<textarea  readonly="readonly"  id="hard1" name="hard1" rows="2" style="width:35%"  placeholder="">${obj.ti_a_2_map['a_2_hard1'] }</textarea>
 							解決方法:
-							<textarea  readonly="readonly"  id="hard1sove" name="hard1sove" rows="2" style="width:35%"  placeholder="">${obj.ti_a_1_map['a_1_hard1sove'] }</textarea><br/>
+							<textarea  readonly="readonly"  id="hard1sove" name="hard1sove" rows="2" style="width:35%"  placeholder="">${obj.ti_a_2_map['a_2_hard1sove'] }</textarea><br/>
 						B.困難：
-							<textarea readonly="readonly"  id="hard2" name="hard2" rows="2" style="width:35%"  placeholder="">${obj.ti_a_1_map['a_1_hard2'] }</textarea>
+							<textarea readonly="readonly"  id="hard2" name="hard2" rows="2" style="width:35%"  placeholder="">${obj.ti_a_2_map['a_2_hard2'] }</textarea>
 							解決方法:
-							<textarea readonly="readonly"  id="hard2sove" name="hard2sove" rows="2" style="width:35%"  placeholder="">${obj.ti_a_1_map['a_1_hard2sove'] }</textarea>
+							<textarea readonly="readonly"  id="hard2sove" name="hard2sove" rows="2" style="width:35%"  placeholder="">${obj.ti_a_2_map['a_2_hard2sove'] }</textarea>
 						</p>
 
 
@@ -104,34 +104,34 @@
 	
 	1.	關於安全性行為(堅持正確使用安全套)和愛滋病(性傳播疾病)測試, 請制定一個你最希望並能夠在4星期內能完成的目標 (注: 進度和成果能夠便於準確評價, 例如成功預約一次HIV測試, 和伴侶認真進行一次關於堅持戴套的對話等):
 	
-							<textarea  id="a_2_target" name="a_2_target" rows="3"  style="width:100%" placeholder=""></textarea>
+							<textarea  id="a_3_target" name="a_3_target" rows="3"  style="width:100%" placeholder=""></textarea>
 						</p>
 						
 						<p>2.	請寫出你認為如若此目標能夠達成你能夠最受益的方面是:<br/>
 						长期：
-							<textarea  id="a_2_longGet" name="a_2_longGet" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_longGet" name="a_3_longGet" rows="3" style="width:100%"  placeholder=""></textarea>
 						短期：
-							<textarea  id="a_2_shortGet" name="a_2_shortGet" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_shortGet" name="a_3_shortGet" rows="3" style="width:100%"  placeholder=""></textarea>
 						</p>
 						
 						<p>3.	請寫出2-3個你認為實現此目標需要的具體行動計劃:<br/>
 						Step 1：
-							<textarea  id="a_2_step1" name="a_2_step1" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_step1" name="a_3_step1" rows="3" style="width:100%"  placeholder=""></textarea>
 						Step 2：
-							<textarea  id="a_2_step2" name="a_2_step2" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_step2" name="a_3_step2" rows="3" style="width:100%"  placeholder=""></textarea>
 						Step 3：
-							<textarea  id="a_2_step3" name="a_2_step3"  rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_step3" name="a_3_step3"  rows="3" style="width:100%"  placeholder=""></textarea>
 						</p>
 						
 						<p>4.	請寫出你認為目前會影響此目標實現的2項最主要的困難/問題以及相應的解決方法:<br/>
 						A.困難：
-							<textarea  id="a_2_hard1" name="a_2_hard1" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_3_hard1" name="a_3_hard1" rows="2" style="width:35%"  placeholder=""></textarea>
 							解決方法:
-							<textarea  id="a_2_hard1sove" name="a_2_hard1sove" rows="2" style="width:35%"  placeholder=""></textarea><br/>
+							<textarea  id="a_3_hard1sove" name="a_3_hard1sove" rows="2" style="width:35%"  placeholder=""></textarea><br/>
 						B.困難：
-							<textarea  id="a_2_hard2" name="a_2_hard2" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_3_hard2" name="a_3_hard2" rows="2" style="width:35%"  placeholder=""></textarea>
 							解決方法:
-							<textarea  id="a_2_hard2sove" name="a_2_hard2sove" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_3_hard2sove" name="a_3_hard2sove" rows="2" style="width:35%"  placeholder=""></textarea>
 						</p>
 		</div>
 		
@@ -142,22 +142,22 @@
 						
 						<p>1.	請寫出2-3個你認為實現此目標需要的具體行動計劃:<br/>
 						Step 1：
-							<textarea  id="a_2_persist_step1" name="a_2_persist_step1" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_persist_step1" name="a_3_persist_step1" rows="3" style="width:100%"  placeholder=""></textarea>
 						Step 2：
-							<textarea  id="a_2_persist_step2" name="a_2_persist_step2" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_persist_step2" name="a_3_persist_step2" rows="3" style="width:100%"  placeholder=""></textarea>
 						Step 3：
-							<textarea  id="a_2_persist_step3" name="a_2_persist_step3"  rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_3_persist_step3" name="a_3_persist_step3"  rows="3" style="width:100%"  placeholder=""></textarea>
 						</p>
 						
 						<p>2.	請寫出你認為目前會影響此目標實現的2項最主要的困難/問題以及相應的解決方法:<br/>
 						A.困難：
-							<textarea  id="a_2_persist_hard1" name="a_2_persist_hard1" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_3_persist_hard1" name="a_3_persist_hard1" rows="2" style="width:35%"  placeholder=""></textarea>
 							解決方法:
-							<textarea  id="a_2_persist_hard1sove" name="a_2_persist_hard1sove" rows="2" style="width:35%"  placeholder=""></textarea><br/>
+							<textarea  id="a_3_persist_hard1sove" name="a_3_persist_hard1sove" rows="2" style="width:35%"  placeholder=""></textarea><br/>
 						B.困難：
-							<textarea  id="a_2_persist_hard2" name="a_2_persist_hard2" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_3_persist_hard2" name="a_3_persist_hard2" rows="2" style="width:35%"  placeholder=""></textarea>
 							解決方法:
-							<textarea  id="a_2_persist_hard2sove" name="a_2_persist_hard2sove" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_3_persist_hard2sove" name="a_3_persist_hard2sove" rows="2" style="width:35%"  placeholder=""></textarea>
 						</p>
 		</div>
 		
