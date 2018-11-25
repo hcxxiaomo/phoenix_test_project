@@ -83,7 +83,7 @@
 					<c:otherwise><h1 class="text-primary">樂觀練習</h1></c:otherwise>
 				</c:choose> --%>
 					
-					<video src="/phoenix_test/AdminLTE-2.4.2/media/4_Optimism.mov" style="width: 100%;"  controls="controls">
+					<video src="/phoenix_test/AdminLTE-2.4.2/media/4_Optimism.mov" id="my-video"  style="width: 100%;"  controls="controls">
 						</video>
 						
 						<div>
@@ -131,6 +131,8 @@
 					<form action="/phoenix_test/land/trial_optimism_post"  method="post"  onsubmit="return check()">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
 <!-- 						<h4>你的第一件開心事</h4> -->
+						<input type="text" name="videoTime" id="videoTime"  hidden="hidden">
+						<input type="text" name="totalTime" id="totalTime"  hidden="hidden">
 
 						<p>
 							<textarea  id="optimism" name="optimism" rows="20"  style="width:100%" ></textarea>
@@ -176,6 +178,74 @@
 	
 				<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
 	<script type="text/javascript">
+
+	var current = 0;
+
+	$(document).ready(function(){
+		  $("#my-video").on(
+		    "timeupdate", 
+		    function(event){
+		      onTrackedVideoFrame(this.currentTime, this.duration);
+		    });
+		})
+
+		function onTrackedVideoFrame(currentTime, duration){
+		if (currentTime > current) {
+			current = currentTime;
+			$("#videoTime").val(current);
+			$("#totalTime").val(duration);
+		}
+		   /*  $("#current").text(currentTime);
+		    $("#duration").text(duration); */
+		}
+		
+	var int_1 = self.setInterval("setControl()", 1)
+	var int_2 = self.setInterval("tesst()", 100)
+	//让其一直显示进度条
+	function setControl() {
+	    var video = document.getElementById("my-video"); //获取video对象
+	    video.controls = true; //设置控制条显示
+	}
+	var zq = 0;
+	var zh = -1;
+	var hou = 0;
+	function tesst() {
+	    var v2 = document.getElementById("v2");
+	    v2.innerHTML = hou;
+	    var s = document.getElementById("zzbf");
+	    var b = document.getElementById("zzbf2");
+	    var v1 = document.getElementById("v1");
+	    var v3 = document.getElementById("v3");
+	    zq = zq + 1;
+	    zh = zh + 1;
+	    var video = document.getElementById("my-video"); //获取video对象
+	    var time1 = video.currentTime;
+	    var xc = time1 - hou;
+	    v3.innerHTML = xc;
+	    if(xc > 2) {
+	        document.getElementById("my-video").pause();
+	        video.currentTime = hou;
+	    }
+	    if(xc <= -2) {
+	    }
+	    hou = time1;
+	    v1.innerHTML = time1;
+	    s.innerHTML = zq;
+	    b.innerHTML = zh;
+	}
+	var i = 0;
+
+	function stop() {
+	    //点击暂停播放 
+	    if(i == 0) {
+	        document.getElementById("my-video").pause();
+	        i = 1;
+	    } else {
+	        document.getElementById('my-video').play();
+	        i = 0;
+	    }
+	}
+	
 function check(){
 	if (!$.trim($("#optimism").val())
 			

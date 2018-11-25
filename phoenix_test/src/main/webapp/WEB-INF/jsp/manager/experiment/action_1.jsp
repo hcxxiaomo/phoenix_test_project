@@ -7,10 +7,12 @@
 <head>
 <meta charset="utf-8">
 <title>HeHe Journals</title>
+	         <link rel="icon" href="/phoenix_test/favicon.png"/>
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/styles.css">
 <link rel="stylesheet"
 	href=" //cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/main.css">
+<link rel="stylesheet" href="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.min.css">
 
 </head>
 <body>
@@ -40,38 +42,38 @@
 	
 	1.	關於安全性行為(堅持正確使用安全套)和愛滋病(性傳播疾病)測試, 請制定一個你最希望並能夠在4星期內能完成的目標 (注: 進度和成果能夠便於準確評價, 例如成功預約一次HIV測試, 和伴侶認真進行一次關於堅持戴套的對話等):
 	
-							<textarea  id="target" name="target" rows="3"  style="width:100%" placeholder=""></textarea>
+							<textarea  id="a_1_target" name="a_1_target" rows="3"  style="width:100%" placeholder=""></textarea>
 						</p>
 						
 						<p>2.	請寫出你認為如若此目標能夠達成你能夠最受益的方面是:<br/>
 						长期：
-							<textarea  id="longGet" name="longGet" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_1_longGet" name="a_1_longGet" rows="3" style="width:100%"  placeholder=""></textarea>
 						短期：
-							<textarea  id="shortGet" name="shortGet" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_1_shortGet" name="a_1_shortGet" rows="3" style="width:100%"  placeholder=""></textarea>
 						</p>
 						
 						<p>3.	請寫出2-3個你認為實現此目標需要的具體行動計劃:<br/>
 						Step 1：
-							<textarea  id="step1" name="step1" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_1_step1" name="a_1_step1" rows="3" style="width:100%"  placeholder=""></textarea>
 						Step 2：
-							<textarea  id="step2" name="step2" rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_1_step2" name="a_1_step2" rows="3" style="width:100%"  placeholder=""></textarea>
 						Step 3：
-							<textarea  id="step3" name="step3"  rows="3" style="width:100%"  placeholder=""></textarea>
+							<textarea  id="a_1_step3" name="a_1_step3"  rows="3" style="width:100%"  placeholder=""></textarea>
 						</p>
 						
 						<p>4.	請寫出你認為目前會影響此目標實現的2項最主要的困難/問題以及相應的解決方法:<br/>
 						A.困難：
-							<textarea  id="hard1" name="hard1" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_1_hard1" name="a_1_hard1" rows="2" style="width:35%"  placeholder=""></textarea>
 							解決方法:
-							<textarea  id="hard1sove" name="hard1sove" rows="2" style="width:35%"  placeholder=""></textarea><br/>
+							<textarea  id="a_1_hard1sove" name="a_1_hard1sove" rows="2" style="width:35%"  placeholder=""></textarea><br/>
 						B.困難：
-							<textarea  id="hard2" name="hard2" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_1_hard2" name="a_1_hard2" rows="2" style="width:35%"  placeholder=""></textarea>
 							解決方法:
-							<textarea  id="hard2sove" name="hard2sove" rows="2" style="width:35%"  placeholder=""></textarea>
+							<textarea  id="a_1_hard2sove" name="a_1_hard2sove" rows="2" style="width:35%"  placeholder=""></textarea>
 						</p>
 
 
-	<button type="submit" id="add-content">提交</button>
+	<button type="submit" id="add-content">儲存並繼續</button>
 </form>
 					</div>
 				</div>
@@ -106,21 +108,21 @@
 <script
 	src=" //cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
-	
+		<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
 
 				<script type="text/javascript">
 function check(){
 // 	alert("on...");
-	if (!$.trim($("#target").val())
-			||!$.trim($("#longGet").val())
-			||!$.trim($("#shortGet").val())
-			||!$.trim($("#step1").val())
-			||!$.trim($("#step2").val())
-			||!$.trim($("#step3").val())
-			||!$.trim($("#hard1").val())
-			||!$.trim($("#hard1sove").val())
-			||!$.trim($("#hard2").val())
-			||!$.trim($("#hard2sove").val())
+	if (!$.trim($("#a_1_target").val())
+			||!$.trim($("#a_1_longGet").val())
+			||!$.trim($("#a_1_shortGet").val())
+			||!$.trim($("#a_1_step1").val())
+			||!$.trim($("#a_1_step2").val())
+			||!$.trim($("#a_1_step3").val())
+			||!$.trim($("#a_1_hard1").val())
+			||!$.trim($("#a_1_hard1sove").val())
+			||!$.trim($("#a_1_hard2").val())
+			||!$.trim($("#a_1_hard2sove").val())
 	) {
 		alert("目標及行動計劃制定不能為空，請填寫後提交！");
 		return false;

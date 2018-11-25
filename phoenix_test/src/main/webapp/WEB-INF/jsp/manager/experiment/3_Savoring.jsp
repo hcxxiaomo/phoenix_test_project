@@ -49,8 +49,16 @@
 				
 <!-- 					<h1 class="text-primary">本星期任務：每日練習活在當下並記錄感受、跟進有關性健康的行動計劃、每日記錄三件美好的事<br/>細味生活</h1> -->
 					
-					<video src="/phoenix_test/AdminLTE-2.4.2/media/3_Savoring.mov" style="width: 100%;"  controls="controls">
+					<video src="/phoenix_test/AdminLTE-2.4.2/media/3_Savoring.mov"  id="my-video"  style="width: 100%;"  controls="controls"  id="my-video">
 						</video>
+						<div style="display: none;">
+				       现在<span id="zzbf">0</span> 前一秒<span id="zzbf2">0</span><
+				            视频当前播放:<span id="v1">0</span>&nbsp;&nbsp;&nbsp; 视频前一秒:<span id="v2">0</span>&nbsp;&nbsp;&nbsp; 相差:<span id="v3">0</span>
+				</div>
+						
+												<input type="text" name="videoTime" id="videoTime"  hidden="hidden">
+						<input type="text" name="totalTime" id="totalTime"  hidden="hidden">
+						
 						<div  class="text_l"  style="padding-top: 20px;">
 						每天預留20分鐘去做一些你享受的事。在你的「小假期」裏，嘗試完全專注於你的感覺、感受。這些可以來自視覺、聽覺、嗅覺等。留意每一個正面的感覺，不要讓它流走。你就會留意到爲什麽你覺得某一件事讓你感到愉快。
 						</div>
@@ -144,6 +152,74 @@
 			<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
 			
 				<script type="text/javascript">
+				
+				var current = 0;
+
+				$(document).ready(function(){
+					  $("#my-video").on(
+					    "timeupdate", 
+					    function(event){
+					      onTrackedVideoFrame(this.currentTime, this.duration);
+					    });
+					})
+
+					function onTrackedVideoFrame(currentTime, duration){
+					if (currentTime > current) {
+						current = currentTime;
+						$("#videoTime").val(current);
+						$("#totalTime").val(duration);
+					}
+					   /*  $("#current").text(currentTime);
+					    $("#duration").text(duration); */
+					}
+					
+				var int_1 = self.setInterval("setControl()", 1)
+				var int_2 = self.setInterval("tesst()", 100)
+				//让其一直显示进度条
+				function setControl() {
+				    var video = document.getElementById("my-video"); //获取video对象
+				    video.controls = true; //设置控制条显示
+				}
+				var zq = 0;
+				var zh = -1;
+				var hou = 0;
+				function tesst() {
+				    var v2 = document.getElementById("v2");
+				    v2.innerHTML = hou;
+				    var s = document.getElementById("zzbf");
+				    var b = document.getElementById("zzbf2");
+				    var v1 = document.getElementById("v1");
+				    var v3 = document.getElementById("v3");
+				    zq = zq + 1;
+				    zh = zh + 1;
+				    var video = document.getElementById("my-video"); //获取video对象
+				    var time1 = video.currentTime;
+				    var xc = time1 - hou;
+				    v3.innerHTML = xc;
+				    if(xc > 2) {
+				        document.getElementById("my-video").pause();
+				        video.currentTime = hou;
+				    }
+				    if(xc <= -2) {
+				    }
+				    hou = time1;
+				    v1.innerHTML = time1;
+				    s.innerHTML = zq;
+				    b.innerHTML = zh;
+				}
+				var i = 0;
+
+				function stop() {
+				    //点击暂停播放 
+				    if(i == 0) {
+				        document.getElementById("my-video").pause();
+				        i = 1;
+				    } else {
+				        document.getElementById('my-video').play();
+				        i = 0;
+				    }
+				}
+				
 function check(){
 // 	alert("on...");
 	if (!$.trim($("#experience").val())

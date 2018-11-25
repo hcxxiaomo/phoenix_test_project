@@ -15,6 +15,9 @@ public class HappyPojo {
 	private String happyTwoFile;
 	private String happyThreeFile;
 	
+	private String videoTime;
+	private String totalTime;
+	
 	private Date time;
 	public String getHappyOne() {
 		return happyOne;
@@ -82,6 +85,20 @@ public class HappyPojo {
 	public void setHappyThreeHow(String happyThreeHow) {
 		this.happyThreeHow = happyThreeHow;
 	}
+	public String getVideoTime() {
+		return videoTime;
+	}
+	public void setVideoTime(String videoTime) {
+		this.videoTime = videoTime;
+	}
+	public String getTotalTime() {
+		return totalTime;
+	}
+	public void setTotalTime(String totalTime) {
+		this.totalTime = totalTime;
+	}
+	
+	
 
 	
 }

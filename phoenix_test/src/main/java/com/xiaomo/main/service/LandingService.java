@@ -222,11 +222,14 @@ public class LandingService {
 	}
 
 
-	public NutMap trial_letter_post(String letter, String stage,User user) {
+	public NutMap trial_letter_post(String letter, String stage,String letterFeeling ,String videoTime,String totalTime,User user) {
 		log.infof("letter= %s ,stage= %s",letter,stage);
 		NutMap nm = new NutMap();
 		nm.addv("letter", letter);
+		nm.addv("letterFeeling", letterFeeling);
 		nm.addv("stage", stage);
+		nm.addv("videoTime", videoTime);
+		nm.addv("totalTime", totalTime);
 		
 		TestInfo ti = new TestInfo();
 		ti.setCreateTime(new Date());
@@ -236,11 +239,13 @@ public class LandingService {
 		return testInfoService.addOrUpdate(ti, user);
 	}
 
-	public NutMap trial_savoring_post(String experience, String vacation, String stage,User user) {
+	public NutMap trial_savoring_post(String experience, String vacation, String stage,String videoTime,String totalTime,User user) {
 		log.infof("experience= %s ,vacation= %s,stage= %s",experience,vacation,stage);	
 		NutMap nm = new NutMap();
 		nm.addv("letter", experience);
 		nm.addv("vacation", vacation);
+		nm.addv("videoTime", videoTime);
+		nm.addv("totalTime", totalTime);
 		nm.addv("stage", stage);
 		
 		TestInfo ti = new TestInfo();
@@ -252,10 +257,12 @@ public class LandingService {
 		
 	}
 
-	public NutMap trial_optimism_post(String optimism, String stage,User user) {
+	public NutMap trial_optimism_post(String optimism, String stage,String videoTime,String totalTime,User user) {
 		log.infof("optimism= %s ,stage= %s",optimism,stage);
 		NutMap nm = new NutMap();
 		nm.addv("optimism", optimism);
+		nm.addv("videoTime", videoTime);
+		nm.addv("totalTime", totalTime);
 		nm.addv("stage", stage);
 		TestInfo ti = new TestInfo();
 		ti.setCreateTime(new Date());

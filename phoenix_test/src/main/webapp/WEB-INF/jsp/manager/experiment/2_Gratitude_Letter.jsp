@@ -49,12 +49,19 @@
 				</c:choose>
 <!-- 					<h1 class="text-primary">本星期任務：對感恩對象寫一封信、訂立有關性健康的行動計劃、每日記錄三件美好的事<br/>傳達感恩的信</h1> -->
 					
-					<video src="/phoenix_test/AdminLTE-2.4.2/media/2_Gratitude_Letter.mov" style="width: 100%;"  controls="controls">
+					<video src="/phoenix_test/AdminLTE-2.4.2/media/2_Gratitude_Letter.mov" style="width: 100%;"  id="my-video" controls="controls">
 						</video>
+						<div style="display: none;">
+				       现在<span id="zzbf">0</span> 前一秒<span id="zzbf2">0</span>
+				            视频当前播放:<span id="v1">0</span>&nbsp;&nbsp;&nbsp; 视频前一秒:<span id="v2">0</span>&nbsp;&nbsp;&nbsp; 相差:<span id="v3">0</span>
+				</div>
 
 					<div >
 					<form action="/phoenix_test/land/trial_letter_post"  method="post"  onsubmit="return check()">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
+						
+						<input type="text" name="videoTime" id="videoTime"  hidden="hidden">
+						<input type="text" name="totalTime" id="totalTime"  hidden="hidden">
 						<h4>信</h4>
 
 						<p>
@@ -106,7 +113,75 @@
 	
 		<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
 
-				<script type="text/javascript">
+<script type="text/javascript">
+
+var current = 0;
+
+$(document).ready(function(){
+	  $("#my-video").on(
+	    "timeupdate", 
+	    function(event){
+	      onTrackedVideoFrame(this.currentTime, this.duration);
+	    });
+	})
+
+	function onTrackedVideoFrame(currentTime, duration){
+	if (currentTime > current) {
+		current = currentTime;
+		$("#videoTime").val(current);
+		$("#totalTime").val(duration);
+	}
+	   /*  $("#current").text(currentTime);
+	    $("#duration").text(duration); */
+	}
+	
+var int_1 = self.setInterval("setControl()", 1)
+var int_2 = self.setInterval("tesst()", 100)
+//让其一直显示进度条
+function setControl() {
+    var video = document.getElementById("my-video"); //获取video对象
+    video.controls = true; //设置控制条显示
+}
+var zq = 0;
+var zh = -1;
+var hou = 0;
+function tesst() {
+    var v2 = document.getElementById("v2");
+    v2.innerHTML = hou;
+    var s = document.getElementById("zzbf");
+    var b = document.getElementById("zzbf2");
+    var v1 = document.getElementById("v1");
+    var v3 = document.getElementById("v3");
+    zq = zq + 1;
+    zh = zh + 1;
+    var video = document.getElementById("my-video"); //获取video对象
+    var time1 = video.currentTime;
+    var xc = time1 - hou;
+    v3.innerHTML = xc;
+    if(xc > 2) {
+        document.getElementById("my-video").pause();
+        video.currentTime = hou;
+    }
+    if(xc <= -2) {
+    }
+    hou = time1;
+    v1.innerHTML = time1;
+    s.innerHTML = zq;
+    b.innerHTML = zh;
+}
+var i = 0;
+
+function stop() {
+    //点击暂停播放 
+    if(i == 0) {
+        document.getElementById("my-video").pause();
+        i = 1;
+    } else {
+        document.getElementById('my-video').play();
+        i = 0;
+    }
+}
+				
 function check(){
 // 	alert("on...");
 	if (!$.trim($("#letter").val())

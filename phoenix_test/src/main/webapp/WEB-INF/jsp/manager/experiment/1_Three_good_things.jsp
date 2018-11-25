@@ -46,8 +46,12 @@
 					<!-- 			<h3>This page demonstrates how you can create a footer with flexbox which always sticks to the bottom of the page, regardless of how much conotent there is.</h3> -->
 					<!-- 			<a href='#' id="add-content">註冊及了解更多</a> -->
 					<!-- 			<a href='#' id="login-content">登入</a> -->
-					<video src="/phoenix_test/AdminLTE-2.4.2/media/1_Three_good_things.mov" style="width: 100%;" controls="controls">
+					<video src="/phoenix_test/AdminLTE-2.4.2/media/1_Three_good_things.mov" style="width: 100%;" controls="controls"  id="my-video">
 						</video>
+						<div style="display: none;">
+				       现在<span id="zzbf">0</span> 前一秒<span id="zzbf2">0</span>
+				            视频当前播放:<span id="v1">0</span>&nbsp;&nbsp;&nbsp; 视频前一秒:<span id="v2">0</span>&nbsp;&nbsp;&nbsp; 相差:<span id="v3">0</span>
+				</div>
 						<div class="text_l" style="padding-top: 20px;">
 						試想想自己今天發生了什麼美好的事情。這件事情可以是任何為你帶來正面能量的事。不論事情大小，只要該事件令你感到良好、開心和充滿正面能量。例如：你今天吃了一個豐富的早餐 / 昨天晚上睡得很好。
 
@@ -62,6 +66,8 @@
 					<div >
 					<form action="/phoenix_test/land/trial_happy_post"  enctype="multipart/form-data" method="post"   onsubmit="return check()">
 						<input type="text" name="stage" id="stage" value="${obj.stage }" hidden="hidden">
+						<input type="text" name="videoTime" id="videoTime"  hidden="hidden">
+						<input type="text" name="totalTime" id="totalTime"  hidden="hidden">
 						<h4>你的第一件美好的事</h4>
 
 						<p>
@@ -149,6 +155,74 @@
 <script src="/phoenix_test/AdminLTE-2.4.2/media/common.js"></script>
 	<script src="/phoenix_test/AdminLTE-2.4.2/media/jq.dice-menu.js"></script>
 <script type="text/javascript">
+var current = 0;
+
+$(document).ready(function(){
+	  $("#my-video").on(
+	    "timeupdate", 
+	    function(event){
+	      onTrackedVideoFrame(this.currentTime, this.duration);
+	    });
+	})
+
+	function onTrackedVideoFrame(currentTime, duration){
+	if (currentTime > current) {
+		current = currentTime;
+		$("#videoTime").val(current);
+		$("#totalTime").val(duration);
+	}
+	   /*  $("#current").text(currentTime);
+	    $("#duration").text(duration); */
+	}
+	
+var int_1 = self.setInterval("setControl()", 1)
+var int_2 = self.setInterval("tesst()", 100)
+//让其一直显示进度条
+function setControl() {
+    var video = document.getElementById("my-video"); //获取video对象
+    video.controls = true; //设置控制条显示
+}
+var zq = 0;
+var zh = -1;
+var hou = 0;
+function tesst() {
+    var v2 = document.getElementById("v2");
+    v2.innerHTML = hou;
+    var s = document.getElementById("zzbf");
+    var b = document.getElementById("zzbf2");
+    var v1 = document.getElementById("v1");
+    var v3 = document.getElementById("v3");
+    zq = zq + 1;
+    zh = zh + 1;
+    var video = document.getElementById("my-video"); //获取video对象
+    var time1 = video.currentTime;
+    var xc = time1 - hou;
+    v3.innerHTML = xc;
+    if(xc > 2) {
+        document.getElementById("my-video").pause();
+        video.currentTime = hou;
+    }
+    if(xc <= -2) {
+    }
+    hou = time1;
+    v1.innerHTML = time1;
+    s.innerHTML = zq;
+    b.innerHTML = zh;
+}
+var i = 0;
+
+function stop() {
+    //点击暂停播放 
+    if(i == 0) {
+        document.getElementById("my-video").pause();
+        i = 1;
+    } else {
+        document.getElementById('my-video').play();
+        i = 0;
+    }
+}
+	
+
 function check(){
 	if (!$.trim($("#happyOne").val())
 			|| !$.trim($("#happyOneHow").val())

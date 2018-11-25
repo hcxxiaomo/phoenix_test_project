@@ -321,12 +321,17 @@ public class LandingModule {
 	  @At
 	  @Ok("redirect:/land/experiment/today")
 	  @AdaptBy(type = UploadAdaptor.class, args = { "${app.root}/tmp" })
-	  public NutMap trial_happy_post(@Param("..") HappyPojo hp, @Attr(scope=Scope.SESSION, value="user") User user,ServletContext sc
+	  public String trial_happy_post(@Param("..") HappyPojo hp, @Attr(scope=Scope.SESSION, value="user") User user,ServletContext sc
 			 , @Param("file1")TempFile[] file1, @Param("file2")TempFile[] file2, @Param("file3")TempFile[] file3){
-		  NutMap nm = landingService.trial_happy_post(hp,file1,file2,file3,user);
+		  if (user == null) {
+				return "redirect:/land/index";
+		}
 		  
-		  log.info(sc.getContextPath());
-		  return nm.addv("url", hp.getStage());
+		 landingService.trial_happy_post(hp,file1,file2,file3,user);
+		  
+//		  log.info(sc.getContextPath());
+//		  return nm.addv("url", hp.getStage());
+		  return null;
 	  }
 	   
 	  
@@ -338,14 +343,22 @@ public class LandingModule {
 	  
 	  @At
 	  @Ok("redirect:/land/experiment/today")
-	  public void trial_letter_post(String letter,String stage, @Attr(scope=Scope.SESSION, value="user") User user){
-		  landingService.trial_letter_post(letter,stage,user);
+	  public String trial_letter_post(String letter,String stage,String letterFeeling ,String videoTime,String totalTime, @Attr(scope=Scope.SESSION, value="user") User user){
+		  if (user == null) {
+				return "redirect:/land/index";
+		}
+		  landingService.trial_letter_post(letter, stage, letterFeeling, videoTime, totalTime, user);
+		  return null;
 	  }
 	  
 	  @At
 	  @Ok("redirect:/land/experiment/today")
-	  public void trial_savoring_post(String experience,String vacation,String stage, @Attr(scope=Scope.SESSION, value="user") User user){
-		  landingService.trial_savoring_post(experience,vacation,stage,user);
+	  public String trial_savoring_post(String experience,String vacation,String stage,String videoTime,String totalTime, @Attr(scope=Scope.SESSION, value="user") User user){
+		  if (user == null) {
+				return "redirect:/land/index";
+		}
+		  landingService.trial_savoring_post(experience, vacation, stage, videoTime, totalTime, user);
+		  return null;
 	  }
 	  
 	  @At
@@ -355,8 +368,12 @@ public class LandingModule {
 	  
 	  @At
 	  @Ok("redirect:/land/experiment/today")
-	  public void trial_optimism_post(String optimism,String stage, @Attr(scope=Scope.SESSION, value="user") User user){
-		  landingService.trial_optimism_post(optimism, stage,user);
+	  public String trial_optimism_post(String optimism,String stage,String videoTime,String totalTime, @Attr(scope=Scope.SESSION, value="user") User user){
+		  if (user == null) {
+				return "redirect:/land/index";
+		}
+		  landingService.trial_optimism_post(optimism, stage, videoTime, totalTime, user);
+		  return null;
 	  }
 	  
 	  @At("/experiment/notice_ok")

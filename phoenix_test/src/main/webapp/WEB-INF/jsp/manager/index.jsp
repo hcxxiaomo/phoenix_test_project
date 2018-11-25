@@ -116,7 +116,7 @@
 <!-- <video src="/phoenix_test/AdminLTE-2.4.2/media/Smooth_Green_Grass_Background.mp4" style="width: auto; height: 500px" controls="controls" autoplay="autoplay"></video> -->
 
 <div style=" margin-left: auto;margin-right: auto;width:1080px;height:607px;"> <!-- controls="controls" autoplay="autoplay"  -->
-<video id="my-video" class="video-js"  preload="auto"  height="607" width="1080"  controls="controls" autoplay="autoplay" 
+<video id="my-video" class="video-js"  muted preload="auto"  height="607" width="1080"  controls="controls" autoplay="autoplay" 
   poster="/phoenix_test/AdminLTE-2.4.2/media/Smooth_Green_Gr00_00_00.jpg" data-setup="{}">
     <source src="/phoenix_test/AdminLTE-2.4.2/media/Smooth_Green_Grass_Background.mp4" type='video/mp4'>
 <!--     <source src="MY_VIDEO.webm" type='video/webm'> -->
