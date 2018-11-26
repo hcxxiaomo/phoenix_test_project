@@ -52,7 +52,7 @@
 					<video src="/phoenix_test/AdminLTE-2.4.2/media/3_Savoring.mov"  id="my-video"  style="width: 100%;"  controls="controls"  id="my-video">
 						</video>
 						<div style="display: none;">
-				       现在<span id="zzbf">0</span> 前一秒<span id="zzbf2">0</span><
+				       现在<span id="zzbf">0</span> 前一秒<span id="zzbf2">0</span>
 				            视频当前播放:<span id="v1">0</span>&nbsp;&nbsp;&nbsp; 视频前一秒:<span id="v2">0</span>&nbsp;&nbsp;&nbsp; 相差:<span id="v3">0</span>
 				</div>
 						
